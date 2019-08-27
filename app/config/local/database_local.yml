@@ -1,0 +1,2 @@
+doctrine:
+    dbal: { connections: { default: { host: mysql, port: '3306', user: root, password: '', dbname: cari_bengkel } } }

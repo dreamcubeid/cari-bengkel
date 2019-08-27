@@ -16,6 +16,7 @@
 !/app/config/local
 /app/config/local/*
 !app/config/local/.gitkeep
+!app/config/local/database_local.yml
 
 # pimcore legacy (remove this for your own development)
 !/legacy
