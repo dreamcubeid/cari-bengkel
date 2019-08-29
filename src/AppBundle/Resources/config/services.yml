@@ -19,6 +19,13 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    AppBundle\Service\:
+        resource: '../../Service'
+        public: true
+
+    AppBundle\Repository\:
+        resource: '../../Repository'
+        public: true
 
     #
     # COMMANDS
