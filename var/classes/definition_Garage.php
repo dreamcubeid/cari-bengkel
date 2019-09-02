@@ -1,11 +1,11 @@
 <?php 
 
 /** 
-* Generated at: 2019-08-30T06:05:40+02:00
+* Generated at: 2019-09-02T09:05:35+02:00
 * Inheritance: no
 * Variants: no
 * Changed by: admin (2)
-* IP: 66.96.232.79
+* IP: 127.0.0.1
 
 
 Fields Summary: 
@@ -15,7 +15,6 @@ Fields Summary:
 - OfficialShop [manyToOneRelation]
 - Slug [input]
 - Address [textarea]
-- Province [manyToOneRelation]
 - City [manyToOneRelation]
 - PostCode [numeric]
 - Logo [image]
@@ -43,7 +42,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'Garage',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1567137940,
+   'modificationDate' => 1567407931,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -169,7 +168,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'name' => 'GarageType',
                  'title' => 'Garage Type',
                  'tooltip' => '',
-                 'mandatory' => true,
+                 'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
@@ -339,50 +338,6 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 array (
                   0 => 
                   array (
-                    'classes' => 'Province',
-                  ),
-                ),
-                 'pathFormatterClass' => '',
-                 'name' => 'Province',
-                 'title' => 'Province',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => false,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'datatype' => 'data',
-                 'invisible' => false,
-                 'visibleGridView' => true,
-                 'visibleSearch' => true,
-              )),
-              7 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
-                 'fieldtype' => 'manyToOneRelation',
-                 'width' => '',
-                 'assetUploadPath' => '',
-                 'relationType' => true,
-                 'queryColumnType' => 
-                array (
-                  'id' => 'int(11)',
-                  'type' => 'enum(\'document\',\'asset\',\'object\')',
-                ),
-                 'phpdocType' => '\\Pimcore\\Model\\Document\\Page | \\Pimcore\\Model\\Document\\Snippet | \\Pimcore\\Model\\Document | \\Pimcore\\Model\\Asset | \\Pimcore\\Model\\DataObject\\AbstractObject',
-                 'objectsAllowed' => true,
-                 'assetsAllowed' => false,
-                 'assetTypes' => 
-                array (
-                ),
-                 'documentsAllowed' => false,
-                 'documentTypes' => 
-                array (
-                ),
-                 'lazyLoading' => true,
-                 'classes' => 
-                array (
-                  0 => 
-                  array (
                     'classes' => 'City',
                   ),
                 ),
@@ -401,7 +356,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'visibleGridView' => true,
                  'visibleSearch' => true,
               )),
-              8 => 
+              7 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\Numeric::__set_state(array(
                  'fieldtype' => 'numeric',
                  'width' => '',
