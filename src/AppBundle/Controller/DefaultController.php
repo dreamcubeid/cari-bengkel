@@ -20,6 +20,11 @@ class DefaultController extends FrontendController
     public function defaultAction(Request $request)
     {
         // Put your code here
+        $garageList = $this->garageService->getAll();
+
+        foreach ($garageList as $garage) {
+            print_r($garage);die;
+        }
     }
 
     /**

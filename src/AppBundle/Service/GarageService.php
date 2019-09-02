@@ -13,9 +13,9 @@ class GarageService
         $this->garageRepo = $garageRepo;
     }
 
-    public function getAll()
+    public function getAll(string $orderBy = 'o_creationDate', string $sortBy = 'desc')
     {
-        $garage = $this->garageRepo->find();
+        $garage = $this->garageRepo->find($orderBy, $sortBy);
 
         return $garage;
     }
