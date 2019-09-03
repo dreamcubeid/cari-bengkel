@@ -19,10 +19,20 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    #
+    # SERVICE
+    #
+
+    # auto-register all service as services
     AppBundle\Service\:
         resource: '../../Service'
         public: true
 
+    #
+    # REPOSITORY
+    #
+
+    # auto-register all repositories as services
     AppBundle\Repository\:
         resource: '../../Repository'
         public: true
