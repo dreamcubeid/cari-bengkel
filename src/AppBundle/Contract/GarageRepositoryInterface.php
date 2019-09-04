@@ -4,10 +4,12 @@ namespace AppBundle\Contract;
 
 interface GarageRepositoryInterface {
 
-    public function find(string $orderBy = 'o_creationDate', string $sortBy = 'desc');
+    public function find(string $orderBy = 'o_creationDate', string $sortBy = 'desc'): object;
 
-    public function findOneBy(int $id);
+    public function findOneById(int $id): object;
 
-    public function findBy(array $data, string $orderBy = 'o_creationDate', string $sortBy = 'desc');
+    public function findBy(array $data, string $orderBy = 'o_creationDate', string $sortBy = 'desc'): object;
+
+    public function findOneBySlug(string $slug): object;
 
 }

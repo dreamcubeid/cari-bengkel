@@ -19,4 +19,11 @@ class GarageService
 
         return $garage;
     }
+
+    public function getOneBySlug(string $slug)
+    {
+        $garage = $this->garageRepo->findOneBySlug($slug);
+
+        return $garage;
+    }
 }
