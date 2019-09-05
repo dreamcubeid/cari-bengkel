@@ -1,0 +1,25 @@
+.cn-ornament
+{
+    &-body
+    {
+        &--left,
+        &--right
+        {
+            display: block;
+            position: absolute;
+        }
+
+        &--left
+        {
+            left: 0;
+            top: 600px;
+
+        }
+
+        &--right
+        {
+            top: 0;
+            right: 0;
+        }
+    }
+}

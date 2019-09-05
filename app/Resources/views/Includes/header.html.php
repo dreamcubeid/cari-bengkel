@@ -1,3 +1,11 @@
+<section class="cn-ornament-body--left">
+    <img data-src="static/images/body-ornament-left.png" class="img-lazy" alt="">
+</section>
+
+<section class="cn-ornament-body--right">
+    <img data-src="static/images/body-ornament-right.png" class="img-lazy" alt="">
+</section>
+
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         

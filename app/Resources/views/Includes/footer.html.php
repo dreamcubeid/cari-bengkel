@@ -24,7 +24,7 @@
         <div class="row d-flex align-items-center">
             <div class="col-12 col-md-4">
                 <a href="#">
-                    <img data-src="http://placehold.it/120x64?text=Cari.in" alt="Cari.in" class="img-fluid img-lazy">
+                    <img data-src="static/images/logo.svg" alt="Cari.in" class="img-fluid img-lazy">
                 </a>
             </div><!--/ .col-12 -->
             <div class="col-12 col-md-8 text-right">
