@@ -19,7 +19,7 @@
     </div><!--/ .container -->
 </section><!--/ . -->
 
-<footer>
+<footer class="cn-footer d-flex flex-column align-items-center justify-content-center">
     <div class="container">
         <div class="row d-flex align-items-center">
             <div class="col-12 col-md-4">
@@ -28,7 +28,7 @@
                 </a>
             </div><!--/ .col-12 -->
             <div class="col-12 col-md-8 text-right">
-                <ul class="list-inline">
+                <ul class="list-inline m-0 mb-3 p-0">
                     <li class="list-inline-item">
                         <a href="#" target="_blank">
                             <i class="fas fa-envelope-square"></i>
@@ -45,7 +45,7 @@
                         </a>
                     </li>
                 </ul>
-                <p><small>&copy; Copyright 2019</small></p>
+                <p class="m-0 p-0"><small>&copy; Copyright 2019</small></p>
             </div><!--/ .col-12 -->
         </div><!--/ .row -->
     </div><!--/ .container -->
