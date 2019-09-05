@@ -63,3 +63,6 @@ nbproject
 /tools/
 /website/
 .temp
+
+# SASS cache
+/web/static/scss/.sass-cache/

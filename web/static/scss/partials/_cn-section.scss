@@ -1,0 +1,33 @@
+.cn-section
+{
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    padding: 60px 0;
+
+    border: none; //solid 1px red;
+
+    &-title
+    {
+        display: block;
+        position: relative;
+        margin: 0 auto 30px !important;
+        padding: 0;
+
+        border: none; //solid 1px red;
+
+        h1, h2, h3, h4, h5, h6, p
+        {
+            margin: 0;
+            padding: 0;
+            font-size: 40px;
+            font-weight: 300;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.2;
+            letter-spacing: normal;
+            text-align: center;
+            color: $color_text_primary;
+        }
+    }
+}
