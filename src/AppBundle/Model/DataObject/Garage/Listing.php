@@ -6,5 +6,16 @@ use Pimcore\Model\DataObject\Garage\Listing as BaseGarageListing;
 
 class Listing extends BaseGarageListing
 {
-    // Add your extended / custom method
+	
+    public function findByLocation()
+    {
+    	return $garageListing;
+    	
+		// $garage->onCreateQuery(function (QueryBuilder $select){
+		//     $select->join('object_3', 'GarageType = o_id');
+		// });
+    	// print_r($this->garageListing); die;
+    }
+
+
 }

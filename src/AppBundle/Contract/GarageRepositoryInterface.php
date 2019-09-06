@@ -12,4 +12,6 @@ interface GarageRepositoryInterface {
 
     public function findOneBySlug(string $slug): object;
 
+    public function findByLocation(array $data = [], array $location = null, string $orderBy = 'o_creationDate', string $sortBy = 'desc');
+
 }

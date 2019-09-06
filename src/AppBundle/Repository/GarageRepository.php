@@ -3,7 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Contract\GarageRepositoryInterface;
-use Pimcore\Model\DataObject\Garage;
+use AppBundle\Model\DataObject\Garage;
 
 class GarageRepository extends BaseRepository implements GarageRepositoryInterface
 {
@@ -35,4 +35,14 @@ class GarageRepository extends BaseRepository implements GarageRepositoryInterfa
 
         return $garage;
     }
+
+    public function findByLocation(array $data = [], array $location = null, string $orderBy = 'o_creationDate', string $sortBy = 'desc')
+    {
+        $garage = new Garage;
+
+        $garage = $garage->findByLocation($data, $location, $orderBy, $sortBy); 
+
+        return $garage;
+    }
+
 }

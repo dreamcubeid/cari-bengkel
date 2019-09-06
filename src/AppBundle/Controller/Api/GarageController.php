@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use AppBundle\Traits\ApiResponse;
+use AppBundle\Service\GarageService;
 
 /**
  * @Route("/garage")
@@ -13,6 +14,13 @@ use AppBundle\Traits\ApiResponse;
 class GarageController {
 
     use ApiResponse;
+
+    protected $garageService;
+
+    public function __construct(GarageService $garageService)
+    {
+        $this->garageService = $garageService;
+    }
 
     /**
      * @Route("/get", methods={"GET"})
@@ -31,4 +39,17 @@ class GarageController {
         $error = 'data error';
         return $this->sendErrorResponse($error, []);
     }
+
+    /**
+     * @Route("/get-by-location", methods={"GET"})
+     */
+    public function getByLocation(Request $request = null)
+    {
+        $data = $request->query->all();
+
+        $result = $this->garageService->getByLocation([], $data['location']);
+        
+        return $this->sendSuccessResponse($result, 'Data has been successfully retrieved');
+    }
+    
 }
