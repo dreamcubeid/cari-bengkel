@@ -1,0 +1,16 @@
+html, body
+{
+    @include fontExo(300);
+    background-color: white; //$color_grey_50;
+    color: $color_text_primary; //$color_grey_900;
+
+    position: relative;
+}
+
+@media (max-width: 991px)
+{
+    body
+    {
+        padding-top: 90px;
+    }
+}

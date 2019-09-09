@@ -1,0 +1,141 @@
+/**
+ * _cn-search.scss
+ * Component for search box
+ */
+
+.cn-search
+{
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    padding: 25px 40px;
+
+    border: none; //solid 1px red; 
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 4px 10px 0 #767676;
+    background-color: #2f434c;
+
+    // min-height: 100px;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+
+    border-radius: 50px;
+
+    .form
+    {
+        &-group
+        {
+            margin-bottom: 0;
+        }
+
+        &-control
+        {
+            font-size: 20px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 0;
+            letter-spacing: normal;
+            text-align: left;
+            color: #767676;
+
+            height: 50px;
+
+            padding: 0;
+
+            @include placeholderColor(#767676);
+            @include transition(ease, 0.3s);
+
+            box-shadow: 0 0 0 transparent;
+            background-color: white;
+            border-color: white;
+
+            &:hover,
+            &:focus
+            {
+                box-shadow: 0 0 0 transparent;
+                border-color: white;
+            }
+        }
+    }
+
+    .input
+    {
+        &-group
+        {
+            margin-bottom: 0;
+
+            &-prepend,
+            &-append
+            {
+                .input-group-text
+                {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+
+            &-append
+            {
+                .input-group-text
+                {
+                    // padding-right: 20px;
+                }
+            }
+
+            &-prepend
+            {
+                .input-group-text
+                {
+                    // padding-left: 20px;
+                }
+            }
+
+            &-text
+            {
+                background-color: white;
+                border: solid 1px white;
+                color: $color_text_primary;
+
+                border-radius: 25px;
+
+                &.text-primary
+                {
+                    color: #0099da;
+                }
+            }
+        }
+    }
+
+    .btn
+    {
+        @include transition(ease, 0.3s);
+        text-transform: uppercase;
+        min-height: 50px;
+        border-radius: 25px;
+
+        min-width: 200px;
+
+        background-image: linear-gradient(to right, #e1ea35, $color_primary);
+        border: none;
+        color: $color_text_primary;
+        text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+
+        &:hover
+        {
+            background-image: linear-gradient(to right, darken(#e1ea35, 5%), darken($color_primary, 5%));
+        }
+    }
+
+}
+
+@media (max-width: 767px)
+{
+    .cn-search
+    {
+        border-radius: 8px;
+    }
+}
