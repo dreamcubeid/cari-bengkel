@@ -26,4 +26,12 @@ class GarageService
 
         return $garage;
     }
+
+    public function getByLocation(array $data = [], array $location = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc')
+    {
+        $garage = $this->garageRepo->findByLocation($data, $location, $orderBy, $sortBy);
+
+        return $garage;
+    }
+    
 }
