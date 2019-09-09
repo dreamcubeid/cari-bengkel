@@ -24,7 +24,7 @@ class GarageRepository extends BaseRepository implements GarageRepositoryInterfa
         return $garage;
     }
 
-    public function findBy(array $data, string $orderBy = 'o_creationDate', string $sortBy = 'desc'): object
+    public function findBy(array $condition = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc'): object
     {
         
     }
@@ -36,11 +36,9 @@ class GarageRepository extends BaseRepository implements GarageRepositoryInterfa
         return $garage;
     }
 
-    public function findByLocation(array $data = [], array $location = null, string $orderBy = 'o_creationDate', string $sortBy = 'desc')
+    public function findByLocation(array $condition = [], array $location = null, string $orderBy = 'o_creationDate', string $sortBy = 'desc'): array
     {
-        $garage = new Garage;
-
-        $garage = $garage->findByLocation($data, $location, $orderBy, $sortBy); 
+        $garage = Garage::getWithDistance($condition, $location, $orderBy, $sortBy);
 
         return $garage;
     }

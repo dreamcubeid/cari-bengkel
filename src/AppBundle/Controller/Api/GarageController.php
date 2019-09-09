@@ -47,7 +47,10 @@ class GarageController {
     {
         $data = $request->query->all();
 
-        $result = $this->garageService->getByLocation([], $data['location']);
+        $data['condition'] = $data['q'] ? $data['q'] : [];
+        $data['location'] = $data['location'] ? $data['location'] : [];
+
+        $result = $this->garageService->getByLocation($data['condition'], $data['location']);
         
         return $this->sendSuccessResponse($result, 'Data has been successfully retrieved');
     }
