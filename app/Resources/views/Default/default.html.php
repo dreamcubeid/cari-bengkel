@@ -23,7 +23,7 @@
             <div class="col-12">
                 <div class="cn-search">
                     <form role="form" class="d-flex flex-column flex-md-row align-items-center align-content-center justify-content-between">
-                        <div class="form-group flex-grow-1 mr-3 mb-3 mb-md-0">
+                        <div class="form-group flex-grow-1 mx-0 mr-md-3 mb-3 mb-md-0">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -78,64 +78,72 @@
 
                 <div class="cn-card-slider">
 
-                    <?php for($i = 0; $i < 12; $i++): ?>
+                    <div class="cn-card-slider__items">
 
-                    <div class="cn-card-slider__item">
+                        <?php for($i = 0; $i < 12; $i++): ?>
 
-                        <div class="cn-card mb-5 mb-lg-0">
-                            <div class="cn-card-header">
-                                <div class="cn-card-tags text-right">
-                                    <ul class="list-inline m-0 p-0">
-                                        <li class="list-inline-item">
-                                            <span class="cn-card-tags__item">
-                                                <i class="fa fa-car-side"></i>
+                        <div class="cn-card-slider__item">
+
+                            <div class="cn-card mb-5 mb-lg-0">
+                                <div class="cn-card-header">
+                                    <div class="cn-card-tags text-right">
+                                        <ul class="list-inline m-0 p-0">
+                                            <li class="list-inline-item">
+                                                <span class="cn-card-tags__item">
+                                                    <i class="fa fa-car-side"></i>
+                                                </span>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <span class="cn-card-tags__item">
+                                                    <i class="fa fa-motorcycle"></i>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="cn-card-image">
+                                        <img data-src="http://placehold.it/640x480" class="card-img-top img-lazy" alt="">
+                                    </div><!--/ .cn-card-image -->
+                                    <div class="cn-card-avatar">
+                                        <a href="#" title="Bengkel Sumber Bencana">
+                                            <img data-src="http://placehold.it/80x80" alt="Bengkel Sumber Bencana" class="img-lazy">
+                                        </a>
+                                    </div><!--/ .cn-card-avatar -->
+                                </div><!--/ .cn-card-header -->
+                                <div class="cn-card-body">
+                                    <h5 class="cn-card-title m-0 mb-3 p-0">
+                                        <a href="#" title="Bengkel Sumber Bencana">
+                                            Bengkel Sumber Bencana
+                                        </a>
+                                    </h5>
+                                    <ul class="cn-card-info m-0 p-0 list-unstyled">
+                                        <li>
+                                            <span>
+                                                <i class="fa fa-map-marker-alt"></i>
                                             </span>
+                                            <span>Jalan Raya Bogor KM 27, Kota Bogor</span>
                                         </li>
-                                        <li class="list-inline-item">
-                                            <span class="cn-card-tags__item">
-                                                <i class="fa fa-motorcycle"></i>
+                                        <li>
+                                            <span>
+                                                <i class="far fa-clock"></i>
                                             </span>
+                                            <span>Buka Setiap Hari | 08:00 - 21:00 WIB</span>
                                         </li>
                                     </ul>
-                                </div>
-                                <div class="cn-card-image">
-                                    <img data-src="http://placehold.it/640x480" class="card-img-top img-lazy" alt="">
-                                </div><!--/ .cn-card-image -->
-                                <div class="cn-card-avatar">
-                                    <a href="#" title="Bengkel Sumber Bencana">
-                                        <img data-src="http://placehold.it/80x80" alt="Bengkel Sumber Bencana" class="img-lazy">
-                                    </a>
-                                </div><!--/ .cn-card-avatar -->
-                            </div><!--/ .cn-card-header -->
-                            <div class="cn-card-body">
-                                <h5 class="cn-card-title m-0 mb-3 p-0">
-                                    <a href="#" title="Bengkel Sumber Bencana">
-                                        Bengkel Sumber Bencana
-                                    </a>
-                                </h5>
-                                <ul class="cn-card-info m-0 p-0 list-unstyled">
-                                    <li>
-                                        <span>
-                                            <i class="fa fa-map-marker-alt"></i>
-                                        </span>
-                                        <span>Jalan Raya Bogor KM 27, Kota Bogor</span>
-                                    </li>
-                                    <li>
-                                        <span>
-                                            <i class="far fa-clock"></i>
-                                        </span>
-                                        <span>Buka Setiap Hari | 08:00 - 21:00 WIB</span>
-                                    </li>
-                                </ul>
-                                <div class="text-center mt-5">
-                                    <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
-                                </div>
-                            </div><!--/ .card-body -->
-                        </div><!--/ .cn-card -->
+                                    <div class="text-center mt-5">
+                                        <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
+                                    </div>
+                                </div><!--/ .card-body -->
+                            </div><!--/ .cn-card -->
 
-                    </div><!--/ .cn-card-slider__item -->
+                        </div><!--/ .cn-card-slider__item -->
 
-                    <?php endfor; ?>
+                        <?php endfor; ?>
+
+                    </div><!--/ .cn-card-slider__items -->
+
+                    <div class="cn-card-slider__control">
+
+                    </div><!--/ .cn-card-slider__control -->
 
                 </div><!--/ .cn-card-slider -->
 

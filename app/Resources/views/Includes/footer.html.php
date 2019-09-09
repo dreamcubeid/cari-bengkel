@@ -22,13 +22,13 @@
 <footer class="cn-footer d-flex flex-column align-items-center justify-content-center">
     <div class="container">
         <div class="row d-flex align-items-center">
-            <div class="col-12 col-md-4">
-                <a href="#">
-                    <img data-src="static/images/logo.svg" alt="Cari.in" class="img-fluid img-lazy">
+            <div class="col-12 col-md-4 text-center text-md-left">
+                <a href="#" class="d-block mb-1 mb-md-0 text-center text-md-left">
+                    <img data-src="static/images/logo-footer.png" alt="Cari.in" class="img-fluid img-lazy mx-auto mx-md-0">
                 </a>
             </div><!--/ .col-12 -->
-            <div class="col-12 col-md-8 text-right">
-                <ul class="list-inline m-0 mb-3 p-0">
+            <div class="col-12 col-md-8 text-center text-md-right">
+                <ul class="list-inline mb-2 p-0">
                     <li class="list-inline-item">
                         <a href="#" target="_blank">
                             <i class="fas fa-envelope-square"></i>
@@ -45,7 +45,7 @@
                         </a>
                     </li>
                 </ul>
-                <p class="m-0 p-0"><small>&copy; Copyright 2019</small></p>
+                <p class="mb-3 mb-md-0 m-0 p-0"><small>&copy; Copyright 2019</small></p>
             </div><!--/ .col-12 -->
         </div><!--/ .row -->
     </div><!--/ .container -->

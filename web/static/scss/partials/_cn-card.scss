@@ -201,11 +201,132 @@
 
     &-slider
     {
-        margin: 0 -15px;
+        &__items
+        {
+            margin: 0 -15px;
+        }
 
         &__item
         {
             padding: 0 15px;
+        }
+
+        &__control
+        {
+            @include translateX(-50%);
+
+            display: block;
+            position: absolute;
+            bottom: calc(-24px - 30px);
+            left: 50%;
+            max-width: 100%;
+            width: auto;
+
+            .slick-arrow,
+            .slick-dots
+            {
+                display: inline-block;
+                vertical-align: middle;
+                top: 50%;
+                left: auto;
+                right: auto;
+            }
+        }
+
+        .slick-arrow
+        {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: auto;
+            right: auto;
+            
+            border: none; //solid 1px red;
+            background-color: transparent;
+            color: #ececed;
+
+            @include translateY(-50%);
+            @include transition(ease, 0.3s);
+            @include fixedSize(28px);
+
+            &.slick-prev
+            {
+                left: -24px;
+            }
+
+            &.slick-next
+            {
+                right: -24px;
+            }
+
+            &:hover
+            {
+                color: $color_primary;
+            }
+
+            & > svg
+            {
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                @include translate3d(-50%, -50%, 0);
+            }
+        }
+
+        .slick-dots
+        {
+            margin: 0 4px;
+            padding: 0;
+
+            & > li
+            {
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0 2px;
+                padding: 0;
+
+                & > button
+                {
+                    display: block;
+                    position: relative;
+                    margin: 0;
+                    padding: 0;
+
+                    @include fixedSize(28px);
+                    @include transition(ease, 0.3s);
+                    background: transparent;
+                    border: none; //solid 1px blue;
+
+                    font-size: 0;
+
+                    &::before
+                    {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        @include translate3d(-50%, -50%, 0);
+                        @include fixedSize(8px);
+
+                        background-color: #ececed;
+                        border: none;
+                        border-radius: 100%;
+                    }
+                }
+
+                &.slick-active
+                {
+                    & > button
+                    {
+                        &::before
+                        {
+                            background-color: $color_primary;
+                        }
+                    }
+                }
+            }
         }
     }
 
