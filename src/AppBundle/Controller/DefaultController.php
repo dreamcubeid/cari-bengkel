@@ -25,10 +25,6 @@ class DefaultController extends FrontendController
         // Put your code here
         $garageList = $this->garageService->getAll();
         $categoryList = $this->categoryService->getAll();
-
-        foreach ($garageList as $garage) {
-            print_r($garage); die;
-        }
     }
 
     /**
