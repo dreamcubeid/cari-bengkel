@@ -4,6 +4,7 @@ namespace AppBundle\Repository;
 
 use AppBundle\Contract\GarageRepositoryInterface;
 use AppBundle\Model\DataObject\Garage;
+use AppBundle\Utils\DataType;
 
 class GarageRepository extends BaseRepository implements GarageRepositoryInterface
 {
@@ -24,9 +25,11 @@ class GarageRepository extends BaseRepository implements GarageRepositoryInterfa
         return $garage;
     }
 
-    public function findBy(array $condition = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc'): object
+    public function findBy(array $condition = [], array $location = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc'): array
     {
+        $garage = Garage::getWithDistance($condition, $location, $orderBy, $sortBy);
         
+        return $garage;
     }
 
     public function findOneBySlug(string $slug): object
@@ -36,7 +39,7 @@ class GarageRepository extends BaseRepository implements GarageRepositoryInterfa
         return $garage;
     }
 
-    public function findByLocation(array $condition = [], array $location = null, string $orderBy = 'o_creationDate', string $sortBy = 'desc'): array
+    public function findByLocation(array $condition = [], array $location = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc'): array
     {
         $garage = Garage::getWithDistance($condition, $location, $orderBy, $sortBy);
 
