@@ -2,6 +2,8 @@
 
 namespace AppBundle\Utils;
 
+use Pimcore\File;
+
 class Email {
 
     public static function sendEmail(
@@ -12,7 +14,8 @@ class Email {
         string $params,
         string $bodyHtml = '',
         string $cc = '',
-        string $bcc = ''
+        string $bcc = '',
+        array $attachment = []
     ): object {
         
         $return = new \Stdclass;
