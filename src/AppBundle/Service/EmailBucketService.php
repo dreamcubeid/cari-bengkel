@@ -15,7 +15,7 @@ class EmailBucketService
         $this->emailBucketRepo = $emailBucketRepo;
     }
 
-    public function add(
+    public function create(
         string $activity = '',
         string $subject = '',
         string $from = '',
@@ -29,18 +29,41 @@ class EmailBucketService
         array $attachment = []
     )
     {
-        $email = $this->emailBucketRepo;
+        $email = $this->emailBucketRepo->add(
+                    $activity,
+                    $subject,
+                    $from,
+                    $to,
+                    $cc,
+                    $bcc,
+                    $template,
+                    $params,
+                    $bodyText,
+                    $delay
+                );
 
-        // $params = new \stdClass;
-        // $params->Cc = $_POST['Cc'];
-        // $params->Bcc = $_POST['Bcc'];
-        // $params->Template = (array) json_decode($_POST['Template']);
-        // $params->Params = $_POST['Params'];
-        // $params->Message = $_POST['Message'];
-        // $params->BodyText = $_POST['BodyText'];
-        // $params->Attachment = $_POST['Attachment'];
+        if ($email) {
+            //set attachment
+            if ($attachment) {
+                $attachments = [];
 
-        // $object = \AppModel\EmailBucket::add($params);   
+                foreach ($attachment as $key => $att) {
+                    array_push($attachments, $att);
+                }
+
+                $email->setAttachment($attachments);
+            }            
+
+            if($email->save()) {
+
+                if(!$email->getDelay()){
+                    // send email by id
+                    self::sendById($email->getId());                
+                } 
+            }
+        }
+
+        return $email; 
     }
 
     public function send(string $condition = '', string $orderBy = 'o_creationDate', string $sortBy = 'asc')
@@ -51,41 +74,27 @@ class EmailBucketService
 
         if ($emails->count()) {
             foreach ($emails as $email) {
-                $params = new \stdClass;  
-                $params->From = $email->From;      
-                $params->To = $email->To;
-                $params->Subject = $email->Subject;
-                $params->Cc = $email->CC;
-                $params->Bcc = $email->BCC;
-                $params->Template = $email->Template;
-                $params->Params = (array)json_decode($email->Params);
-                $params->BodyHtml = $email->BodyText;
-                
-                if ($email->Attachment) {  
-                    $params->Attachment = $email->Attachment;
-                }
-
                 $result = $emailLibrary->sendEmail(
-                            $email->To,
-                            $email->From,
-                            $email->Subject,
-                            $email->Template,
-                            $email->Params,
-                            $email->BodyText,
-                            $email->CC,
-                            $email->BCC,
-                            $email->Attachment
+                            $email->getTo(),
+                            $email->getFrom(),
+                            $email->getSubject(),
+                            $email->getTemplate(),
+                            (array)json_decode($email->getParams()),
+                            $email->getBodyText(),
+                            $email->getCC(),
+                            $email->getBCC(),
+                            $email->getAttachment()
                         ); 
                 
-                if ($result->Status) {
-                    $email->Status = "Success";
+                if ($result->status) {
+                    $email->setStatus("Success");
                 } else {
-                    $email->Message = $result->Message;
-                    $email->Status = "Failed";
+                    $email->setMessage($result->message);
+                    $email->setStatus("Failed");
                 }
 
-                $email->Counter = $email->Counter ? $email->Counter + 1 : 1;
-
+                $email->setCounter($email->getCounter() ? $email->getCounter() + 1 : 1);
+                $email->save();
             }
         }
 
@@ -95,29 +104,30 @@ class EmailBucketService
     public function sendById(int $id)
     {
     	$email = $this->emailBucketRepo->findOneById($id);
-
+        
         if ($email) {
             $result = $emailLibrary->sendEmail( 
-                        $email->To,
-                        $email->From,
-                        $email->Subject,
-                        $email->Template,
-                        $email->Params,
-                        $email->BodyText,
-                        $email->CC,
-                        $email->BCC,
-                        $email->Attachment
+                        $email->getTo(),
+                        $email->getFrom(),
+                        $email->getSubject(),
+                        $email->getTemplate(),
+                        (array)json_decode($email->getParams()),
+                        $email->getBodyText(),
+                        $email->getCC(),
+                        $email->getBCC(),
+                        $email->getAttachment()
                     );
+            print_r($result); die;
 
-            if ($result->Status) {
-                $email->Status = "Success";
+            if ($result->status) {
+                $email->setStatus("Success");
             } else {
-                $email->Message = $return->Message;
-                $email->Status = "Failed";
+                $email->setMessage($result->message);
+                $email->setStatus("Failed");
             }
 
-            $email->Counter = $email->Counter ? ($email->Counter+1) : 1;
-            $email->save(); 
+            $email->setCounter($email->getCounter() ? $email->getCounter() + 1 : 1);
+            $email->save();
         }
 
         return true;

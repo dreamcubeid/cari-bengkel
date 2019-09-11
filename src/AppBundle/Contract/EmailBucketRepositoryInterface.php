@@ -8,4 +8,17 @@ interface EmailBucketRepositoryInterface {
 
 	public function findOneById(int $id): object;
 
+	public function add(
+        string $activity = '',
+        string $subject = '',
+        string $from = '',
+        string $to = '',
+        string $cc = '',
+        string $bcc = '',
+        string $template = '',
+        string $params = '',
+        string $bodyText = '',
+        int $delay = null
+    ): object;
+
 }
