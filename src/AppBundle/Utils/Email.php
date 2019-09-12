@@ -2,20 +2,23 @@
 
 namespace AppBundle\Utils;
 
+use Pimcore\File;
+
 class Email {
 
     public static function sendEmail(
-        string $to,
-        string $from,
-        string $subject,
-        string $template,
-        string $params,
-        string $bodyHtml = '',
-        string $cc = '',
-        string $bcc = ''
+        string $to = null,
+        string $from = null,
+        string $subject = null,
+        string $template = null,
+        array $params = [],
+        string $bodyHtml = null,
+        string $cc = null,
+        string $bcc = null,
+        array $attachment = []
     ): object {
-        
-        $return = new \Stdclass;
+        print_r($to); die;
+        $return = new \stdClass;
         $return->status = 0;
         $return->message = '';
 
@@ -51,6 +54,12 @@ class Email {
             if (json_decode($bcc)) {
                 foreach (json_decode($bcc) as $item) {
                     $mail->addBcc($item->email, $item->name);
+                }
+            }
+
+            if ($attachment) {
+                foreach ($attachment as $key => $att) {
+                    $mail->createAttachment($att->getData(), $att->getMimetype(), $att->getFilename());
                 }
             }
 
