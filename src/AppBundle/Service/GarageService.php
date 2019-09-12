@@ -2,13 +2,13 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Repository\GarageRepository;
+use AppBundle\Contract\GarageRepositoryInterface;
 
 class GarageService
 {
     private $garageRepo;
 
-    public function __construct(GarageRepository $garageRepo)
+    public function __construct(GarageRepositoryInterface $garageRepo)
     {
         $this->garageRepo = $garageRepo;
     }
@@ -29,7 +29,7 @@ class GarageService
 
     public function getByLocation(array $data = [], array $location = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc')
     {
-        $garage = $this->garageRepo->findByLocation($data, $location, $orderBy, $sortBy);
+        $garage = $this->garageRepo->findBy($data, $location, $orderBy, $sortBy);
 
         return $garage;
     }
