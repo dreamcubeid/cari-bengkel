@@ -17,7 +17,7 @@ class Email {
         string $bcc = null,
         array $attachment = []
     ): object {
-        print_r($to); die;
+        
         $return = new \stdClass;
         $return->status = 0;
         $return->message = '';

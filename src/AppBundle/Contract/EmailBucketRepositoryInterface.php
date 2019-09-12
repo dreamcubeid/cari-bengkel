@@ -9,15 +9,15 @@ interface EmailBucketRepositoryInterface {
 	public function findOneById(int $id): object;
 
 	public function add(
-        string $activity = '',
-        string $subject = '',
-        string $from = '',
-        string $to = '',
-        string $cc = '',
-        string $bcc = '',
-        string $template = '',
-        string $params = '',
-        string $bodyText = '',
+        string $activity,
+        string $subject = null,
+        string $from = null,
+        string $to,
+        string $cc = null,
+        string $bcc = null,
+        string $template = null,
+        array $params = [],
+        string $bodyText = null,
         int $delay = null
     ): object;
 

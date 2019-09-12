@@ -16,15 +16,15 @@ class EmailBucketService
     }
 
     public function create(
-        string $activity = '',
-        string $subject = '',
-        string $from = '',
-        string $to = '',
-        string $cc = '',
-        string $bcc = '',
-        string $template = '',
-        string $params = '',
-        string $bodyText = '',
+        string $activity = null,
+        string $subject = null,
+        string $from = null,
+        string $to = null,
+        string $cc = null,
+        string $bcc = null,
+        string $template = null,
+        array $params = [],
+        string $bodyText = null,
         int $delay = null,
         array $attachment = []
     )
@@ -55,7 +55,6 @@ class EmailBucketService
             }            
 
             if($email->save()) {
-
                 if(!$email->getDelay()){
                     // send email by id
                     self::sendById($email->getId());                
@@ -103,6 +102,8 @@ class EmailBucketService
 
     public function sendById(int $id)
     {
+        $emailLibrary = new Email();
+
     	$email = $this->emailBucketRepo->findOneById($id);
         
         if ($email) {
@@ -117,7 +118,6 @@ class EmailBucketService
                         $email->getBCC(),
                         $email->getAttachment()
                     );
-            print_r($result); die;
 
             if ($result->status) {
                 $email->setStatus("Success");
