@@ -2,13 +2,13 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Repository\GarageRepository;
+use AppBundle\Contract\GarageRepositoryInterface;
 
 class GarageService
 {
     private $garageRepo;
 
-    public function __construct(GarageRepository $garageRepo)
+    public function __construct(GarageRepositoryInterface $garageRepo)
     {
         $this->garageRepo = $garageRepo;
     }
