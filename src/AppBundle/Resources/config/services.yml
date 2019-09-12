@@ -38,6 +38,20 @@ services:
         public: true
 
     #
+    # Contract
+    #
+
+    # register all repositories interface/contract as services
+    AppBundle\Contract\GarageRepositoryInterface:
+        class: AppBundle\Repository\GarageRepository
+
+    AppBundle\Contract\CategoryRepositoryInterface:
+        class: AppBundle\Repository\CategoryRepository
+
+    AppBundle\Contract\SearchRepositoryInterface:
+        class: AppBundle\Repository\SearchRepository
+
+    #
     # COMMANDS
     #
 
