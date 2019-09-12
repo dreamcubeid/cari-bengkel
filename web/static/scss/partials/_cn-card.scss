@@ -330,4 +330,20 @@
         }
     }
 
+    &--compact
+    {
+        .cn-card-header
+        {
+            min-width: 120px;
+        }
+
+        .cn-card-avatar
+        {
+            position: relative;
+            left: auto;
+            bottom: auto;
+            transform: none;
+        }
+    }
+
 }
