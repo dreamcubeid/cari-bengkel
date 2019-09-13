@@ -1,9 +1,9 @@
 <section class="cn-ornament-body--left">
-    <img data-src="static/images/body-ornament-left.png" class="img-lazy" alt="">
+    <img data-src="/static/images/body-ornament-left.png" class="img-lazy" alt="">
 </section>
 
 <section class="cn-ornament-body--right">
-    <img data-src="static/images/body-ornament-right.png" class="img-lazy" alt="">
+    <img data-src="/static/images/body-ornament-right.png" class="img-lazy" alt="">
 </section>
 
 <div class="cn-navbar-wrapper">
@@ -11,7 +11,7 @@
         <nav class="cn-navbar navbar navbar-expand-lg navbar-light px-0">
             
             <a class="navbar-brand" href="#">
-                <img data-src="static/images/logo.svg" alt="Cari.in" class="img-lazy">
+                <img data-src="/static/images/logo.svg" alt="Cari.in" class="img-lazy">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
