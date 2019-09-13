@@ -121,6 +121,14 @@
         @include translateX(-50%);
         @include fixedSize(80px);
 
+        &--grounded
+        {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            transform: none;
+        }
+
         & > a
         {
             display: block;
