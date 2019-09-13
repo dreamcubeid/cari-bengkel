@@ -76,6 +76,20 @@
             
             <?php for($i = 0; $i < 6; $i++): ?>
 
+                <?php if($i ==4 ): ?>
+
+            <div class="col-12 col-md-6 col-lg-4">
+            
+                <div class="cn-ads cn-ads--rounded mb-5">
+                    <a href="#">
+                        <img data-src="http://placehold.it/320x390?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 100%; height: auto;">
+                    </a>
+                </div><!--/ .cn-ads -->
+
+            </div><!--/ .col-12 -->
+
+                <?php else: ?>
+
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="cn-card mb-5">
                     <div class="cn-card-header">
@@ -128,6 +142,8 @@
                     </div><!--/ .card-body -->
                 </div><!--/ .cn-card -->
             </div><!--/ .col-12 -->
+
+                <?php endif; ?>
 
             <?php endfor; ?>
 
