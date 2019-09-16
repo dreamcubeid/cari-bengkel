@@ -175,7 +175,7 @@
                     <a href="#" title="" class="cn-categories-item">
                         <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
                             <div class="cn-categories-item__icon">
-                                <img data-src="<?= $value->getIcon()->getPath() . $value->getIcon()->getFilename() ?>" class="img-lazy" alt="" style="width:72px;height:72px;">
+                                <img data-src="<?= $value->getIcon() ? $value->getIcon()->getPath() . $value->getIcon()->getFilename() : 'http://placehold.it/72x72'?>" class="img-lazy" alt="" style="width:72px;height:72px;">
                             </div><!--/ .cn-categories-item__icon -->
                             <div class="cn-categories-item__text mt-2">
                                 <span><?= $value->getName() ?></span>
