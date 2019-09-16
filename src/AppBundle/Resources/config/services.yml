@@ -46,10 +46,7 @@ services:
         class: AppBundle\Repository\GarageRepository
 
     AppBundle\Contract\CategoryRepositoryInterface:
-        class: AppBundle\Repository\CategoryRepository
-
-    AppBundle\Contract\SearchRepositoryInterface:
-        class: AppBundle\Repository\SearchRepository
+        class: AppBundle\Repository\CategoryRepositorys
 
     #
     # COMMANDS
