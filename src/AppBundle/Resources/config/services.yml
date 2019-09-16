@@ -46,7 +46,7 @@ services:
         class: AppBundle\Repository\GarageRepository
 
     AppBundle\Contract\CategoryRepositoryInterface:
-        class: AppBundle\Repository\CategoryRepositorys
+        class: AppBundle\Repository\CategoryRepository
 
     AppBundle\Contract\EmailBucketRepositoryInterface:
         class: AppBundle\Repository\EmailBucketRepository
