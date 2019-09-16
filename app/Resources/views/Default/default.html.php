@@ -1,4 +1,8 @@
-<?php $this->extend('Layouts/layout.html.php')?>
+<?php 
+    $this->extend('Layouts/layout.html.php');
+
+    $category = $this->category;
+?>
 
 <!-- 
     Add your html script code here
@@ -166,20 +170,20 @@
 
                 <div class="cn-categories">
 
-                    <?php for($i = 0; $i < 15; $i++): ?>
+                    <?php foreach ($category as $key => $value) { ?>
 
                     <a href="#" title="" class="cn-categories-item">
                         <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
                             <div class="cn-categories-item__icon">
-                                <img data-src="http://placehold.it/72x72" class="img-lazy" alt="">
+                                <img data-src="<?= $value->getIcon()->getPath() . $value->getIcon()->getFilename() ?>" class="img-lazy" alt="" style="width:72px;height:72px;">
                             </div><!--/ .cn-categories-item__icon -->
                             <div class="cn-categories-item__text mt-2">
-                                <span>Ban &amp; Velg</span>
+                                <span><?= $value->getName() ?></span>
                             </div><!--/ .cn-categories-item__text -->
                         </div><!--/ .cn-categories-item__inner -->
                     </a><!--/ .cn-categories-item -->
 
-                    <?php endfor; ?>
+                    <?php } ?>
 
                 </div><!--/ .cn-categories -->
 
