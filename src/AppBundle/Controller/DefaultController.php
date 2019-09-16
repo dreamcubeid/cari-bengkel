@@ -25,6 +25,8 @@ class DefaultController extends FrontendController
         // Put your code here
         $garageList = $this->garageService->getAll();
         $categoryList = $this->categoryService->getAll();
+
+        $this->view->category = $categoryList;
     }
 
     /**

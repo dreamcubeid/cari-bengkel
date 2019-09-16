@@ -1,17 +1,18 @@
 <?php 
 
 /** 
-* Generated at: 2019-08-30T05:41:46+02:00
+* Generated at: 2019-09-16T09:00:52+02:00
 * Inheritance: no
 * Variants: no
 * Changed by: admin (2)
-* IP: 66.96.232.79
+* IP: 127.0.0.1
 
 
 Fields Summary: 
 - Name [input]
 - Slug [input]
 - Description [textarea]
+- Icon [image]
 - MetaTitle [input]
 - MetaDescription [textarea]
 - MetaKeyword [textarea]
@@ -23,7 +24,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'Category',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1567136506,
+   'modificationDate' => 1568617248,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -165,6 +166,30 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'noteditable' => false,
                  'index' => false,
                  'locked' => false,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'datatype' => 'data',
+                 'relationType' => false,
+                 'invisible' => false,
+                 'visibleGridView' => false,
+                 'visibleSearch' => false,
+              )),
+              3 => 
+              Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
+                 'fieldtype' => 'image',
+                 'width' => '',
+                 'height' => '',
+                 'uploadPath' => '/category/icon',
+                 'queryColumnType' => 'int(11)',
+                 'columnType' => 'int(11)',
+                 'phpdocType' => '\\Pimcore\\Model\\Asset\\Image',
+                 'name' => 'Icon',
+                 'title' => 'Icon',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => NULL,
                  'style' => '',
                  'permissions' => NULL,
                  'datatype' => 'data',
