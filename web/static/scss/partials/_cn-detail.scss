@@ -1,0 +1,53 @@
+.cn-detail
+{
+    &-image
+    {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: 0;
+
+        border-radius: 8px;
+        overflow: hidden;
+
+        background-color: $color_text_primary;
+        color: white;
+
+        & > a
+        {
+            display: block;
+            position: relative;
+            margin: 0;
+            padding: 0;
+
+            text-decoration: none;
+            color: inherit;
+        }
+
+        & > img,
+        & > a > img
+        {
+            display: block;
+            position: relative;
+            margin: 0 auto;
+            padding: 0;
+            border: none;
+            min-width: 100%;
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    &-box
+    {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: 0;
+
+        border-radius: 8px;
+        border: none;
+        background-color: white;
+        border: solid 1px #d9d9d9;
+    }
+}

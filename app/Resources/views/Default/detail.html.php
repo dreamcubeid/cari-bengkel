@@ -37,10 +37,122 @@
 
             <div class="col-12 col-md-8">
 
-                <div class="cn-section">
+                <div class="cn-detail-image mb-5">
+                    <a href="http://placehold.it/660x330px?text=Big+Size" title="">
+                        <img data-src="http://placehold.it/660x330px=Smol+Size" alt="" class="img-lazy img-fluid">
+                    </a>
+                </div><!--/ . -->
+
+                <div class="">
+                    <div class="cn-card cn-card--compact cn-card--transparent d-flex flex-row mb-5">
+                        <div class="cn-card-header d-flex flex-row align-items-start justify-content-start pt-3">
+                            <div class="cn-card-avatar ml-0">
+                                <a href="#" title="Bengkel Sumber Bencana">
+                                    <img data-src="/static/images/default/default-image.png" alt="Bengkel Sumber Bencana" class="img-lazy">
+                                </a>
+                            </div><!--/ .cn-card-avatar -->
+                        </div><!--/ .cn-card-header -->
+                        <div class="cn-card-body mt-0 pt-3 pl-0 d-flex flex-row align-items-start justify-content-start flex-grow-1">
+                            <h5 class="cn-card-title m-0 mb-3 p-0 flex-grow-1">
+                                <a href="#" title="Bengkel Sumber Bencana">
+                                    Bengkel Sumber Bencana
+                                </a>
+                                <div class="cn-card-tags cn-card-tags--grounded py-0 px-0">
+                                    <ul class="list-inline m-0 p-0">
+                                        <li class="list-inline-item">
+                                            <span class="cn-card-tags__item">
+                                                <i class="fa fa-car-side"></i>
+                                            </span>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <span class="cn-card-tags__item">
+                                                <i class="fa fa-motorcycle"></i>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </h5>
+                            <div class="text-right mt-0">
+                                <a href="#" class="btn btn-sm btn-cn-primary btn-cn--bold">Temukan Lokasi</a>
+                            </div>
+                        </div><!--/ .card-body -->
+                    </div><!--/ .cn-card-compact -->
+                </div><!--/ . -->
+
+                <div class="my-4">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                Detail
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+                                Contact Info
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                            <div class="cn-detail-box mt-4">
+                                <div class="cn-detail-box__body px-4 pb-4 pt-3">
+                                    <ul class="list-unstyled m-0 p-0">
+                                        <li>
+                                            <span><i class="fas fa-map-marker-alt"></i></span>
+                                            <span>Jalan Raya Bogor KM.27, Kota Bogor</span>
+                                        </li>
+                                        <li>
+                                            <span><i class="far fa-clock"></i></span>
+                                            <span>
+                                                Senin - Jumat | 08.00 - 16.00 WIB<br />
+                                                Sabtu - Minggu | 08.00 - 20.00 WIB
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div><!--/ .cn-detail-box__body -->
+                            </div><!--/ .cn-detail-box -->
+
+                            <div class="cn-detail-box mt-4">
+                                <div class="cn-detail-box__title px-4 pt-4 pb-0">
+                                    <h4 class="m-0 p-0">Establishment Info</h4>
+                                </div><!--/ .cn-detail-box__title -->
+                                <div class="cn-detail-box__body px-4 pb-4 pt-3">
+                                    <ul class="list-unstyled m-0 p-0">
+                                        <li>
+                                            <span></span>
+                                            <span>Servis</span>
+                                        </li>
+                                        <li>
+                                            <span></span>
+                                            <span>Perbaikan Body</span>
+                                        </li>
+                                        <li>
+                                            <span>Part &amp; Aksesoris</span>
+                                            <span></span>
+                                        </li>
+                                        <li>
+                                            <span></span>
+                                            <span>Ban &amp; Velg</span>
+                                        </li>
+                                    </ul>
+                                </div><!--/ .cn-detail-box__body -->
+                            </div><!--/ .cn-detail-box -->
+
+                        </div><!--/ .tab-pane -->
+
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                        </div><!--/ .tab-pane -->
+
+                    </div><!--/ .tab-content -->
+                </div><!--/ . -->
+
+                <div class="cn-section pt-0 mt-3">
                     
                     <div class="cn-section-title">
-                        <h2>Kategori</h2>
+                        <h2 class=>Kategori</h2>
                     </div><!--/ .cn-section-title -->
 
                     <div class="cn-categories">
@@ -99,7 +211,7 @@
                         <div class="pt-5">
                             <div class="cn-card-avatar cn-card-avatar--grounded">
                                 <a href="#" title="Bengkel Sumber Bencana">
-                                    <img data-src="http://placehold.it/80x80" alt="Bengkel Sumber Bencana" class="img-lazy">
+                                    <img data-src="/static/images/default/default-image.png" alt="Bengkel Sumber Bencana" class="img-lazy">
                                 </a>
                             </div><!--/ .cn-card-avatar -->
                         </div>
