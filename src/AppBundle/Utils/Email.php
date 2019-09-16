@@ -24,6 +24,7 @@ class Email {
 
         try {
             $mail = new \Pimcore\Mail();
+
             $mail->addTo($to);
 
             if ($subject) {
@@ -67,6 +68,7 @@ class Email {
             $return->status = 1;
 
         } catch (Exception $e) {
+            \Pimcore\Log\Simple::log("email-bucket", $e->getMessage());
             $return->message = $e->getMessage();
         }
 
