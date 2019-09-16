@@ -1,11 +1,11 @@
 <?php 
 
 /** 
-* Generated at: 2019-09-16T09:00:52+02:00
+* Generated at: 2019-09-16T12:31:44+02:00
 * Inheritance: no
 * Variants: no
 * Changed by: admin (2)
-* IP: 127.0.0.1
+* IP: 172.16.238.1
 
 
 Fields Summary: 
@@ -24,7 +24,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'Category',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1568617248,
+   'modificationDate' => 1568629903,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -189,7 +189,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
-                 'locked' => NULL,
+                 'locked' => false,
                  'style' => '',
                  'permissions' => NULL,
                  'datatype' => 'data',
