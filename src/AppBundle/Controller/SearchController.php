@@ -5,18 +5,18 @@ namespace AppBundle\Controller;
 use Pimcore\Controller\FrontendController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Service\GarageService;
+use AppBundle\Service\SearchService;
 
 /**
  * @Route("/cari")
  */
 class SearchController extends FrontendController
 {
-    protected $garageService;
+    protected $searchService;
 
-    public function __construct(GarageService $garageService)
+    public function __construct(SearchService $searchService)
     {
-        $this->garageService = $garageService;
+        $this->searchService = $searchService;
     }
     /**
      * @Route("/", methods={"GET"}, name="search")
@@ -28,8 +28,9 @@ class SearchController extends FrontendController
         $data['condition'] = $data['q'] ? $data['q'] : [];
         $data['location'] = $data['location'] ? $data['location'] : [];
 
-        $result = $this->garageService->getByLocation($data['condition'], $data['location']);
+        $result = $this->searchService->findBy($data['condition'], $data['location']);
 
+        echo "<pre>";
         print_r($result);die;
     }
 
