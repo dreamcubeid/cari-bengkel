@@ -1,0 +1,35 @@
+.cn-breadcrumb
+{
+    background-color: transparent;
+    border: none; // solid 1px red;
+    border-radius: 0;
+
+    a
+    {
+        @include transition(ease, 0.3s);
+        color: inherit;
+        text-decoration: none;
+
+        &:hover
+        {
+            opacity: 0.6;
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+
+    .breadcrumb-item
+    {
+        &.active
+        {
+            font-weight: 600;
+            color: $color_text_primary;
+        }
+    }
+    
+    .breadcrumb-item + .breadcrumb-item::before
+    {
+        color: $color_text_primary;
+        opacity: 0.4;
+    }
+}

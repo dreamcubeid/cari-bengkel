@@ -109,7 +109,7 @@
                                     </div><!--/ .cn-card-image -->
                                     <div class="cn-card-avatar">
                                         <a href="#" title="Bengkel Sumber Bencana">
-                                            <img data-src="http://placehold.it/80x80" alt="Bengkel Sumber Bencana" class="img-lazy">
+                                            <img data-src="/static/images/default/default-image.png" alt="Bengkel Sumber Bencana" class="img-lazy">
                                         </a>
                                     </div><!--/ .cn-card-avatar -->
                                 </div><!--/ .cn-card-header -->
@@ -227,7 +227,7 @@
                         </div><!--/ .cn-card-image -->
                         <div class="cn-card-avatar">
                             <a href="#" title="Bengkel Sumber Bencana">
-                                <img data-src="http://placehold.it/80x80" alt="Bengkel Sumber Bencana" class="img-lazy">
+                                <img data-src="/static/images/default/default-image.png" alt="Bengkel Sumber Bencana" class="img-lazy">
                             </a>
                         </div><!--/ .cn-card-avatar -->
                     </div><!--/ .cn-card-header -->

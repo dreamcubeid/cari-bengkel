@@ -11,6 +11,12 @@
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     overflow: hidden;
 
+    &--transparent
+    {
+        background-color: rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
+
     &-header,
     &-body
     {
@@ -43,6 +49,15 @@
         padding: 10px;
 
         border: none; //solid 1px red;
+
+        &--grounded
+        {
+            position: relative;
+            top: auto;
+            left: auto;
+            right: auto;
+            bottom: auto;
+        }
 
         .list-inline
         {
@@ -120,6 +135,14 @@
 
         @include translateX(-50%);
         @include fixedSize(80px);
+
+        &--grounded
+        {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            transform: none;
+        }
 
         & > a
         {
@@ -327,6 +350,22 @@
                     }
                 }
             }
+        }
+    }
+
+    &--compact
+    {
+        .cn-card-header
+        {
+            min-width: 120px;
+        }
+
+        .cn-card-avatar
+        {
+            position: relative;
+            left: auto;
+            bottom: auto;
+            transform: none;
         }
     }
 
