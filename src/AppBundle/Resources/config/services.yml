@@ -51,6 +51,9 @@ services:
     AppBundle\Contract\SearchRepositoryInterface:
         class: AppBundle\Repository\SearchRepository
 
+    AppBundle\Contract\EmailBucketRepositoryInterface:
+        class: AppBundle\Repository\EmailBucketRepository
+
     #
     # COMMANDS
     #
