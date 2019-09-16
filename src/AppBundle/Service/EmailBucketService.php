@@ -2,7 +2,7 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Repository\EmailBucketRepository;
+use AppBundle\Contract\EmailBucketRepositoryInterface;
 use AppBundle\Utils\Email;
 
 class EmailBucketService
@@ -10,7 +10,7 @@ class EmailBucketService
 
     private $emailBucketRepo;
 
-    public function __construct(EmailBucketRepository $emailBucketRepo)
+    public function __construct(EmailBucketRepositoryInterface $emailBucketRepo)
     {
         $this->emailBucketRepo = $emailBucketRepo;
     }
