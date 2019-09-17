@@ -50,7 +50,12 @@ class GarageController {
         $data['condition'] = $data['q'] ? $data['q'] : [];
         $data['location'] = $data['location'] ? $data['location'] : [];
 
-        $result = $this->garageService->getByLocation($data['condition'], $data['location']);
+        //get sort & limit
+        $orderBy = $data['orderBy'] ? $data['orderBy'] : 'o_creationDate';
+        $sortBy = $data['sortBy'] ? $data['sortBy'] : 'DESC'; 
+        $limit = $data['limit'];
+
+        $result = $this->garageService->getByLocation($data['condition'], $data['location'], $orderBy, $sortBy, $limit);
         
         return $this->sendSuccessResponse($result, 'Data has been successfully retrieved');
     }
