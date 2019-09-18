@@ -31,6 +31,13 @@ class GarageService
     {
         $garage = $this->garageRepo->findBy($data, $location, $orderBy, $sortBy, $limit);
 
+        if ((count($garage) <= 0) && !empty($location)) {
+            $limit = 5;
+            unset($data['radius']);
+            
+            $garage = $this->garageRepo->findBy($data, $location, $orderBy, $sortBy, $limit);            
+        }
+
         if ($garage) {
             $tempGarage = [];
 
