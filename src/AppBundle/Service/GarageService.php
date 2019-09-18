@@ -31,6 +31,28 @@ class GarageService
     {
         $garage = $this->garageRepo->findBy($data, $location, $orderBy, $sortBy, $limit);
 
+        if ($garage) {
+            $tempGarage = [];
+
+            foreach ($garage as $key => $value) {
+                $detail = $this->garageRepo->findOneById($value['o_id']);
+                $operatingHours = $detail->getOperatingHours();
+                $value['OperatingHours'] = [];
+
+                if ($operatingHours) {
+                    for ($i=0; $i < count($op = $operatingHours->getItems()); $i++) { 
+                        $value['OperatingHours'][$i]['OperationalDay'] = $op[$i]->getOperationalDay();
+                        $value['OperatingHours'][$i]['OpenHour'] = $op[$i]->getOpenHour();
+                        $value['OperatingHours'][$i]['CloseHour'] = $op[$i]->getCloseHour();
+                    }
+                }
+
+                array_push($tempGarage, $value);
+            }
+
+            $garage = $tempGarage;
+        }
+
         return $garage;
     }
     
