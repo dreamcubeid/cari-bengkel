@@ -50,6 +50,27 @@ class GarageController {
         $data['condition'] = $data['q'] ? $data['q'] : [];
         $data['location'] = $data['location'] ? $data['location'] : [];
 
+        if (!$data['location'] && $data['random']) {
+            //generate seed
+            $session = $request->getSession();
+
+            if ($session->get('SEED')) {
+                $seed = $session->get('SEED');
+            } else {
+                $ip = $_SERVER['REMOTE_ADDR'];
+                $ip = str_replace(".","", $ip);
+                $hour = date("H");
+                $day = date("j");
+                $month = date("n");
+                $seed = ($ip + $hour + $day + $month);
+                
+                $session->set('SEED', $seed);
+            }
+
+            $data['condition']['randomSeed'] = $session->get('SEED');
+            $data['orderBy'] = 'RAND';
+        }
+
         //get sort & limit
         $orderBy = $data['orderBy'] ? $data['orderBy'] : 'o_creationDate';
         $sortBy = $data['sortBy'] ? $data['sortBy'] : 'DESC'; 

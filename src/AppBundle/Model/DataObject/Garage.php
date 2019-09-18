@@ -111,6 +111,14 @@ class Garage extends BaseGarage
             unset($condition['search']);
         }
 
+        if ($condition['randomSeed'] && $orderBy == 'RAND')
+        {
+            $orderBy = 'RAND('.$condition['randomSeed'].')';
+            $sortBy = '';
+
+            unset($condition['randomSeed']);
+        }
+
         if (!empty($condition))
         {
             foreach ($condition as $key => $value) 

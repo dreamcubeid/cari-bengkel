@@ -251,6 +251,7 @@
             condition = {'radius' : 5};
         } else {
             data.limit = 5;
+            data.random = true;
         }
 
         data.q = condition;
