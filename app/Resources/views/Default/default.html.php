@@ -77,6 +77,21 @@
                 </div>
             </div><!--/ .col-12 -->
         </div><!--/ .row -->
+
+        <div class="row py-5">
+            <div class="col-12 text-center">
+
+                <h2 style="font-weight: 300; color: #414141;" class="m-0 p-0">
+                    Maaf tidak ada bengkel di sekitar Anda.<br />Silahkan cari bengkel pada kolom pencarian.
+                </h2>
+
+                <div class="d-block mw-100 w-50 mt-5 py-3 text-center mx-auto">
+                    <img src="/static/images/biker.png" alt="" title="" class="img-fluid mt-5 d-block mx-auto">
+                </div>
+
+            </div><!--/ .col-12 -->
+        </div><!--/ .row -->
+
         <div class="row">
             <div class="col-12">
 
