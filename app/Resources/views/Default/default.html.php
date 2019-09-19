@@ -253,7 +253,6 @@
             navigator.geolocation.getCurrentPosition(
                 function(position) {
                     currentPosition = {'latitude' : position.coords.latitude, 'longitude' : position.coords.longitude};
-                    console.log(currentPosition);
                     allowLocation = true;
 
                     loadData(5);
@@ -295,7 +294,7 @@
 
                 $.each(response.data, function(key, value) {
                     var ele = '';
-
+                    
                     ele += '<div class="cn-card-slider__item">';
 
                         ele += '<div class="cn-card mb-5 mb-lg-0">';
@@ -347,12 +346,36 @@
                                         ele += '</span>';
                                         ele += '<span>' + value.Address.concat(', ', value.CityStatus,' ', value.City) + '</span>';
                                     ele += '</li>';
+                                    
                                     ele += '<li>';
                                         ele += '<span>';
                                             ele += '<i class="far fa-clock"></i>';
                                         ele += '</span>';
-                                        ele += '<span>Buka Setiap Hari | 08:00 - 21:00 WIB</span>';
+                                        ele += '<span>Jadwal Buka</span>';
+                                        ele += '<div class="cn-card-popup">';
+                                            ele += '<a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">';
+                                                ele += '<i class="fas fa-chevron-down"></i>';
+                                            ele += '</a>';
+                                            ele += '<div class="cn-card-popup__body py-2 px-3 ml-auto mr-0 mt-1">';
+
+                                                if (value.OperatingHours.length > 0) {
+                                                    $.each(value.OperatingHours, function(keyOp, valOp) {
+                                                        ele += '<p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">';
+                                                            ele += '<span class="align-self-start flex-grow-1">' + valOp.OperationalDay + '</span>';
+                                                            ele += '<span class="align-self-end text-right">' + valOp.OpenHour + ' - ' + valOp.CloseHour + ' WIB</span>';
+                                                        ele += '</p>';
+                                                    });
+                                                } else {
+                                                    ele += '<p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">';
+                                                        ele += '<span class="align-self-start flex-grow-1">Jadwal Belum Tersedia</span>';
+                                                        ele += '<span class="align-self-end text-right"></span>';
+                                                    ele += '</p>';
+                                                }
+
+                                            ele += '</div><!--/ .cn-card-popup__body -->';
+                                        ele += '</div><!--/ .cn-card-popup -->';
                                     ele += '</li>';
+
                                 ele += '</ul>';
                                 ele += '<div class="text-center mt-5">';
                                     ele += '<a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>';
