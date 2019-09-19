@@ -369,4 +369,72 @@
         }
     }
 
+    &-popup
+    {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: 100%;
+
+        border: none; //solid 1px red;
+
+        & > a
+        {
+            @include transition(ease, 0.3s);
+            @include fixedSize(16px);
+            display: block;
+            position: relative;
+            border: none;
+            border-radius: 100%;
+            text-align: center;
+            text-transform: uppercase;
+            text-decoration: none;
+            background-color: $color_primary;
+            color: white;
+
+            font-size: 8px;
+
+            &:hover,
+            &:active
+            {
+                background-color: darken($color_primary, 5%);
+                color: white;
+            }
+
+            &.flip
+            {
+                & > i,
+                & > [class*="fa-"]
+                {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+
+        &__body
+        {
+            display: none;
+            position: relative;
+
+            min-width: calc(100% - 30px);
+            max-width: calc(100% - 30px);
+            width: calc(100% - 30px);
+
+            border: solid 1px #f7c200;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.16);
+        }
+
+        &--active
+        {
+            .cn-card-popup__body
+            {
+                // display: block;
+            }
+        }
+    }
+
 }
