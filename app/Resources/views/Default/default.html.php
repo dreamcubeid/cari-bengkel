@@ -323,7 +323,7 @@
                                 ele += '</div>';
 
                                 ele += '<div class="cn-card-image">';
-                                    ele += '<img data-src="' + (value.BannerPath ? value.BannerPath : 'http://placehold.it/640x480') + '" class="card-img-top img-lazy" alt="">';
+                                    ele += '<img data-src="' + (value.BannerPath ? value.BannerPath : '/static/images/default/default-banner.png') + '" class="card-img-top img-lazy" alt="">';
                                 ele += '</div><!--/ .cn-card-image -->';
 
                                 ele += '<div class="cn-card-avatar">';
