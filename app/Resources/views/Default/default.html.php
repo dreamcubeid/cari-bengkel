@@ -189,7 +189,24 @@
                                 <span>
                                     <i class="far fa-clock"></i>
                                 </span>
-                                <span>Buka Setiap Hari | 08:00 - 21:00 WIB</span>
+                                <span>Jadwal Buka</span>
+
+                                <div class="cn-card-popup">
+                                    <a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </a>
+                                    <div class="cn-card-popup__body py-2 px-3 ml-auto mr-0 mt-1">
+                                        <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
+                                            <span class="align-self-start flex-grow-1">Senin - Jum'at</span>
+                                            <span class="align-self-end text-right">09:00 - 16:00 WIB</span>
+                                        </p>
+                                        <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
+                                            <span class="align-self-start flex-grow-1">Sabtu - Minggu</span>
+                                            <span class="align-self-end text-right">09:00 - 16:00 WIB</span>
+                                        </p>
+                                    </div><!--/ .cn-card-popup__body -->
+                                </div><!--/ .cn-card-popup -->
+
                             </li>
                         </ul>
                         <div class="text-center mt-5">
@@ -214,6 +231,20 @@
     $( document ).ready(function() {
 
         getLocation();
+
+        /**
+         * Schedule popup mechanic
+         */
+
+        $(document).on('click', '.cn-card-popup > a', function(e){
+            e.preventDefault();
+            let el = $(this);
+            let popupBody = el.next();
+            popupBody.stop().slideToggle('fast', function(){
+                el.stop().toggleClass('flip');
+            });
+            return false;
+        });
 
     });
 
