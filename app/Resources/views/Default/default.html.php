@@ -158,11 +158,21 @@
             </div><!--/ .col-12 -->
         </div><!--/ .row -->
         <div class="row">
+
+            <?php
+
+                $sampler_texts = array(
+                    'Lorem ipsum dolor sit amet',
+                    'Maecenas interdum arcu sit amet ipsum pharetra, a euismod metus gravida.',
+                    'Vivamus tincidunt maximus neque. Nunc sed metus in augue pulvinar blandit. Praesent rutrum sem laoreet eros volutpat iaculis. Etiam justo dolor, lacinia a tortor eu, pulvinar vulputate quam.'
+                );
+
+            ?>
             
             <?php for($i = 0; $i < 3; $i++): ?>
 
             <div class="col-12 col-lg-4">
-                <div class="cn-card mb-5 mb-lg-0">
+                <div class="cn-card mb-5 mb-lg-0 d-flex flex-column">
                     <div class="cn-card-header">
                         <div class="cn-card-tags text-right">
                             <ul class="list-inline m-0 p-0">
@@ -187,18 +197,19 @@
                             </a>
                         </div><!--/ .cn-card-avatar -->
                     </div><!--/ .cn-card-header -->
-                    <div class="cn-card-body">
-                        <h5 class="cn-card-title m-0 mb-3 p-0">
+                    <div class="cn-card-body d-flex flex-column align-items-start justify-content-center flex-grow-1">
+                        <h5 class="cn-card-title m-0 mb-3 p-0 w-100 text-center">
                             <a href="#" title="Bengkel Sumber Bencana">
                                 Bengkel Sumber Bencana
                             </a>
                         </h5>
-                        <ul class="cn-card-info m-0 p-0 list-unstyled">
+                        <ul class="cn-card-info m-0 p-0 list-unstyled flex-grow-1 w-100">
                             <li>
                                 <span>
                                     <i class="fa fa-map-marker-alt"></i>
                                 </span>
-                                <span>Jalan Raya Bogor KM 27, Kota Bogor</span>
+                                <span><?php echo $sampler_texts[$i]; ?></span>
+                                <span class="d-none">Jalan Raya Bogor KM 27, Kota Bogor</span>
                             </li>
                             <li>
                                 <span>
@@ -224,7 +235,7 @@
 
                             </li>
                         </ul>
-                        <div class="text-center mt-5">
+                        <div class="text-center mt-5 mx-auto">
                             <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
                         </div>
                     </div><!--/ .card-body -->
