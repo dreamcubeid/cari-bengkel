@@ -46,14 +46,13 @@ class GarageController {
     public function getByLocation(Request $request = null)
     {
         $data = $request->query->all();
+        $session = $request->getSession();
 
         $data['condition'] = $data['q'] ? $data['q'] : [];
         $data['location'] = $data['location'] ? $data['location'] : [];
 
         if (!$data['location'] && $data['random']) {
             //generate seed
-            $session = $request->getSession();
-
             if ($session->get('SEED')) {
                 $seed = $session->get('SEED');
             } else {
@@ -69,6 +68,8 @@ class GarageController {
 
             $data['condition']['randomSeed'] = $session->get('SEED');
             $data['orderBy'] = 'RAND';
+        } else if ($data['location']) {
+            $session->set('CURRENT_LOCATION', $data['location']);
         }
 
         //get sort & limit
