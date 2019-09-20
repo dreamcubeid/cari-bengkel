@@ -238,10 +238,8 @@
 </section><!--/ .cn-section -->
 
 <script>
-    var map;
     var allowLocation;
     var currentPosition;
-    var currentCenter;
 
     $( document ).ready(function() {
 
@@ -274,14 +272,10 @@
                 },
                 function(error) {
                     loadData(0);
-
-                    alert("Browser tidak mengizinkan untuk mendeteksi lokasi");
                 }
             );
         } else {
             loadData(0);
-
-            alert("Browser tidak mengizinkan untuk mendeteksi lokasi");
         }
     }
 
