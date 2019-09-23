@@ -8,7 +8,7 @@ interface GarageRepositoryInterface {
 
     public function findOneById(int $id): object;
 
-    public function findBy(array $condition = [], array $location = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc', int $limit = null): array;
+    public function findBy(array $condition = [], array $location = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc', int $limit = null, int $offset = null): array;
 
     public function findOneBySlug(string $slug): object;
 

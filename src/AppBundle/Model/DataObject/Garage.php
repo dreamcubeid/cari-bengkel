@@ -16,7 +16,7 @@ class Garage extends BaseGarage
         $this->tableGarage = "object_" . Garage::classId();
     }
     
-    public static function getWithDistance(array $condition = [], array $location = [], string $orderBy = 'o_creationDate', string $sortBy = 'DESC', int $limit = null)
+    public static function getWithDistance(array $condition = [], array $location = [], string $orderBy = 'o_creationDate', string $sortBy = 'DESC', int $limit = null, int $offset = null)
     {
         $latitude = floatval($location['latitude']);
         $longitude = floatval($location['longitude']);
@@ -137,8 +137,15 @@ class Garage extends BaseGarage
         } else {
             $limit = "";
         }
+
+        if ($offset)
+        {
+            $offset = "OFFSET ".$offset;
+        } else {
+            $offset = "";
+        }
         
-        $query .= " ORDER BY ".$orderBy." ".$sortBy." ".$limit;
+        $query .= " ORDER BY ".$orderBy." ".$sortBy." ".$limit." ".$offset;
         
         $result = $db->fetchAll($query, $paramsCondition);
 
