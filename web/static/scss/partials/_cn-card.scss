@@ -355,6 +355,46 @@
                 }
             }
         }
+
+        &--same-height
+        {
+            // border: solid 1px red;
+
+            .slick-slide
+            {
+                min-height: 100%;
+                position: relative;
+
+                // border: solid 1px green;
+
+                & > div
+                {
+                    min-height: 100%;
+                    height: 100%;
+
+                    // border: solid 1px blue;
+                }
+            }
+
+            .slick-track
+            {
+                position: relative;
+                min-height: 100%;
+                height: 100%;
+
+                @media (min-width: 768px)
+                {
+                    min-height: 500px;
+                    height: 500px;
+                }
+            }
+
+            .cn-card-slider__item
+            {
+                height: calc(100% - 15px);
+            }
+
+        }
     }
 
     &--compact
