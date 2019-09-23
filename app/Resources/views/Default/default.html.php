@@ -164,7 +164,7 @@
                 $sampler_texts = array(
                     'Lorem ipsum dolor sit amet',
                     'Maecenas interdum arcu sit amet ipsum pharetra, a euismod metus gravida.',
-                    'Vivamus tincidunt maximus neque. Nunc sed metus in augue pulvinar blandit. Praesent rutrum sem laoreet eros volutpat iaculis. Etiam justo dolor, lacinia a tortor eu, pulvinar vulputate quam.'
+                    'Vivamus tincidunt maximus neque. Nunc sed metus in augue pulvinar blandits.'
                 );
 
             ?>
@@ -204,18 +204,18 @@
                             </a>
                         </h5>
                         <ul class="cn-card-info m-0 p-0 list-unstyled flex-grow-1 w-100">
-                            <li>
+                            <li class="d-flex flex-row align-items-start justify-content-start">
                                 <span>
                                     <i class="fa fa-map-marker-alt"></i>
                                 </span>
-                                <span><?php echo $sampler_texts[$i]; ?></span>
+                                <span class="flex-grow-1 pl-2"><?php echo $sampler_texts[$i]; ?></span>
                                 <span class="d-none">Jalan Raya Bogor KM 27, Kota Bogor</span>
                             </li>
-                            <li>
+                            <li class="d-flex flex-row align-items-start justify-content-start">
                                 <span>
                                     <i class="far fa-clock"></i>
                                 </span>
-                                <span>Jadwal Buka</span>
+                                <span class="flex-grow-1 pl-2">Jadwal Buka</span>
 
                                 <div class="cn-card-popup">
                                     <a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">
