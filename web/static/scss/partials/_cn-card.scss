@@ -417,12 +417,14 @@
     {
         display: block;
         position: absolute;
-        top: 0;
+        top: 50%;
         right: 0;
 
         width: 100%;
 
         border: none; //solid 1px red;
+
+        @include translateY(-50%);
 
         & > a
         {
