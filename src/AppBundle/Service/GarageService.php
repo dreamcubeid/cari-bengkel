@@ -3,14 +3,17 @@
 namespace AppBundle\Service;
 
 use AppBundle\Contract\GarageRepositoryInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class GarageService
 {
     private $garageRepo;
+    private $session;
 
-    public function __construct(GarageRepositoryInterface $garageRepo)
+    public function __construct(GarageRepositoryInterface $garageRepo, SessionInterface $session)
     {
         $this->garageRepo = $garageRepo;
+        $this->session = $session;
     }
 
     public function getAll(string $orderBy = 'o_creationDate', string $sortBy = 'desc')

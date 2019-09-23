@@ -11,6 +11,8 @@
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     overflow: hidden;
 
+    min-height: 100%;
+
     &--transparent
     {
         background-color: rgba(255, 255, 255, 0);
@@ -28,6 +30,8 @@
     {
         margin-top: 20px;
         padding: 30px;
+
+        min-height: 100%;
     }
 
     &-header
@@ -351,6 +355,46 @@
                 }
             }
         }
+
+        &--same-height
+        {
+            // border: solid 1px red;
+
+            .slick-slide
+            {
+                min-height: 100%;
+                position: relative;
+
+                // border: solid 1px green;
+
+                & > div
+                {
+                    min-height: 100%;
+                    height: 100%;
+
+                    // border: solid 1px blue;
+                }
+            }
+
+            .slick-track
+            {
+                position: relative;
+                min-height: 100%;
+                height: 100%;
+
+                @media (min-width: 768px)
+                {
+                    min-height: 500px;
+                    height: 500px;
+                }
+            }
+
+            .cn-card-slider__item
+            {
+                height: calc(100% - 15px);
+            }
+
+        }
     }
 
     &--compact
@@ -373,12 +417,14 @@
     {
         display: block;
         position: absolute;
-        top: 0;
+        top: 50%;
         right: 0;
 
         width: 100%;
 
         border: none; //solid 1px red;
+
+        @include translateY(-50%);
 
         & > a
         {

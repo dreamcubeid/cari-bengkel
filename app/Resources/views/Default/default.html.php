@@ -2,6 +2,12 @@
     $this->extend('Layouts/layout.html.php');
 
     $category = $this->category;
+
+    $sampler_texts = array(
+        'Lorem ipsum dolor sit amet',
+        'Maecenas interdum arcu sit amet ipsum pharetra, a euismod metus gravida.',
+        'Vivamus tincidunt maximus neque. Nunc sed metus in augue pulvinar blandits. A euismod metus sangu goreng cihuy'
+    );
 ?>
 
 <!-- 
@@ -97,7 +103,7 @@
 
                 <div class="cn-card-slider">
 
-                    <div class="cn-card-slider__items" id="nearest-garage-list">
+                    <div class="cn-card-slider__items cn-card-slider--same-height" id="nearest-garage-list">
 
                     </div><!--/ .cn-card-slider__items -->
 
@@ -162,7 +168,7 @@
             <?php for($i = 0; $i < 3; $i++): ?>
 
             <div class="col-12 col-lg-4">
-                <div class="cn-card mb-5 mb-lg-0">
+                <div class="cn-card mb-5 mb-lg-0 d-flex flex-column">
                     <div class="cn-card-header">
                         <div class="cn-card-tags text-right">
                             <ul class="list-inline m-0 p-0">
@@ -187,24 +193,25 @@
                             </a>
                         </div><!--/ .cn-card-avatar -->
                     </div><!--/ .cn-card-header -->
-                    <div class="cn-card-body">
-                        <h5 class="cn-card-title m-0 mb-3 p-0">
+                    <div class="cn-card-body d-flex flex-column align-items-start justify-content-center flex-grow-1">
+                        <h5 class="cn-card-title m-0 mb-3 p-0 w-100 text-center">
                             <a href="#" title="Bengkel Sumber Bencana">
                                 Bengkel Sumber Bencana
                             </a>
                         </h5>
-                        <ul class="cn-card-info m-0 p-0 list-unstyled">
-                            <li>
+                        <ul class="cn-card-info m-0 p-0 list-unstyled flex-grow-1 w-100">
+                            <li class="d-flex flex-row align-items-start justify-content-start">
                                 <span>
                                     <i class="fa fa-map-marker-alt"></i>
                                 </span>
-                                <span>Jalan Raya Bogor KM 27, Kota Bogor</span>
+                                <span class="flex-grow-1 pl-2"><?php echo $sampler_texts[$i]; ?></span>
+                                <span class="d-none">Jalan Raya Bogor KM 27, Kota Bogor</span>
                             </li>
-                            <li>
+                            <li class="d-flex flex-row align-items-start justify-content-start">
                                 <span>
                                     <i class="far fa-clock"></i>
                                 </span>
-                                <span>Jadwal Buka</span>
+                                <span class="flex-grow-1 pl-2">Jadwal Buka</span>
 
                                 <div class="cn-card-popup">
                                     <a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">
@@ -224,11 +231,11 @@
 
                             </li>
                         </ul>
-                        <div class="text-center mt-5">
+                        <div class="text-center mt-5 mx-auto">
                             <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
                         </div>
                     </div><!--/ .card-body -->
-                </div><!--/ .cncard -->
+                </div><!--/ .cn-card -->
             </div><!--/ .col-12 -->
 
             <?php endfor; ?>
@@ -238,10 +245,8 @@
 </section><!--/ .cn-section -->
 
 <script>
-    var map;
     var allowLocation;
     var currentPosition;
-    var currentCenter;
 
     $( document ).ready(function() {
 
@@ -274,14 +279,10 @@
                 },
                 function(error) {
                     loadData(0);
-
-                    alert("Browser tidak mengizinkan untuk mendeteksi lokasi");
                 }
             );
         } else {
             loadData(0);
-
-            alert("Browser tidak mengizinkan untuk mendeteksi lokasi");
         }
     }
 
@@ -356,18 +357,18 @@
                                         ele += '</a>';
                                     ele += '</h5>';
                                     ele += '<ul class="cn-card-info m-0 p-0 list-unstyled">';
-                                        ele += '<li>';
+                                        ele += '<li class="d-flex flex-row align-items-start justify-content-start">';
                                             ele += '<span>';
                                                 ele += '<i class="fa fa-map-marker-alt"></i>';
                                             ele += '</span>';
-                                            ele += '<span>' + value.Address.concat(', ', value.CityStatus,' ', value.City) + '</span>';
+                                            ele += '<span class="flex-grow-1 pl-2">' + value.Address.concat(', ', value.CityStatus,' ', value.City) + '</span>';
                                         ele += '</li>';
                                         
-                                        ele += '<li>';
+                                        ele += '<li class="d-flex flex-row align-items-start justify-content-start">';
                                             ele += '<span>';
                                                 ele += '<i class="far fa-clock"></i>';
                                             ele += '</span>';
-                                            ele += '<span>Jadwal Buka</span>';
+                                            ele += '<span class="flex-grow-1 pl-2">Jadwal Buka</span>';
                                             ele += '<div class="cn-card-popup">';
                                                 ele += '<a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">';
                                                     ele += '<i class="fas fa-chevron-down"></i>';
