@@ -2,6 +2,12 @@
     $this->extend('Layouts/layout.html.php');
 
     $category = $this->category;
+
+    $sampler_texts = array(
+        'Lorem ipsum dolor sit amet',
+        'Maecenas interdum arcu sit amet ipsum pharetra, a euismod metus gravida.',
+        'Vivamus tincidunt maximus neque. Nunc sed metus in augue pulvinar blandits. A euismod metus sangu goreng cihuy'
+    );
 ?>
 
 <!-- 
@@ -97,7 +103,7 @@
 
                 <div class="cn-card-slider">
 
-                    <div class="cn-card-slider__items" id="nearest-garage-list">
+                    <div class="cn-card-slider__items cn-card-slider--same-height" id="nearest-garage-list">
 
                     </div><!--/ .cn-card-slider__items -->
 
@@ -158,16 +164,6 @@
             </div><!--/ .col-12 -->
         </div><!--/ .row -->
         <div class="row">
-
-            <?php
-
-                $sampler_texts = array(
-                    'Lorem ipsum dolor sit amet',
-                    'Maecenas interdum arcu sit amet ipsum pharetra, a euismod metus gravida.',
-                    'Vivamus tincidunt maximus neque. Nunc sed metus in augue pulvinar blandits.'
-                );
-
-            ?>
             
             <?php for($i = 0; $i < 3; $i++): ?>
 
@@ -239,7 +235,7 @@
                             <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
                         </div>
                     </div><!--/ .card-body -->
-                </div><!--/ .cncard -->
+                </div><!--/ .cn-card -->
             </div><!--/ .col-12 -->
 
             <?php endfor; ?>
@@ -361,18 +357,18 @@
                                         ele += '</a>';
                                     ele += '</h5>';
                                     ele += '<ul class="cn-card-info m-0 p-0 list-unstyled">';
-                                        ele += '<li>';
+                                        ele += '<li class="d-flex flex-row align-items-start justify-content-start">';
                                             ele += '<span>';
                                                 ele += '<i class="fa fa-map-marker-alt"></i>';
                                             ele += '</span>';
-                                            ele += '<span>' + value.Address.concat(', ', value.CityStatus,' ', value.City) + '</span>';
+                                            ele += '<span class="flex-grow-1 pl-2">' + value.Address.concat(', ', value.CityStatus,' ', value.City) + '</span>';
                                         ele += '</li>';
                                         
-                                        ele += '<li>';
+                                        ele += '<li class="d-flex flex-row align-items-start justify-content-start">';
                                             ele += '<span>';
                                                 ele += '<i class="far fa-clock"></i>';
                                             ele += '</span>';
-                                            ele += '<span>Jadwal Buka</span>';
+                                            ele += '<span class="flex-grow-1 pl-2">Jadwal Buka</span>';
                                             ele += '<div class="cn-card-popup">';
                                                 ele += '<a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">';
                                                     ele += '<i class="fas fa-chevron-down"></i>';
