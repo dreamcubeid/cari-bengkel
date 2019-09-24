@@ -1,4 +1,14 @@
-<?php $this->extend('Layouts/layout.html.php')?>
+<?php
+
+    $this->extend('Layouts/layout.html.php');
+
+    $sampler_texts = array(
+        'Lorem ipsum dolor sit amet',
+        'Maecenas interdum arcu sit amet ipsum pharetra, a euismod metus gravida.',
+        'Vivamus tincidunt maximus neque. Nunc sed metus in augue pulvinar blandits. A euismod metus sangu goreng cihuy'
+    );
+
+?>
 
 <!-- 
     Add your html script code here
@@ -23,7 +33,7 @@
     </div><!--/ .container -->
 </section><!--/ . -->
 
-<section class="mb-5">
+<section class="mb-5 pb-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -56,7 +66,7 @@
     </div><!--/ .container -->
 </section><!--/ . -->
 
-<section class="mb-5">
+<section class="mb-5 d-none">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -69,87 +79,6 @@
         </div><!--/ .row -->
     </div><!--/ .container -->
 </section><!--/ . -->
-
-<section class="mb-5">
-    <div class="container">
-        <div class="row">
-            
-            <?php for($i = 0; $i < 6; $i++): ?>
-
-                <?php if($i ==4 ): ?>
-
-            <div class="col-12 col-md-6 col-lg-4">
-            
-                <div class="cn-ads cn-ads--rounded mb-5">
-                    <a href="#">
-                        <img data-src="http://placehold.it/320x390?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 100%; height: auto;">
-                    </a>
-                </div><!--/ .cn-ads -->
-
-            </div><!--/ .col-12 -->
-
-                <?php else: ?>
-
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="cn-card mb-5">
-                    <div class="cn-card-header">
-                        <div class="cn-card-tags text-right">
-                            <ul class="list-inline m-0 p-0">
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-car-side"></i>
-                                    </span>
-                                </li>
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-motorcycle"></i>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="cn-card-image">
-                            <img data-src="http://placehold.it/640x480" class="card-img-top img-lazy" alt="">
-                        </div><!--/ .cn-card-image -->
-                        <div class="cn-card-avatar">
-                            <a href="#" title="Bengkel Sumber Bencana">
-                                <img data-src="/static/images/default/default-image.png" alt="Bengkel Sumber Bencana" class="img-lazy">
-                            </a>
-                        </div><!--/ .cn-card-avatar -->
-                    </div><!--/ .cn-card-header -->
-                    <div class="cn-card-body">
-                        <h5 class="cn-card-title m-0 mb-3 p-0">
-                            <a href="#" title="Bengkel Sumber Bencana">
-                                Bengkel Sumber Bencana
-                            </a>
-                        </h5>
-                        <ul class="cn-card-info m-0 p-0 list-unstyled">
-                            <li>
-                                <span>
-                                    <i class="fa fa-map-marker-alt"></i>
-                                </span>
-                                <span>Jalan Raya Bogor KM 27, Kota Bogor</span>
-                            </li>
-                            <li>
-                                <span>
-                                    <i class="far fa-clock"></i>
-                                </span>
-                                <span>Buka Setiap Hari | 08:00 - 21:00 WIB</span>
-                            </li>
-                        </ul>
-                        <div class="text-center mt-5">
-                            <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
-                        </div>
-                    </div><!--/ .card-body -->
-                </div><!--/ .cn-card -->
-            </div><!--/ .col-12 -->
-
-                <?php endif; ?>
-
-            <?php endfor; ?>
-
-        </div><!--/ .row -->
-    </div><!--/ .container -->
-</section>
 
 <section class="mb-5">
     <div class="container">
@@ -167,7 +96,8 @@
                             </a>
                         </div><!--/ .cn-card-avatar -->
                     </div><!--/ .cn-card-header -->
-                    <div class="cn-card-body mt-0 pt-3 pl-0 flex-grow-1">
+
+                    <div class="cn-card-body d-flex flex-column align-items-start justify-content-center flex-grow-1 mt-0 pt-3 pl-0 pr-3">
                         <div class="cn-card-tags pt-3 text-right">
                             <ul class="list-inline m-0 p-0">
                                 <li class="list-inline-item">
@@ -187,18 +117,35 @@
                                 Bengkel Sumber Bencana
                             </a>
                         </h5>
-                        <ul class="cn-card-info m-0 p-0 list-unstyled">
-                            <li>
+                        <ul class="cn-card-info m-0 p-0 list-unstyled flex-grow-1 w-100">
+                            <li class="d-flex flex-row align-items-start justify-content-start">
                                 <span>
                                     <i class="fa fa-map-marker-alt"></i>
                                 </span>
-                                <span>Jalan Raya Bogor KM 27, Kota Bogor</span>
+                                <span class="flex-grow-1 pl-2 pr-3"><?php echo $sampler_texts[rand(0, count($sampler_texts) -1)]; ?></span>
                             </li>
-                            <li>
+                            <li class="d-flex flex-row align-items-start justify-content-start">
                                 <span>
                                     <i class="far fa-clock"></i>
                                 </span>
-                                <span>Buka Setiap Hari | 08:00 - 21:00 WIB</span>
+                                <span class="flex-grow-1 pl-2 pr-3">Jadwal Buka</span>
+
+                                <div class="cn-card-popup">
+                                    <a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </a>
+                                    <div class="cn-card-popup__body py-2 px-3 ml-auto mr-0 mt-1">
+                                        <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
+                                            <span class="align-self-start flex-grow-1">Senin - Jum'at</span>
+                                            <span class="align-self-end text-right">09:00 - 16:00 WIB</span>
+                                        </p>
+                                        <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
+                                            <span class="align-self-start flex-grow-1">Sabtu - Minggu</span>
+                                            <span class="align-self-end text-right">09:00 - 16:00 WIB</span>
+                                        </p>
+                                    </div><!--/ .cn-card-popup__body -->
+                                </div><!--/ .cn-card-popup -->
+
                             </li>
                         </ul>
                         <div class="text-left mt-4">
@@ -212,7 +159,7 @@
 
         </div><!--/ .row -->
         
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-12 text-center">
                 <ul class="pagination cn-pagination justify-content-center">
                     <li class="page-item">
@@ -234,3 +181,25 @@
 
     </div><!--/ .container -->
 </section>
+
+<script type="text/javascript">
+    
+    $(function(){
+
+        /**
+         * Schedule popup mechanic
+         */
+
+        $(document).on('click', '.cn-card-popup > a', function(e){
+            e.preventDefault();
+            let el = $(this);
+            let popupBody = el.next();
+            popupBody.stop().slideToggle('fast', function(){
+                el.stop().toggleClass('flip');
+            });
+            return false;
+        });
+
+    });
+
+</script>

@@ -399,6 +399,9 @@
 
     &--compact
     {
+        // min-height: 0;
+        min-height: calc(100% - 50px);
+
         .cn-card-header
         {
             min-width: 120px;
@@ -462,7 +465,9 @@
         &__body
         {
             display: none;
-            position: relative;
+            position: absolute;
+            right: 0;
+            top: 16px;
 
             min-width: calc(100% - 30px);
             max-width: calc(100% - 30px);
