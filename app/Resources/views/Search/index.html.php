@@ -2,6 +2,9 @@
 
     $this->extend('Layouts/layout.html.php');
 
+    $result = $this->result;
+    $params = $this->params;
+
     $sampler_texts = array(
         'Lorem ipsum dolor sit amet',
         'Maecenas interdum arcu sit amet ipsum pharetra, a euismod metus gravida.',
@@ -46,7 +49,8 @@
                                         <i class="fas fa-search"></i>
                                     </span>
                                 </div>
-                                <input type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" value="Jalan raya bogor">
+                                <input type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" value="<?= $params['keyword'] ?>">
+                                <input type="hidden" name="page" value="<?= $params['page'] ?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text text-primary">
                                         <i class="fas fa-crosshairs"></i>
@@ -85,77 +89,98 @@
 
         <div class="row">
 
-            <?php for($i = 0; $i < 4; $i++): ?>
+            <?php 
+                if ($result) {
+                    foreach ($result as $key => $value) { 
+            ?>
 
-            <div class="col-12 col-lg-6">
-                <div class="cn-card cn-card--compact d-flex flex-row mb-5">
-                    <div class="cn-card-header d-flex flex-row align-items-start justify-content-start pt-3">
-                        <div class="cn-card-avatar">
-                            <a href="#" title="Bengkel Sumber Bencana">
-                                <img data-src="/static/images/default/default-image.png" alt="Bengkel Sumber Bencana" class="img-lazy">
-                            </a>
-                        </div><!--/ .cn-card-avatar -->
-                    </div><!--/ .cn-card-header -->
+                        <div class="col-12 col-lg-6">
+                            <div class="cn-card cn-card--compact d-flex flex-row mb-5">
+                                <div class="cn-card-header d-flex flex-row align-items-start justify-content-start pt-3">
+                                    <div class="cn-card-avatar">
+                                        <a href="#" title="<?= $value['Name'] ?>">
+                                            <img data-src="<?= $value['LogoPath'] ? $value['LogoPath'] : '/static/images/default/default-image.png' ?>" alt="<?= $value['Name'] ?>" class="img-lazy">
+                                        </a>
+                                    </div><!--/ .cn-card-avatar -->
+                                </div><!--/ .cn-card-header -->
 
-                    <div class="cn-card-body d-flex flex-column align-items-start justify-content-center flex-grow-1 mt-0 pt-3 pl-0 pr-3">
-                        <div class="cn-card-tags pt-3 text-right">
-                            <ul class="list-inline m-0 p-0">
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-car-side"></i>
-                                    </span>
-                                </li>
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-motorcycle"></i>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <h5 class="cn-card-title m-0 mb-3 p-0">
-                            <a href="#" title="Bengkel Sumber Bencana">
-                                Bengkel Sumber Bencana
-                            </a>
-                        </h5>
-                        <ul class="cn-card-info m-0 p-0 list-unstyled flex-grow-1 w-100">
-                            <li class="d-flex flex-row align-items-start justify-content-start">
-                                <span>
-                                    <i class="fa fa-map-marker-alt"></i>
-                                </span>
-                                <span class="flex-grow-1 pl-2 pr-3"><?php echo $sampler_texts[rand(0, count($sampler_texts) -1)]; ?></span>
-                            </li>
-                            <li class="d-flex flex-row align-items-start justify-content-start">
-                                <span>
-                                    <i class="far fa-clock"></i>
-                                </span>
-                                <span class="flex-grow-1 pl-2 pr-3">Jadwal Buka</span>
+                                <div class="cn-card-body d-flex flex-column align-items-start justify-content-center flex-grow-1 mt-0 pt-3 pl-0 pr-3">
+                                    <div class="cn-card-tags pt-3 text-right">
+                                        <ul class="list-inline m-0 p-0">
+                                        <?php if (strpos($value['GarageTypeName'], 'Mobil') !== false) { ?>
+                                            <li class="list-inline-item">
+                                                <span class="cn-card-tags__item">
+                                                    <i class="fa fa-car-side"></i>
+                                                </span>
+                                            </li>
+                                        <?php } ?>
+                                        <?php if (strpos($value['GarageTypeName'], 'Motor') !== false) { ?>
+                                            <li class="list-inline-item">
+                                                <span class="cn-card-tags__item">
+                                                    <i class="fa fa-motorcycle"></i>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <?php } ?>
+                                    </div>
+                                    <h5 class="cn-card-title m-0 mb-3 p-0">
+                                        <a href="#" title="<?= $value['Name'] ?>">
+                                            <?= $value['Name'] ?>
+                                        </a>
+                                    </h5>
+                                    <ul class="cn-card-info m-0 p-0 list-unstyled flex-grow-1 w-100">
+                                        <li class="d-flex flex-row align-items-start justify-content-start">
+                                            <span>
+                                                <i class="fa fa-map-marker-alt"></i>
+                                            </span>
+                                            <span class="flex-grow-1 pl-2 pr-3"><?= $value['Address'] . ', ' . $value['City'] ?></span>
+                                        </li>
+                                        <li class="d-flex flex-row align-items-start justify-content-start">
+                                            <span>
+                                                <i class="far fa-clock"></i>
+                                            </span>
+                                            <span class="flex-grow-1 pl-2 pr-3">Jadwal Buka</span>
 
-                                <div class="cn-card-popup">
-                                    <a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">
-                                        <i class="fas fa-chevron-down"></i>
-                                    </a>
-                                    <div class="cn-card-popup__body py-2 px-3 ml-auto mr-0 mt-1">
-                                        <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
-                                            <span class="align-self-start flex-grow-1">Senin - Jum'at</span>
-                                            <span class="align-self-end text-right">09:00 - 16:00 WIB</span>
-                                        </p>
-                                        <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
-                                            <span class="align-self-start flex-grow-1">Sabtu - Minggu</span>
-                                            <span class="align-self-end text-right">09:00 - 16:00 WIB</span>
-                                        </p>
-                                    </div><!--/ .cn-card-popup__body -->
-                                </div><!--/ .cn-card-popup -->
+                                            <div class="cn-card-popup">
+                                                <a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </a>
+                                                <div class="cn-card-popup__body py-2 px-3 ml-auto mr-0 mt-1">
+                                                <?php 
+                                                    if ($value['OperatingHours']) {
+                                                        foreach ($value['OperatingHours'] as $keyOp => $valOp) {
+                                                ?>
+                                                            <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
+                                                                <span class="align-self-start flex-grow-1"><?= $valOp['OperationalDay'] ?></span>
+                                                                <span class="align-self-end text-right"><?= $valOp['OpenHour'] ?> - <?= $valOp['CloseHour'] ?> WIB</span>
+                                                            </p>
+                                                <?php 
+                                                        }
+                                                    } else { 
+                                                ?>
+                                                        <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
+                                                            <span class="align-self-start flex-grow-1">Jadwal Belum Tersedia</span>
+                                                            <span class="align-self-end text-right"></span>
+                                                        </p>
+                                                <?php 
+                                                    }
+                                                ?>
+                                                </div><!--/ .cn-card-popup__body -->
+                                            </div><!--/ .cn-card-popup -->
 
-                            </li>
-                        </ul>
-                        <div class="text-left mt-4">
-                            <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
-                        </div>
-                    </div><!--/ .card-body -->
-                </div><!--/ .cn-card-compact -->
-            </div><!--/ .col-12 -->
+                                        </li>
+                                    </ul>
+                                    <div class="text-left mt-4">
+                                        <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
+                                    </div>
+                                </div><!--/ .card-body -->
+                            </div><!--/ .cn-card-compact -->
+                        </div><!--/ .col-12 -->
 
-            <?php endfor; ?>
+            <?php   
+                    } 
+                }
+            ?>
 
         </div><!--/ .row -->
         

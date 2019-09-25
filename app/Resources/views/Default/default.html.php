@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="cn-search">
-                    <form role="form" class="d-flex flex-column flex-md-row align-items-center align-content-center justify-content-between">
+                    <form role="form" class="d-flex flex-column flex-md-row align-items-center align-content-center justify-content-between" method="GET" action="/cari/">
                         <div class="form-group flex-grow-1 mx-0 mr-md-3 mb-3 mb-md-0">
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -40,7 +40,8 @@
                                         <i class="fas fa-search"></i>
                                     </span>
                                 </div>
-                                <input type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70">
+                                <input type="search" name="keyword" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70">
+                                <input type="hidden" name="page" value="">
                                 <div class="input-group-append">
                                     <span class="input-group-text text-primary">
                                         <i class="fas fa-crosshairs"></i>
@@ -361,7 +362,7 @@
                                             ele += '<span>';
                                                 ele += '<i class="fa fa-map-marker-alt"></i>';
                                             ele += '</span>';
-                                            ele += '<span class="flex-grow-1 pl-2">' + value.Address.concat(', ', value.CityStatus,' ', value.City) + '</span>';
+                                            ele += '<span class="flex-grow-1 pl-2">' + value.Address.concat(', ', value.City) + '</span>';
                                         ele += '</li>';
                                         
                                         ele += '<li class="d-flex flex-row align-items-start justify-content-start">';
