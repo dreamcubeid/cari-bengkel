@@ -1,8 +1,15 @@
-<?php $this->extend('Layouts/layout.html.php')?>
+<?php
+    $this->extend('Layouts/layout.html.php');
 
-<!-- 
-    Add your html script code here
--->
+    use AppBundle\Utils\Pagination;
+
+    $result = $this->result;
+    $count = $this->count;
+    $params = $this->params;
+
+    $paginationHelper = new Pagination();
+    $pagination = $paginationHelper->generate((ceil($count / $params['limit'])), ($params['page'] ? $params['page'] : 1));
+?>
 
 <section class="my-4">
     <div class="container">
@@ -23,7 +30,7 @@
     </div><!--/ .container -->
 </section><!--/ . -->
 
-<section class="mb-5">
+<section class="mb-5 pb-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -36,7 +43,8 @@
                                         <i class="fas fa-search"></i>
                                     </span>
                                 </div>
-                                <input type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" value="Jalan raya bogor">
+                                <input type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" name="keyword" value="<?= $params['keyword'] ?>">
+                                <input type="hidden" name="page" value="<?= $params['page'] ?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text text-primary">
                                         <i class="fas fa-crosshairs"></i>
@@ -56,7 +64,7 @@
     </div><!--/ .container -->
 </section><!--/ . -->
 
-<section class="mb-5">
+<section class="mb-5 d-none">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -72,165 +80,127 @@
 
 <section class="mb-5">
     <div class="container">
+
         <div class="row">
-            
-            <?php for($i = 0; $i < 6; $i++): ?>
 
-                <?php if($i ==4 ): ?>
+            <?php 
+                if ($result) {
+                    foreach ($result as $key => $value) { 
+            ?>
 
-            <div class="col-12 col-md-6 col-lg-4">
-            
-                <div class="cn-ads cn-ads--rounded mb-5">
-                    <a href="#">
-                        <img data-src="http://placehold.it/320x390?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 100%; height: auto;">
-                    </a>
-                </div><!--/ .cn-ads -->
+                        <div class="col-12 col-lg-6">
+                            <div class="cn-card cn-card--compact d-flex flex-row mb-5">
+                                <div class="cn-card-header d-flex flex-row align-items-start justify-content-start pt-3">
+                                    <div class="cn-card-avatar">
+                                        <a href="#" title="<?= $value['Name'] ?>">
+                                            <img data-src="<?= $value['LogoPath'] ? $value['LogoPath'] : '/static/images/default/default-image.png' ?>" alt="<?= $value['Name'] ?>" class="img-lazy">
+                                        </a>
+                                    </div><!--/ .cn-card-avatar -->
+                                </div><!--/ .cn-card-header -->
 
-            </div><!--/ .col-12 -->
+                                <div class="cn-card-body d-flex flex-column align-items-start justify-content-center flex-grow-1 mt-0 pt-3 pl-0 pr-3">
+                                    <div class="cn-card-tags pt-3 text-right">
+                                        <ul class="list-inline m-0 p-0">
+                                        <?php if (strpos($value['GarageTypeName'], 'Mobil') !== false) { ?>
+                                            <li class="list-inline-item">
+                                                <span class="cn-card-tags__item">
+                                                    <i class="fa fa-car-side"></i>
+                                                </span>
+                                            </li>
+                                        <?php } ?>
+                                        <?php if (strpos($value['GarageTypeName'], 'Motor') !== false) { ?>
+                                            <li class="list-inline-item">
+                                                <span class="cn-card-tags__item">
+                                                    <i class="fa fa-motorcycle"></i>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <?php } ?>
+                                    </div>
+                                    <h5 class="cn-card-title m-0 mb-3 p-0">
+                                        <a href="#" title="<?= $value['Name'] ?>">
+                                            <?= $value['Name'] ?>
+                                        </a>
+                                    </h5>
+                                    <ul class="cn-card-info m-0 p-0 list-unstyled flex-grow-1 w-100">
+                                        <li class="d-flex flex-row align-items-start justify-content-start">
+                                            <span>
+                                                <i class="fa fa-map-marker-alt"></i>
+                                            </span>
+                                            <span class="flex-grow-1 pl-2 pr-3"><?= $value['Address'] . ', ' . $value['City'] ?></span>
+                                        </li>
+                                        <li class="d-flex flex-row align-items-start justify-content-start">
+                                            <span>
+                                                <i class="far fa-clock"></i>
+                                            </span>
+                                            <span class="flex-grow-1 pl-2 pr-3">Jadwal Buka</span>
 
-                <?php else: ?>
+                                            <div class="cn-card-popup">
+                                                <a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </a>
+                                                <div class="cn-card-popup__body py-2 px-3 ml-auto mr-0 mt-1">
+                                                <?php 
+                                                    if ($value['OperatingHours']) {
+                                                        foreach ($value['OperatingHours'] as $keyOp => $valOp) {
+                                                ?>
+                                                            <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
+                                                                <span class="align-self-start flex-grow-1"><?= $valOp['OperationalDay'] ?></span>
+                                                                <span class="align-self-end text-right"><?= $valOp['OpenHour'] ?> - <?= $valOp['CloseHour'] ?> WIB</span>
+                                                            </p>
+                                                <?php 
+                                                        }
+                                                    } else { 
+                                                ?>
+                                                        <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
+                                                            <span class="align-self-start flex-grow-1">Jadwal Belum Tersedia</span>
+                                                            <span class="align-self-end text-right"></span>
+                                                        </p>
+                                                <?php 
+                                                    }
+                                                ?>
+                                                </div><!--/ .cn-card-popup__body -->
+                                            </div><!--/ .cn-card-popup -->
 
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="cn-card mb-5">
-                    <div class="cn-card-header">
-                        <div class="cn-card-tags text-right">
-                            <ul class="list-inline m-0 p-0">
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-car-side"></i>
-                                    </span>
-                                </li>
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-motorcycle"></i>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="cn-card-image">
-                            <img data-src="http://placehold.it/640x480" class="card-img-top img-lazy" alt="">
-                        </div><!--/ .cn-card-image -->
-                        <div class="cn-card-avatar">
-                            <a href="#" title="Bengkel Sumber Bencana">
-                                <img data-src="/static/images/default/default-image.png" alt="Bengkel Sumber Bencana" class="img-lazy">
-                            </a>
-                        </div><!--/ .cn-card-avatar -->
-                    </div><!--/ .cn-card-header -->
-                    <div class="cn-card-body">
-                        <h5 class="cn-card-title m-0 mb-3 p-0">
-                            <a href="#" title="Bengkel Sumber Bencana">
-                                Bengkel Sumber Bencana
-                            </a>
-                        </h5>
-                        <ul class="cn-card-info m-0 p-0 list-unstyled">
-                            <li>
-                                <span>
-                                    <i class="fa fa-map-marker-alt"></i>
-                                </span>
-                                <span>Jalan Raya Bogor KM 27, Kota Bogor</span>
-                            </li>
-                            <li>
-                                <span>
-                                    <i class="far fa-clock"></i>
-                                </span>
-                                <span>Buka Setiap Hari | 08:00 - 21:00 WIB</span>
-                            </li>
-                        </ul>
-                        <div class="text-center mt-5">
-                            <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
-                        </div>
-                    </div><!--/ .card-body -->
-                </div><!--/ .cn-card -->
-            </div><!--/ .col-12 -->
+                                        </li>
+                                    </ul>
+                                    <div class="text-left mt-4">
+                                        <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
+                                    </div>
+                                </div><!--/ .card-body -->
+                            </div><!--/ .cn-card-compact -->
+                        </div><!--/ .col-12 -->
 
-                <?php endif; ?>
-
-            <?php endfor; ?>
+            <?php   
+                    } 
+                }
+            ?>
 
         </div><!--/ .row -->
+
+        <?= $count > 0 ? $pagination : '' ?>
+
     </div><!--/ .container -->
 </section>
 
-<section class="mb-5">
-    <div class="container">
+<script type="text/javascript">
+    
+    $(function(){
 
-        <div class="row">
+        /**
+         * Schedule popup mechanic
+         */
 
-            <?php for($i = 0; $i < 4; $i++): ?>
+        $(document).on('click', '.cn-card-popup > a', function(e){
+            e.preventDefault();
+            let el = $(this);
+            let popupBody = el.next();
+            popupBody.stop().slideToggle('fast', function(){
+                el.stop().toggleClass('flip');
+            });
+            return false;
+        });
 
-            <div class="col-12 col-lg-6">
-                <div class="cn-card cn-card--compact d-flex flex-row mb-5">
-                    <div class="cn-card-header d-flex flex-row align-items-start justify-content-start pt-3">
-                        <div class="cn-card-avatar">
-                            <a href="#" title="Bengkel Sumber Bencana">
-                                <img data-src="/static/images/default/default-image.png" alt="Bengkel Sumber Bencana" class="img-lazy">
-                            </a>
-                        </div><!--/ .cn-card-avatar -->
-                    </div><!--/ .cn-card-header -->
-                    <div class="cn-card-body mt-0 pt-3 pl-0 flex-grow-1">
-                        <div class="cn-card-tags pt-3 text-right">
-                            <ul class="list-inline m-0 p-0">
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-car-side"></i>
-                                    </span>
-                                </li>
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-motorcycle"></i>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <h5 class="cn-card-title m-0 mb-3 p-0">
-                            <a href="#" title="Bengkel Sumber Bencana">
-                                Bengkel Sumber Bencana
-                            </a>
-                        </h5>
-                        <ul class="cn-card-info m-0 p-0 list-unstyled">
-                            <li>
-                                <span>
-                                    <i class="fa fa-map-marker-alt"></i>
-                                </span>
-                                <span>Jalan Raya Bogor KM 27, Kota Bogor</span>
-                            </li>
-                            <li>
-                                <span>
-                                    <i class="far fa-clock"></i>
-                                </span>
-                                <span>Buka Setiap Hari | 08:00 - 21:00 WIB</span>
-                            </li>
-                        </ul>
-                        <div class="text-left mt-4">
-                            <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
-                        </div>
-                    </div><!--/ .card-body -->
-                </div><!--/ .cn-card-compact -->
-            </div><!--/ .col-12 -->
+    });
 
-            <?php endfor; ?>
-
-        </div><!--/ .row -->
-        
-        <div class="row">
-            <div class="col-12 text-center">
-                <ul class="pagination cn-pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div><!--/ .col-12 -->
-        </div><!--/ .row -->
-
-    </div><!--/ .container -->
-</section>
+</script>

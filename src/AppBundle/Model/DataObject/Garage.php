@@ -18,6 +18,8 @@ class Garage extends BaseGarage
     
     public static function getWithDistance(array $condition = [], array $location = [], string $orderBy = 'o_creationDate', string $sortBy = 'DESC', int $limit = null, int $offset = null)
     {
+        $result = new \stdClass;
+
         $latitude = floatval($location['latitude']);
         $longitude = floatval($location['longitude']);
 
@@ -130,6 +132,7 @@ class Garage extends BaseGarage
         }
 
         $query .= $queryCondition;
+        $countQuery = "SELECT COUNT(*) Total FROM ({$query}) as tbl_count";
         
         if ($limit)
         {
@@ -147,7 +150,8 @@ class Garage extends BaseGarage
         
         $query .= " ORDER BY ".$orderBy." ".$sortBy." ".$limit." ".$offset;
         
-        $result = $db->fetchAll($query, $paramsCondition);
+        $result->data = $db->fetchAll($query, $paramsCondition);
+        $result->count = $db->fetchAll($countQuery, $paramsCondition)[0]['Total'];
 
         return $result;
     }

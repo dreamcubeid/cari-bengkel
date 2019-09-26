@@ -23,15 +23,34 @@ class SearchController extends FrontendController
      */
     public function indexAction(Request $request)
     {
-        $data = $request->query->all();
+        $query = $request->query->all();
+        $data['condition'] = [];
 
-        $data['condition'] = $data['q'] ? $data['q'] : [];
-        $data['location'] = $data['location'] ? $data['location'] : [];
+        //get session for current location
+        $session = $request->getSession();
+        $location = $session->get('CURRENT_LOCATION') ? $session->get('CURRENT_LOCATION') : [];
 
-        $result = $this->searchService->findBy($data['condition'], $data['location']);
+        //default setting
+        $limit = 10;
+        $offset = 0;
+        $query['limit'] = $limit;
+        $page = addslashes(filter_var($query['page'], FILTER_VALIDATE_INT)) ? addslashes(filter_var($query['page'], FILTER_VALIDATE_INT)) : null;
+        $orderBy = 'o_creationDate';
+        $sortBy = 'desc';
 
-        echo "<pre>";
-        print_r($result);die;
+        if ($query['keyword']) {
+            $data['condition']['search'] = addslashes(filter_var($query['keyword'], FILTER_SANITIZE_STRING));
+        }
+
+        if ($page) {
+            $offset = ($page - 1) * $limit;
+        }
+
+        $result = $this->searchService->findBy($data['condition'], $location, $orderBy, $sortBy, $limit, $offset);
+
+        $this->view->result = $result->data;
+        $this->view->count = $result->count;
+        $this->view->params = $query;
     }
 
 }
