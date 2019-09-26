@@ -61,7 +61,7 @@
     </div><!--/ .container -->
 </section><!--/ . -->
 
-<section class="mb-5">
+<!-- <section class="mb-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -70,10 +70,10 @@
                         <img data-src="http://placehold.it/830x80?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 100%; height: auto;">
                     </a>
                 </div><!--/ .cn-ads -->
-            </div><!--/ .col-12 -->
-        </div><!--/ .row -->
-    </div><!--/ .container -->
-</section><!--/ . -->
+            <!-- </div>/ .col-12  -->
+        <!-- </div>/ .row  -->
+    <!-- </div>/ .container  -->
+<!-- </section>/ .  -->
 
 <section class="cn-section">
     <div class="container">
