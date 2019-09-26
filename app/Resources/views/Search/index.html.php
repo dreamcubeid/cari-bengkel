@@ -1,21 +1,15 @@
 <?php
-
     $this->extend('Layouts/layout.html.php');
 
+    use AppBundle\Utils\Pagination;
+
     $result = $this->result;
+    $count = $this->count;
     $params = $this->params;
 
-    $sampler_texts = array(
-        'Lorem ipsum dolor sit amet',
-        'Maecenas interdum arcu sit amet ipsum pharetra, a euismod metus gravida.',
-        'Vivamus tincidunt maximus neque. Nunc sed metus in augue pulvinar blandits. A euismod metus sangu goreng cihuy'
-    );
-
+    $paginationHelper = new Pagination();
+    $pagination = $paginationHelper->generate((ceil($count / $params['limit'])), ($params['page'] ? $params['page'] : 1));
 ?>
-
-<!-- 
-    Add your html script code here
--->
 
 <section class="my-4">
     <div class="container">
@@ -49,7 +43,7 @@
                                         <i class="fas fa-search"></i>
                                     </span>
                                 </div>
-                                <input type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" value="<?= $params['keyword'] ?>">
+                                <input type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" name="keyword" value="<?= $params['keyword'] ?>">
                                 <input type="hidden" name="page" value="<?= $params['page'] ?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text text-primary">
@@ -183,26 +177,8 @@
             ?>
 
         </div><!--/ .row -->
-        
-        <div class="row mt-3">
-            <div class="col-12 text-center">
-                <ul class="pagination cn-pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div><!--/ .col-12 -->
-        </div><!--/ .row -->
+
+        <?= $count > 0 ? $pagination : '' ?>
 
     </div><!--/ .container -->
 </section>
