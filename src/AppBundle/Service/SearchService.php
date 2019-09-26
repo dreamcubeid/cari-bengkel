@@ -26,10 +26,10 @@ class SearchService
         
         $result = $this->garageRepo->findBy($condition, $location, $orderBy, $sortBy, $limit, $offset);
 
-        if ($result) {
+        if ($result->data) {
             $tempResult = [];
 
-            foreach ($result as $key => $value) {
+            foreach ($result->data as $key => $value) {
                 $detail = $this->garageRepo->findOneById($value['o_id']);
                 $operatingHours = $detail->getOperatingHours();
                 $value['OperatingHours'] = [];
@@ -45,7 +45,7 @@ class SearchService
                 array_push($tempResult, $value);
             }
 
-            $result = $tempResult;
+            $result->data = $tempResult;
         }
 
         return $result;

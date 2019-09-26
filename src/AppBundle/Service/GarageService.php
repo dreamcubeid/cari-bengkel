@@ -34,16 +34,16 @@ class GarageService
     {
         $garage = $this->garageRepo->findBy($data, $location, $orderBy, $sortBy, $limit);
 
-        if ((count($garage) <= 0) && !empty($location) && $data['radius'] == 5) {
+        if ((count($garage->data) <= 0) && !empty($location) && $data['radius'] == 5) {
             $data['radius'] = 10;
             
             $garage = $this->garageRepo->findBy($data, $location, $orderBy, $sortBy, $limit);            
         }
 
-        if ($garage) {
+        if ($garage->data) {
             $tempGarage = [];
 
-            foreach ($garage as $key => $value) {
+            foreach ($garage->data as $key => $value) {
                 $detail = $this->garageRepo->findOneById($value['o_id']);
                 $operatingHours = $detail->getOperatingHours();
                 $value['OperatingHours'] = [];
@@ -59,7 +59,7 @@ class GarageService
                 array_push($tempGarage, $value);
             }
 
-            $garage = $tempGarage;
+            $garage->data = $tempGarage;
         }
 
         return $garage;

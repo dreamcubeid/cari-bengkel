@@ -309,8 +309,8 @@
             data : data,
             success:function(response) {
 
-                if (response.data.length) {
-                    $.each(response.data, function(key, value) {
+                if (response.data.count) {
+                    $.each(response.data.data, function(key, value) {
                         var ele = '';
                         
                         ele += '<div class="cn-card-slider__item">';
