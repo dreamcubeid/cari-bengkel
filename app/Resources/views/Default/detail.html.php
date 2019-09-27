@@ -152,7 +152,7 @@
                 <div class="cn-section pt-0 mt-3">
                     
                     <div class="cn-section-title">
-                        <h2 class=>Kategori</h2>
+                        <h2 class="">Kategori</h2>
                     </div><!--/ .cn-section-title -->
 
                     <div class="cn-categories">
