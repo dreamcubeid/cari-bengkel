@@ -121,19 +121,19 @@
                                 <div class="cn-detail-box__body px-4 pb-4 pt-3">
                                     <ul class="list-unstyled m-0 p-0">
                                         <li>
-                                            <span></span>
+                                            <span><img data-src="/static/images/icon/servis.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
                                             <span>Servis</span>
                                         </li>
                                         <li>
-                                            <span></span>
+                                            <span><img data-src="/static/images/icon/body.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
                                             <span>Perbaikan Body</span>
                                         </li>
                                         <li>
-                                            <span>Part &amp; Aksesoris</span>
-                                            <span></span>
+                                            <span><img data-src="/static/images/icon/part.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
+                                            <span>part & aksesoris</span>
                                         </li>
                                         <li>
-                                            <span></span>
+                                            <span><img data-src="/static/images/icon/ban.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
                                             <span>Ban &amp; Velg</span>
                                         </li>
                                     </ul>
@@ -143,7 +143,24 @@
                         </div><!--/ .tab-pane -->
 
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
+                        <div class="cn-detail-box mt-4">
+                                <div class="cn-detail-box__body px-4 pb-4 pt-3">
+                                    <ul class="list-unstyled m-0 p-0">
+                                        <li>
+                                            <span><i class="fas fa-phone"></i></span>
+                                            <span>08097689076534</span>
+                                        </li>
+                                        <li>
+                                            <span><i class="fab fa-whatsapp"></i></span>
+                                            <span> 08097689076534 </span>
+                                        </li>
+                                        <li>
+                                            <span><i class="fas fa-envelope"></i></span>
+                                            <span>admin@gmail.com</span>
+                                        </li>
+                                    </ul>
+                                </div><!--/ .cn-detail-box__body -->
+                            </div><!--/ .cn-detail-box -->
                         </div><!--/ .tab-pane -->
 
                     </div><!--/ .tab-content -->
@@ -174,8 +191,15 @@
 
                     </div><!--/ .cn-categories -->
                 </div>
-
+                <div class="cn-section pt-0 mt-3">
+                        <div class="cn-ads my-2 my-md-0">
+                            <a href="#">
+                                <img data-src="http://placehold.it/830x80?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 100%; height: auto;">
+                            </a>
+                        </div><!--/ .cn-ads -->
+            </div>
             </div><!--/ .col-12 -->
+          
 
             <div class="col-12 col-md-4">
 
@@ -192,7 +216,7 @@
 
                 <?php for($i = 0; $i < 2; $i++): ?>
 
-                <div class="cn-card mb-5">
+                <div class="cn-card mb-5 cn-list">
                     <div class="cn-card-header">
                         <div class="cn-card-tags text-right">
                             <ul class="list-inline m-0 p-0">
@@ -216,7 +240,7 @@
                             </div><!--/ .cn-card-avatar -->
                         </div>
                     </div><!--/ .cn-card-header -->
-                    <div class="cn-card-body">
+                    <div class="cn-card-body cn-det">
                         <h5 class="cn-card-title m-0 mb-3 p-0">
                             <a href="#" title="Bengkel Sumber Bencana">
                                 Bengkel Sumber Bencana
@@ -236,13 +260,16 @@
                                 <span>Buka Setiap Hari | 08:00 - 21:00 WIB</span>
                             </li>
                         </ul>
-                        <div class="text-center mt-5">
+                        <div class="text-center mt-5 cn-btn-sel">
                             <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
                         </div>
                     </div><!--/ .card-body -->
                 </div><!--/ .cn-card -->
 
                 <?php endfor; ?>
+                <div class="text-center mt-5 cn-button">
+                            <a href="#" class="btn btn-cn-primary btn-cn--bold">LIHAT SEMUA</a>
+                </div>
 
             </div><!--/ .col-12 -->
 
