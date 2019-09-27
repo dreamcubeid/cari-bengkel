@@ -19,4 +19,11 @@ class CategoryService
 
         return $category;
     }
+
+    public function getOneBySlug(string $slug)
+    {
+        $category = $this->categoryRepo->findOneBySlug($slug);
+
+        return $category;
+    }
 }

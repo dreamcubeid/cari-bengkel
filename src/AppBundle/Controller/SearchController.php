@@ -6,6 +6,7 @@ use Pimcore\Controller\FrontendController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Service\SearchService;
+use AppBundle\Service\CategoryService;
 
 /**
  * @Route("/cari")
@@ -13,10 +14,12 @@ use AppBundle\Service\SearchService;
 class SearchController extends FrontendController
 {
     protected $searchService;
+    protected $categoryService;
 
-    public function __construct(SearchService $searchService)
+    public function __construct(SearchService $searchService, CategoryService $categoryService)
     {
         $this->searchService = $searchService;
+        $this->categoryService = $categoryService;
     }
     /**
      * @Route("/", methods={"GET"}, name="search")
@@ -37,6 +40,16 @@ class SearchController extends FrontendController
         $page = addslashes(filter_var($query['page'], FILTER_VALIDATE_INT)) ? addslashes(filter_var($query['page'], FILTER_VALIDATE_INT)) : null;
         $orderBy = 'o_creationDate';
         $sortBy = 'desc';
+
+        if ($query['category']) {
+            $arrCategory = [];
+            $category = $this->categoryService->getOneBySlug(addslashes(filter_var(str_replace('_', '-', $query['category']), FILTER_SANITIZE_STRING)));
+            $categoryId = $category->getId();
+
+            array_push($arrCategory, $categoryId);
+
+            $data['condition']['category'] = $arrCategory;
+        }
 
         if ($query['keyword']) {
             $data['condition']['search'] = addslashes(filter_var($query['keyword'], FILTER_SANITIZE_STRING));
