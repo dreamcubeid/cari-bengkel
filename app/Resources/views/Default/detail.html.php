@@ -143,7 +143,24 @@
                         </div><!--/ .tab-pane -->
 
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
+                        <div class="cn-detail-box mt-4">
+                                <div class="cn-detail-box__body px-4 pb-4 pt-3">
+                                    <ul class="list-unstyled m-0 p-0">
+                                        <li>
+                                            <span><i class="fas fa-phone"></i></span>
+                                            <span>08097689076534</span>
+                                        </li>
+                                        <li>
+                                            <span><i class="far fa-clock"></i></span>
+                                            <span> 08097689076534 </span>
+                                        </li>
+                                        <li>
+                                            <span><i class="fas fa-phone"></i></span>
+                                            <span>admin@gmail.com</span>
+                                        </li>
+                                    </ul>
+                                </div><!--/ .cn-detail-box__body -->
+                            </div><!--/ .cn-detail-box -->
                         </div><!--/ .tab-pane -->
 
                     </div><!--/ .tab-content -->
@@ -243,12 +260,28 @@
                 </div><!--/ .cn-card -->
 
                 <?php endfor; ?>
+                <div class="text-center mt-5 cn-button">
+                            <a href="#" class="btn btn-cn-primary btn-cn--bold">LIHAT SEMUA</a>
+                </div>
 
             </div><!--/ .col-12 -->
 
         </div><!--/ .row -->
     </div><!--/ .container -->
 </section><!--/ . -->
+<section class="mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="cn-ads my-2 my-md-0">
+                    <a href="#">
+                        <img data-src="http://placehold.it/830x80?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 70%; height: auto;">
+                    </a>
+                </div>
+            </div>
+        </div>
+     </div>
+</section>
 
 <?php 
     // Call js file on specific page
