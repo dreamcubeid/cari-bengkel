@@ -192,7 +192,7 @@
 
                 <?php for($i = 0; $i < 2; $i++): ?>
 
-                <div class="cn-card mb-5">
+                <div class="cn-card mb-5 cn-list">
                     <div class="cn-card-header">
                         <div class="cn-card-tags text-right">
                             <ul class="list-inline m-0 p-0">
