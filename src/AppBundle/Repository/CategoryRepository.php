@@ -17,4 +17,11 @@ class CategoryRepository implements CategoryRepositoryInterface
         return $category;
     }
 
+    public function findOneBySlug(string $slug): object
+    {
+        $category = Category::getBySlug($slug, 1);
+
+        return $category;
+    }
+
 }
