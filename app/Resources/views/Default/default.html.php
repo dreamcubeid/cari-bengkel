@@ -10,10 +10,6 @@
     );
 ?>
 
-<!-- 
-    Add your html script code here
--->
-
 <section class="mb-5">
     <div class="container">
         <div class="row">
@@ -164,82 +160,7 @@
                 </div>
             </div><!--/ .col-12 -->
         </div><!--/ .row -->
-        <div class="row">
-            
-            <?php for($i = 0; $i < 3; $i++): ?>
-
-            <div class="col-12 col-lg-4">
-                <div class="cn-card mb-5 mb-lg-0 d-flex flex-column">
-                    <div class="cn-card-header">
-                        <div class="cn-card-tags text-right">
-                            <ul class="list-inline m-0 p-0">
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-car-side"></i>
-                                    </span>
-                                </li>
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-motorcycle"></i>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="cn-card-image">
-                            <img data-src="http://placehold.it/640x480" class="card-img-top img-lazy" alt="">
-                        </div><!--/ .cn-card-image -->
-                        <div class="cn-card-avatar">
-                            <a href="#" title="Bengkel Sumber Bencana">
-                                <img data-src="/static/images/default/default-image.png" alt="Bengkel Sumber Bencana" class="img-lazy">
-                            </a>
-                        </div><!--/ .cn-card-avatar -->
-                    </div><!--/ .cn-card-header -->
-                    <div class="cn-card-body d-flex flex-column align-items-start justify-content-center flex-grow-1">
-                        <h5 class="cn-card-title m-0 mb-3 p-0 w-100 text-center">
-                            <a href="#" title="Bengkel Sumber Bencana">
-                                Bengkel Sumber Bencana
-                            </a>
-                        </h5>
-                        <ul class="cn-card-info m-0 p-0 list-unstyled flex-grow-1 w-100">
-                            <li class="d-flex flex-row align-items-start justify-content-start">
-                                <span>
-                                    <i class="fa fa-map-marker-alt"></i>
-                                </span>
-                                <span class="flex-grow-1 pl-2"><?php echo $sampler_texts[$i]; ?></span>
-                                <span class="d-none">Jalan Raya Bogor KM 27, Kota Bogor</span>
-                            </li>
-                            <li class="d-flex flex-row align-items-start justify-content-start">
-                                <span>
-                                    <i class="far fa-clock"></i>
-                                </span>
-                                <span class="flex-grow-1 pl-2">Jadwal Buka</span>
-
-                                <div class="cn-card-popup">
-                                    <a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">
-                                        <i class="fas fa-chevron-down"></i>
-                                    </a>
-                                    <div class="cn-card-popup__body py-2 px-3 ml-auto mr-0 mt-1">
-                                        <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
-                                            <span class="align-self-start flex-grow-1">Senin - Jum'at</span>
-                                            <span class="align-self-end text-right">09:00 - 16:00 WIB</span>
-                                        </p>
-                                        <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
-                                            <span class="align-self-start flex-grow-1">Sabtu - Minggu</span>
-                                            <span class="align-self-end text-right">09:00 - 16:00 WIB</span>
-                                        </p>
-                                    </div><!--/ .cn-card-popup__body -->
-                                </div><!--/ .cn-card-popup -->
-
-                            </li>
-                        </ul>
-                        <div class="text-center mt-5 mx-auto">
-                            <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
-                        </div>
-                    </div><!--/ .card-body -->
-                </div><!--/ .cn-card -->
-            </div><!--/ .col-12 -->
-
-            <?php endfor; ?>
+        <div class="row" id="recommended-garage">
 
         </div><!--/ .row -->
     </div><!--/ .container -->
@@ -277,13 +198,16 @@
                     allowLocation = true;
 
                     loadData(5);
+                    loadRecommendation();
                 },
                 function(error) {
                     loadData(0);
+                    loadRecommendation();
                 }
             );
         } else {
             loadData(0);
+            loadRecommendation();
         }
     }
 
@@ -442,6 +366,130 @@
                     });
                 } else {
                     $("#info-empty-garage").removeAttr('hidden');
+                }
+
+            },
+            error:function(response) {
+
+            }
+        });
+    }
+
+    function loadRecommendation() {
+        var data = new Object();
+        var condition;
+
+        if (currentPosition && allowLocation) {
+            data.location = currentPosition;
+            data.orderBy = 'Distance';
+            data.sortBy = 'ASC';
+        } else {
+            data.random = true;
+        }
+
+        data.q = {'Recommended' : 1};
+        data.limit = 3;
+
+        $.ajax({
+            type : "GET",
+            url  : "/api/garage/get-by-location",
+            data : data,
+            success:function(response) {
+
+                if (response.data.count) {
+                    $.each(response.data.data, function(key, value) {
+                        var ele = '';
+
+                        ele += '<div class="col-12 col-lg-4">';
+                            ele += '<div class="cn-card mb-5 mb-lg-0 d-flex flex-column">';
+                                ele += '<div class="cn-card-header">';
+                                    ele += '<div class="cn-card-tags text-right">';
+                                        ele += '<ul class="list-inline m-0 p-0">';
+                                            
+                                            if (value.GarageTypeName.includes("Mobil")) {
+                                                ele += '<li class="list-inline-item">';
+                                                    ele += '<span class="cn-card-tags__item">';
+                                                        ele += '<i class="fa fa-car-side"></i>';
+                                                    ele += '</span>';
+                                                ele += '</li>';
+                                            }
+
+                                            if (value.GarageTypeName.includes("Motor")) {
+                                                ele += '<li class="list-inline-item">';
+                                                    ele += '<span class="cn-card-tags__item">';
+                                                        ele += '<i class="fa fa-motorcycle"></i>';
+                                                    ele += '</span>';
+                                                ele += '</li>';
+                                            }
+
+                                        ele += '</ul>';
+                                    ele += '</div>';
+                                    ele += '<div class="cn-card-im=age">';
+                                        ele += '<img data-src="' + (value.BannerPath ? value.BannerPath : '/static/images/default/default-banner.png') + '" class="card-img-top img-lazy" alt="">';
+                                    ele += '</div><!--/ .cn-card-image -->';
+                                    ele += '<div class="cn-card-avatar">';
+                                        ele += '<a href="#" title="' + value.Name + '">';
+                                            ele += '<img data-src="' + (value.LogoPath ? value.LogoPath : '/static/images/default/default-image.png') + '" alt="' + value.Name + '" class="img-lazy">';
+                                        ele += '</a>';
+                                    ele += '</div><!--/ .cn-card-avatar -->';
+                                ele += '</div><!--/ .cn-card-header -->';
+                                ele += '<div class="cn-card-body d-flex flex-column align-items-start justify-content-center flex-grow-1">';
+                                    ele += '<h5 class="cn-card-title m-0 mb-3 p-0 w-100 text-center">';
+                                        ele += '<a href="#" title="' + value.Name + '">';
+                                            ele += value.Name;
+                                        ele += '</a>';
+                                    ele += '</h5>';
+                                    ele += '<ul class="cn-card-info m-0 p-0 list-unstyled flex-grow-1 w-100">';
+                                        ele += '<li class="d-flex flex-row align-items-start justify-content-start">';
+                                            ele += '<span>';
+                                                ele += '<i class="fa fa-map-marker-alt"></i>';
+                                            ele += '</span>';
+                                            ele += '<span class="flex-grow-1 pl-2">' + value.Address.concat(', ', value.City) + '</span>';
+                                        ele += '</li>';
+                                        ele += '<li class="d-flex flex-row align-items-start justify-content-start">';
+                                            ele += '<span>';
+                                                ele += '<i class="far fa-clock"></i>';
+                                            ele += '</span>';
+                                            ele += '<span class="flex-grow-1 pl-2">Jadwal Buka</span>';
+
+                                            ele += '<div class="cn-card-popup">';
+                                                ele += '<a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">';
+                                                    ele += '<i class="fas fa-chevron-down"></i>';
+                                                ele += '</a>';
+                                                ele += '<div class="cn-card-popup__body py-2 px-3 ml-auto mr-0 mt-1">';
+
+                                                    if (value.OperatingHours.length > 0) {
+                                                        $.each(value.OperatingHours, function(keyOp, valOp) {
+                                                            ele += '<p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">';
+                                                                ele += '<span class="align-self-start flex-grow-1">' + valOp.OperationalDay + '</span>';
+                                                                ele += '<span class="align-self-end text-right">' + valOp.OpenHour + ' - ' + valOp.CloseHour + ' WIB</span>';
+                                                            ele += '</p>';
+                                                        });
+                                                    } else {
+                                                        ele += '<p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">';
+                                                            ele += '<span class="align-self-start flex-grow-1">Jadwal Belum Tersedia</span>';
+                                                            ele += '<span class="align-self-end text-right"></span>';
+                                                        ele += '</p>';
+                                                    }
+
+                                                ele += '</div><!--/ .cn-card-popup__body -->';
+                                            ele += '</div><!--/ .cn-card-popup -->';
+
+                                        ele += '</li>';
+                                    ele += '</ul>';
+                                    ele += '<div class="text-center mt-5 mx-auto">';
+                                        ele += '<a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>';
+                                    ele += '</div>';
+                                ele += '</div><!--/ .card-body -->';
+                            ele += '</div><!--/ .cn-card -->';
+                        ele += '</div><!--/ .col-12 -->';
+
+                        $('#recommended-garage').append(ele);
+
+                        $('.img-lazy').Lazy({});
+
+                    });
+
                 }
 
             },
