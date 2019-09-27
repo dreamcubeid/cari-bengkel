@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="cn-search">
-                    <form role="form" class="d-flex flex-column flex-md-row align-items-center align-content-center justify-content-between">
+                    <form role="form" class="d-flex flex-column flex-md-row align-items-center align-content-center justify-content-between" method="GET" action="/cari/">
                         <div class="form-group flex-grow-1 mx-0 mr-md-3 mb-3 mb-md-0">
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -40,10 +40,10 @@
                                         <i class="fas fa-search"></i>
                                     </span>
                                 </div>
-                                <input type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70">
-                                
-                                <div class="input-group-append cn-search-city__wrapper">
-                                    <span class="input-group-text text-primary cn-search-city__trigger">
+                                <input type="search" name="keyword" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70">
+                                <input type="hidden" name="page" value="">
+                                <div class="input-group-append">
+                                    <span class="input-group-text text-primary">
                                         <i class="fas fa-crosshairs"></i>
                                     </span>
                                     <div class="cn-search-city">
@@ -66,7 +66,7 @@
     </div><!--/ .container -->
 </section><!--/ . -->
 
-<section class="mb-5">
+<!-- <section class="mb-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -75,10 +75,10 @@
                         <img data-src="http://placehold.it/830x80?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 100%; height: auto;">
                     </a>
                 </div><!--/ .cn-ads -->
-            </div><!--/ .col-12 -->
-        </div><!--/ .row -->
-    </div><!--/ .container -->
-</section><!--/ . -->
+            <!-- </div>/ .col-12  -->
+        <!-- </div>/ .row  -->
+    <!-- </div>/ .container  -->
+<!-- </section>/ .  -->
 
 <section class="cn-section">
     <div class="container">
@@ -347,8 +347,8 @@
             data : data,
             success:function(response) {
 
-                if (response.data.length) {
-                    $.each(response.data, function(key, value) {
+                if (response.data.count) {
+                    $.each(response.data.data, function(key, value) {
                         var ele = '';
                         
                         ele += '<div class="cn-card-slider__item">';
@@ -400,7 +400,7 @@
                                             ele += '<span>';
                                                 ele += '<i class="fa fa-map-marker-alt"></i>';
                                             ele += '</span>';
-                                            ele += '<span class="flex-grow-1 pl-2">' + value.Address.concat(', ', value.CityStatus,' ', value.City) + '</span>';
+                                            ele += '<span class="flex-grow-1 pl-2">' + value.Address.concat(', ', value.City) + '</span>';
                                         ele += '</li>';
                                         
                                         ele += '<li class="d-flex flex-row align-items-start justify-content-start">';

@@ -31,8 +31,9 @@ class SearchController extends FrontendController
         $location = $session->get('CURRENT_LOCATION') ? $session->get('CURRENT_LOCATION') : [];
 
         //default setting
-        $limit = 5;
+        $limit = 10;
         $offset = 0;
+        $query['limit'] = $limit;
         $page = addslashes(filter_var($query['page'], FILTER_VALIDATE_INT)) ? addslashes(filter_var($query['page'], FILTER_VALIDATE_INT)) : null;
         $orderBy = 'o_creationDate';
         $sortBy = 'desc';
@@ -47,7 +48,9 @@ class SearchController extends FrontendController
 
         $result = $this->searchService->findBy($data['condition'], $location, $orderBy, $sortBy, $limit, $offset);
 
-        $this->view->result = $result;
+        $this->view->result = $result->data;
+        $this->view->count = $result->count;
+        $this->view->params = $query;
     }
 
 }
