@@ -151,11 +151,11 @@
                                             <span>08097689076534</span>
                                         </li>
                                         <li>
-                                            <span><i class="far fa-clock"></i></span>
+                                            <span><i class="fab fa-whatsapp"></i></span>
                                             <span> 08097689076534 </span>
                                         </li>
                                         <li>
-                                            <span><i class="fas fa-phone"></i></span>
+                                            <span><i class="fas fa-envelope"></i></span>
                                             <span>admin@gmail.com</span>
                                         </li>
                                     </ul>
@@ -191,8 +191,15 @@
 
                     </div><!--/ .cn-categories -->
                 </div>
-
+                <div class="cn-section pt-0 mt-3">
+                        <div class="cn-ads my-2 my-md-0">
+                            <a href="#">
+                                <img data-src="http://placehold.it/830x80?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 100%; height: auto;">
+                            </a>
+                        </div><!--/ .cn-ads -->
+            </div>
             </div><!--/ .col-12 -->
+          
 
             <div class="col-12 col-md-4">
 
@@ -233,7 +240,7 @@
                             </div><!--/ .cn-card-avatar -->
                         </div>
                     </div><!--/ .cn-card-header -->
-                    <div class="cn-card-body">
+                    <div class="cn-card-body cn-det">
                         <h5 class="cn-card-title m-0 mb-3 p-0">
                             <a href="#" title="Bengkel Sumber Bencana">
                                 Bengkel Sumber Bencana
@@ -253,7 +260,7 @@
                                 <span>Buka Setiap Hari | 08:00 - 21:00 WIB</span>
                             </li>
                         </ul>
-                        <div class="text-center mt-5">
+                        <div class="text-center mt-5 cn-btn-sel">
                             <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
                         </div>
                     </div><!--/ .card-body -->
@@ -269,19 +276,6 @@
         </div><!--/ .row -->
     </div><!--/ .container -->
 </section><!--/ . -->
-<section class="mb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="cn-ads my-2 my-md-0">
-                    <a href="#">
-                        <img data-src="http://placehold.it/830x80?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 70%; height: auto;">
-                    </a>
-                </div>
-            </div>
-        </div>
-     </div>
-</section>
 
 <?php 
     // Call js file on specific page
