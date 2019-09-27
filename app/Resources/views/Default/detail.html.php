@@ -121,19 +121,19 @@
                                 <div class="cn-detail-box__body px-4 pb-4 pt-3">
                                     <ul class="list-unstyled m-0 p-0">
                                         <li>
-                                            <span></span>
+                                            <span><img data-src="/static/images/icon/servis.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
                                             <span>Servis</span>
                                         </li>
                                         <li>
-                                            <span></span>
+                                            <span><img data-src="/static/images/icon/body.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
                                             <span>Perbaikan Body</span>
                                         </li>
                                         <li>
-                                            <span>Part &amp; Aksesoris</span>
-                                            <span></span>
+                                            <span><img data-src="/static/images/icon/part.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
+                                            <span>part & aksesoris</span>
                                         </li>
                                         <li>
-                                            <span></span>
+                                            <span><img data-src="/static/images/icon/ban.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
                                             <span>Ban &amp; Velg</span>
                                         </li>
                                     </ul>
