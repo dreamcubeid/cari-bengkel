@@ -42,11 +42,11 @@
                                 </div>
                                 <input type="search" name="keyword" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70">
                                 <input type="hidden" name="page" value="">
-                                <div class="input-group-append">
-                                    <span class="input-group-text text-primary">
+                                <div class="input-group-append cn-search-city__wrapper">
+                                    <span class="input-group-text text-primary cn-search-city__trigger">
                                         <i class="fas fa-crosshairs"></i>
                                     </span>
-                                    <div class="cn-search-city">
+                                    <div class="cn-search-city d-none">
                                         <div class="cn-search-city__input">
                                             <input type="text" class="form-control" placeholder="Pilih Kota...">
                                         </div><!--/ .cn-search-city__input -->
