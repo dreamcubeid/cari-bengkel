@@ -42,15 +42,10 @@
                                 </div>
                                 <input type="search" name="keyword" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70">
                                 <input type="hidden" name="page" value="">
-                                <div class="input-group-append cn-search-city__wrapper">
+                                <div class="input-group-append">
                                     <span class="input-group-text text-primary cn-search-city__trigger">
                                         <i class="fas fa-crosshairs"></i>
                                     </span>
-                                    <div class="cn-search-city d-none">
-                                        <div class="cn-search-city__input">
-                                            <input type="text" class="form-control" placeholder="Pilih Kota...">
-                                        </div><!--/ .cn-search-city__input -->
-                                    </div><!--/ .cn-search-city -->
                                 </div>
                             </div>
                         </div><!--/ .form-group -->
@@ -272,9 +267,6 @@
     </div><!--/ .container -->
 </section><!--/ .cn-section -->
 
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
-
 <script>
     var allowLocation;
     var currentPosition;
@@ -296,14 +288,6 @@
             });
             return false;
         });
-
-        /**
-         * City list typeahead
-         * https://twitter.github.io/typeahead.js
-         */
-
-
-        
 
     });
 
