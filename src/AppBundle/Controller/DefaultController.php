@@ -30,10 +30,16 @@ class DefaultController extends FrontendController
     }
 
     /**
-     * @Route("/detail")
+     * @Route("/detail/{name}/{id}")
      */
-    public function detailAction(Request $request)
+    public function detailAction(Request $request, $id)
     {
+        $data = $this->garageService->getOneById($id);
+        // print_r($data->getCategory()); die;
+        $categoryList = $this->categoryService->getAll();
+
+        $this->view->data = $data;
+        $this->view->category = $categoryList;
 
     }
 }

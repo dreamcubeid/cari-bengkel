@@ -1,13 +1,12 @@
-<?php $this->extend('Layouts/layout.html.php')?>
-
 <?php 
+    $this->extend('Layouts/layout.html.php');
+
     // Call css file on specific page
     $this->headLink()->appendStylesheet('/static/css/detail.css');
-?>
 
-<!-- 
-    Add your html script code here
--->
+    $data = $this->data;
+    $category = $this->category;
+?>
 
 <section class="my-4">
     <div class="container">
@@ -38,8 +37,8 @@
             <div class="col-12 col-md-8">
 
                 <div class="cn-detail-image mb-5">
-                    <a href="http://placehold.it/660x330px?text=Big+Size" title="">
-                        <img data-src="http://placehold.it/660x330px=Smol+Size" alt="" class="img-lazy img-fluid">
+                    <a href="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.png' ?>" title="">
+                        <img data-src="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.png' ?>" alt="" class="img-lazy img-fluid">
                     </a>
                 </div><!--/ . -->
 
@@ -47,33 +46,46 @@
                     <div class="cn-card cn-card--compact cn-card--transparent d-flex flex-row mb-5">
                         <div class="cn-card-header d-flex flex-row align-items-start justify-content-start pt-3">
                             <div class="cn-card-avatar ml-0">
-                                <a href="#" title="Bengkel Sumber Bencana">
-                                    <img data-src="/static/images/default/default-image.png" alt="Bengkel Sumber Bencana" class="img-lazy">
+                                <a href="#" title="<?= $data->getName() ?>">
+                                    <img data-src="<?= $data->getLogo() ? ($data->getLogo()->getPath() . $data->getLogo()->getFilename()) : '/static/images/default/default-image.png' ?>" alt="<?= $data->getName() ?>" class="img-lazy">
                                 </a>
                             </div><!--/ .cn-card-avatar -->
                         </div><!--/ .cn-card-header -->
                         <div class="cn-card-body mt-0 pt-3 pl-0 d-flex flex-row align-items-start justify-content-start flex-grow-1">
                             <h5 class="cn-card-title m-0 mb-3 p-0 flex-grow-1">
                                 <a href="#" title="Bengkel Sumber Bencana">
-                                    Bengkel Sumber Bencana
+                                    <?= $data->getName() ?>
                                 </a>
                                 <div class="cn-card-tags cn-card-tags--grounded py-0 px-0">
                                     <ul class="list-inline m-0 p-0">
-                                        <li class="list-inline-item">
-                                            <span class="cn-card-tags__item">
-                                                <i class="fa fa-car-side"></i>
-                                            </span>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <span class="cn-card-tags__item">
-                                                <i class="fa fa-motorcycle"></i>
-                                            </span>
-                                        </li>
+                                    <?php 
+                                        if ($data->getGarageType()) { 
+                                            foreach ($data->getGarageType() as $key => $value) {
+                                                if ($value->getName() == 'Mobil') {
+                                    ?>
+                                                    <li class="list-inline-item">
+                                                        <span class="cn-card-tags__item">
+                                                            <i class="fa fa-car-side"></i>
+                                                        </span>
+                                                    </li>
+                                    <?php 
+                                                } 
+                                                if ($value->getName() == 'Motor') {
+                                    ?>
+                                                    <li class="list-inline-item">
+                                                        <span class="cn-card-tags__item">
+                                                            <i class="fa fa-motorcycle"></i>
+                                                        </span>
+                                                    </li>
+                                    <?php       }
+                                            }
+                                        } 
+                                    ?>
                                     </ul>
                                 </div>
                             </h5>
                             <div class="text-right mt-0">
-                                <a href="#" class="btn btn-sm btn-cn-primary btn-cn--bold">Temukan Lokasi</a>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=<?= $data->getLatitude()?>, <?= $data->getLongitude() ?>" target="_blank" class="btn btn-sm btn-cn-primary btn-cn--bold">Temukan Lokasi</a>
                             </div>
                         </div><!--/ .card-body -->
                     </div><!--/ .cn-card-compact -->
@@ -101,15 +113,24 @@
                                     <ul class="list-unstyled m-0 p-0">
                                         <li>
                                             <span><i class="fas fa-map-marker-alt"></i></span>
-                                            <span>Jalan Raya Bogor KM.27, Kota Bogor</span>
-                                        </li>
+                                            <span><?= $data->getAddress() . ($data->getCity() ? (', ' . $data->getCity()->getName() . ', ' . $data->getCity()->getProvince()->getName()) : '') ?></span>
+                                        </li>                                        
                                         <li>
                                             <span><i class="far fa-clock"></i></span>
-                                            <span>
-                                                Senin - Jumat | 08.00 - 16.00 WIB<br />
-                                                Sabtu - Minggu | 08.00 - 20.00 WIB
-                                            </span>
-                                        </li>
+                                            <?php 
+                                                if ($data->getOperatingHours()) { 
+                                                    foreach ($data->getOperatingHours()->getItems() as $key => $value) {
+                                            ?>
+                                                <span>
+                                                    <?= $value->getOperationalDay() ?> | <?= $value->getOpenHour() ?> - <?= $value->getCloseHour() ?> WIB</br>
+                                                </span>
+                                            <?php 
+                                                    } 
+                                                } else { 
+                                            ?>
+                                                <span>Jadwal Belum Tersedia</span>
+                                            <?php } ?>
+                                        </li>                                        
                                     </ul>
                                 </div><!--/ .cn-detail-box__body -->
                             </div><!--/ .cn-detail-box -->
@@ -120,22 +141,18 @@
                                 </div><!--/ .cn-detail-box__title -->
                                 <div class="cn-detail-box__body px-4 pb-4 pt-3">
                                     <ul class="list-unstyled m-0 p-0">
+                                    <?php
+                                        if (!empty($data->getCategory())) {
+                                            foreach ($data->getCategory() as $key => $value) {
+                                    ?>
                                         <li>
-                                            <span><img data-src="/static/images/icon/servis.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
-                                            <span>Servis</span>
+                                            <span><img data-src="<?= $value->getIcon() ? ($value->getIcon()->getPath() . $value->getIcon()->getFilename()) : '' ?>" alt="" class="img-lazy" style="width: 15px;"></span>
+                                            <span><?= $value->getName() ?></span>
                                         </li>
-                                        <li>
-                                            <span><img data-src="/static/images/icon/body.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
-                                            <span>Perbaikan Body</span>
-                                        </li>
-                                        <li>
-                                            <span><img data-src="/static/images/icon/part.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
-                                            <span>part & aksesoris</span>
-                                        </li>
-                                        <li>
-                                            <span><img data-src="/static/images/icon/ban.png" alt="Bengkel Sumber Bencana" class="img-lazy"></span>
-                                            <span>Ban &amp; Velg</span>
-                                        </li>
+                                    <?php 
+                                            }
+                                        }
+                                    ?>
                                     </ul>
                                 </div><!--/ .cn-detail-box__body -->
                             </div><!--/ .cn-detail-box -->
@@ -146,18 +163,26 @@
                         <div class="cn-detail-box mt-4">
                                 <div class="cn-detail-box__body px-4 pb-4 pt-3">
                                     <ul class="list-unstyled m-0 p-0">
+                                        <?php if ($data->getContactPerson()) { ?>
+                                        <li>
+                                            <span><i class="fas fa-user"></i></span>
+                                            <span><?= $data->getContactPerson() ?></span>
+                                        </li>
+                                        <?php } ?>
+                                        <?php if ($data->getPhone()) { ?>
                                         <li>
                                             <span><i class="fas fa-phone"></i></span>
-                                            <span>08097689076534</span>
+                                            <?php foreach ($data->getPhone()->getItems() as $key => $value) { ?>
+                                                <span><?= $value->getPhone() ?></span></br>
+                                            <?php } ?>
                                         </li>
-                                        <li>
-                                            <span><i class="fab fa-whatsapp"></i></span>
-                                            <span> 08097689076534 </span>
-                                        </li>
+                                        <?php } ?>
+                                        <?php if ($data->getEmail()) { ?>
                                         <li>
                                             <span><i class="fas fa-envelope"></i></span>
-                                            <span>admin@gmail.com</span>
+                                            <span><?= $data->getEmail() ?></span>
                                         </li>
+                                        <?php } ?>
                                     </ul>
                                 </div><!--/ .cn-detail-box__body -->
                             </div><!--/ .cn-detail-box -->
@@ -174,20 +199,21 @@
 
                     <div class="cn-categories">
 
-                        <?php for($i = 0; $i < 15; $i++): ?>
-
-                        <a href="#" title="" class="cn-categories-item">
-                            <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                <div class="cn-categories-item__icon">
-                                    <img data-src="http://placehold.it/72x72" class="img-lazy" alt="">
-                                </div><!--/ .cn-categories-item__icon -->
-                                <div class="cn-categories-item__text mt-2">
-                                    <span>Ban &amp; Velg</span>
-                                </div><!--/ .cn-categories-item__text -->
-                            </div><!--/ .cn-categories-item__inner -->
-                        </a><!--/ .cn-categories-item -->
-
-                        <?php endfor; ?>
+                        <?php 
+                            if ($category) {
+                                foreach ($category as $key => $value) {
+                        ?>
+                                    <a href="#" title="" class="cn-categories-item">
+                                        <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
+                                            <div class="cn-categories-item__icon">
+                                                <img data-src="<?= $value->getIcon() ? ($value->getIcon()->getPath() . $value->getIcon()->getFilename()) : 'http://placehold.it/72x72' ?>" class="img-lazy" alt="" style="width: 40px;">
+                                            </div><!--/ .cn-categories-item__icon -->
+                                            <div class="cn-categories-item__text mt-2">
+                                                <span><?= $value->getName() ?></span>
+                                            </div><!--/ .cn-categories-item__text -->
+                                        </div><!--/ .cn-categories-item__inner -->
+                                    </a><!--/ .cn-categories-item -->
+                        <?php } } ?>
 
                     </div><!--/ .cn-categories -->
                 </div>

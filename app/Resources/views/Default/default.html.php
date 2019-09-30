@@ -1,13 +1,10 @@
 <?php 
     $this->extend('Layouts/layout.html.php');
 
-    $category = $this->category;
+    //Call js helper
+    $this->headScript()->prependFile('/static/js/helper.js');
 
-    $sampler_texts = array(
-        'Lorem ipsum dolor sit amet',
-        'Maecenas interdum arcu sit amet ipsum pharetra, a euismod metus gravida.',
-        'Vivamus tincidunt maximus neque. Nunc sed metus in augue pulvinar blandits. A euismod metus sangu goreng cihuy'
-    );
+    $category = $this->category;
 ?>
 
 <section class="mb-5">
@@ -291,7 +288,7 @@
                                     ele += '</div><!--/ .cn-card-image -->';
 
                                     ele += '<div class="cn-card-avatar">';
-                                        ele += '<a href="#" title="' + value.Name + '">';
+                                        ele += '<a href="/detail/' + (value.Slug ? value.Slug : slugify(value.Name)) + '/' + value.o_id + '" title="' + value.Name + '">';
                                             ele += '<img data-src="' + (value.LogoPath ? value.LogoPath : '/static/images/default/default-image.png') + '" alt="' + value.Name + '" class="img-lazy">';
                                         ele += '</a>';
                                     ele += '</div><!--/ .cn-card-avatar -->';
@@ -342,7 +339,7 @@
 
                                     ele += '</ul>';
                                     ele += '<div class="text-center mt-5">';
-                                        ele += '<a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>';
+                                        ele += '<a href="/detail/' + (value.Slug ? value.Slug : slugify(value.Name)) + '/' + value.o_id + '" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>';
                                     ele += '</div>';
                                 ele += '</div><!--/ .card-body -->';
                             ele += '</div><!--/ .cn-card -->';
@@ -450,7 +447,7 @@
                                         ele += '<img data-src="' + (value.BannerPath ? value.BannerPath : '/static/images/default/default-banner.png') + '" class="card-img-top img-lazy" alt="">';
                                     ele += '</div><!--/ .cn-card-image -->';
                                     ele += '<div class="cn-card-avatar">';
-                                        ele += '<a href="#" title="' + value.Name + '">';
+                                        ele += '<a href="/detail/' + (value.Slug ? value.Slug : slugify(value.Name)) + '/' + value.o_id + '" title="' + value.Name + '">';
                                             ele += '<img data-src="' + (value.LogoPath ? value.LogoPath : '/static/images/default/default-image.png') + '" alt="' + value.Name + '" class="img-lazy">';
                                         ele += '</a>';
                                     ele += '</div><!--/ .cn-card-avatar -->';
@@ -500,7 +497,7 @@
                                         ele += '</li>';
                                     ele += '</ul>';
                                     ele += '<div class="text-center mt-5 mx-auto">';
-                                        ele += '<a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>';
+                                        ele += '<a href="/detail/' + (value.Slug ? value.Slug : slugify(value.Name)) + '/' + value.o_id + '" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>';
                                     ele += '</div>';
                                 ele += '</div><!--/ .card-body -->';
                             ele += '</div><!--/ .cn-card -->';
