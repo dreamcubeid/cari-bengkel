@@ -3,7 +3,7 @@
  * JavaScript for detail page
  */
 
-$(function(){
+ $(function(){
 
     /**
      * Categories slider

@@ -39,7 +39,7 @@
                                 <input type="search" name="keyword" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70">
                                 <input type="hidden" name="page" value="">
                                 <div class="input-group-append">
-                                    <span class="input-group-text text-primary">
+                                    <span class="input-group-text text-primary cn-search-city__trigger">
                                         <i class="fas fa-crosshairs"></i>
                                     </span>
                                 </div>
@@ -129,20 +129,42 @@
 
                 <div class="cn-categories">
 
-                    <?php foreach ($category as $key => $value) { ?>
+                    <?php 
+                        if(isset($category)): 
+
+                            /**
+                             * Dibikin gini biar gak error di local yang gak ada assetnya
+                             * @falmesino
+                             */
+
+                            foreach($category as $key => $value):
+                                $icon = 'http://placehold.it/72x72';
+                                $name = $value->getName();
+
+                                try{
+                                    $icon = $value->getIcon()->getPath() . $value->getIcon()->getFilename();
+                                }
+                                catch(Throwable $t)
+                                {
+                                    // Do nothing when fail
+                                }
+                    ?>
 
                     <a href="/cari/?category=<?= str_replace('-', '_', $value->getSlug()) ?>" title="" class="cn-categories-item">
                         <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
                             <div class="cn-categories-item__icon">
-                                <img data-src="<?= $value->getIcon() ? $value->getIcon()->getPath() . $value->getIcon()->getFilename() : 'http://placehold.it/72x72'?>" class="img-lazy" alt="" style="width:72px;height:72px;">
+                                <img data-src="<?= $icon; ?>" class="img-lazy" alt="<?= $name; ?>" title="<?= $name; ?>" style="width:72px;height:72px;">
                             </div><!--/ .cn-categories-item__icon -->
                             <div class="cn-categories-item__text mt-2">
-                                <span><?= $value->getName() ?></span>
+                                <span><?= $name; ?></span>
                             </div><!--/ .cn-categories-item__text -->
                         </div><!--/ .cn-categories-item__inner -->
                     </a><!--/ .cn-categories-item -->
 
-                    <?php } ?>
+                    <?php
+                            endforeach;
+                        endif;
+                    ?>
 
                 </div><!--/ .cn-categories -->
 
