@@ -37,19 +37,37 @@
         &:first-child,
         &:last-child
         {
+            &.disabled
+            {
+                color: #ececed;
+
+                .page-link
+                {
+                    color: inherit;
+                }
+
+                &:hover
+                {
+                    color: #ececed;
+                }
+            }
+
             .page-link
             {
                 border-radius: 100%;
+
+                color: #414141;
 
                 &:hover
                 {
                     border-color: rgba(255, 255, 255, 0); //$color_primary;
                     background-color: rgba(255, 255, 255, 0); //$color_primary;
-                    color: $color_text_primary;
+                    color: $color_primary; //$color_text_primary;
                 }
             }
         }
 
+        /*
         &:first-child
         {
             .page-link
@@ -70,6 +88,7 @@
                 color: $color_primary;
             }
         }
+        */
     }
 
 }
