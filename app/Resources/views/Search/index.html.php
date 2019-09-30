@@ -180,40 +180,6 @@
 
         <?= $count > 0 ? $pagination : '' ?>
 
-        <!-- REMOVE THIS -->
-
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-
-                <h4 class="p-0 m-0 mb-3">Normal State</h4>
-
-                <ul class="pagination cn-pagination justify-content-center">
-                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-arrow-left"></i></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-arrow-right"></i></a></li>
-                </ul>
-            </div><!--/ .col-12 -->
-        </div><!--/ .row -->
-
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-
-                <h4 class="p-0 m-0 mb-3">Disabled State</h4>
-
-                <ul class="pagination cn-pagination justify-content-center">
-                    <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-arrow-left"></i></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-arrow-right"></i></a></li>
-                </ul>
-            </div><!--/ .col-12 -->
-        </div><!--/ .row -->
-
-        <!--/ REMOVE THIS -->
-
     </div><!--/ .container -->
 </section>
 
