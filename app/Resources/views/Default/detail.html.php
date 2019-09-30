@@ -260,8 +260,8 @@
                                 <span>Buka Setiap Hari | 08:00 - 21:00 WIB</span>
                             </li>
                         </ul>
-                        <div class="text-center mt-5 cn-btn-sel">
-                            <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
+                        <div class="text-center mt-5 ">
+                            <a href="#" class="btn btn-cn-primary btn-cn--bold cn-btn-sel">Selengkapnya</a>
                         </div>
                     </div><!--/ .card-body -->
                 </div><!--/ .cn-card -->
