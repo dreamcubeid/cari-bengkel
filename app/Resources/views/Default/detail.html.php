@@ -294,27 +294,36 @@
                                 <span class="flex-grow-1 pl-2"><?= $value['Address'] . ', ' . $value['City'] ?></span>
                             </li>
                             <li class="d-flex flex-row align-items-start justify-content-start">
-                            <span>
-                                <i class="far fa-clock"></i>
-                             </span>
-                            <span class="flex-grow-1 pl-2">Jadwal Buka</span>
-                                 <div class="cn-card-popup">
-                                            <a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">
-                                            <i class="fas fa-chevron-down"></i>
-                                            </a>
-                                            <div class="cn-card-popup__body py-2 px-3 ml-auto mr-0 mt-1">
-                                       <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
-                                             <span class="align-self-start flex-grow-1">senin - jumat </span>
-                                             <span class="align-self-end text-right">10.00 - 21.00 WIB</span>
-                                        </p>
-                                        <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
-                                        <span class="align-self-start flex-grow-1">Jadwal Belum Tersedia</span>
-                                        <span class="align-self-end text-right"></span>
-                                     </p>
-
-                                </div><!--/ .cn-card-popup__body -->';
+                                <span>
+                                    <i class="far fa-clock"></i>
+                                </span>
+                                <span class="flex-grow-1 pl-2">Jadwal Buka</span>
+                                <div class="cn-card-popup">
+                                    <a href="#" title="Klik untuk melihat jadwal" class="ml-auto mr-0">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </a>
+                                    <div class="cn-card-popup__body py-2 px-3 ml-auto mr-0 mt-1">
+                                        <?php 
+                                            if ($value['OperatingHours']) {
+                                                foreach ($value['OperatingHours'] as $keyOp => $valOp) {
+                                        ?>
+                                                    <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
+                                                        <span class="align-self-start flex-grow-1"><?= $valOp['OperationalDay'] ?></span>
+                                                        <span class="align-self-end text-right"><?= $valOp['OpenHour'] ?> - <?= $valOp['CloseHour'] ?> WIB</span>
+                                                    </p>
+                                        <?php 
+                                                }
+                                            } else { 
+                                        ?>
+                                                <p class="m-0 p-0 d-flex flex-row align-items-center justify-content-start">
+                                                    <span class="align-self-start flex-grow-1">Jadwal Belum Tersedia</span>
+                                                    <span class="align-self-end text-right"></span>
+                                                </p>
+                                        <?php 
+                                            }
+                                        ?>
+                                    </div><!--/ .cn-card-popup__body -->';
                                 </div><!--/ .cn-card-popup -->';
-                                
                             </li>
                         </ul>
                         <div class="text-center mt-5 ">
