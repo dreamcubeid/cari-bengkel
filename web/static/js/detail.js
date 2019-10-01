@@ -52,3 +52,13 @@
     }
     
  });
+
+    $(document).on('click', '.cn-card-popup > a', function(e){
+        e.preventDefault();
+        let el = $(this);
+        let popupBody = el.next();
+        popupBody.stop().slideToggle('fast', function(){
+            el.stop().toggleClass('flip');
+        });
+        return false;
+    });
