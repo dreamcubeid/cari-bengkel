@@ -29,10 +29,6 @@ class SearchController extends FrontendController
         $query = $request->query->all();
         $data['condition'] = [];
 
-        //get session for current location
-        $session = $request->getSession();
-        $location = $session->get('CURRENT_LOCATION') ? $session->get('CURRENT_LOCATION') : [];
-
         //default setting
         $limit = 10;
         $offset = 0;
@@ -40,6 +36,16 @@ class SearchController extends FrontendController
         $page = addslashes(filter_var($query['page'], FILTER_VALIDATE_INT)) ? addslashes(filter_var($query['page'], FILTER_VALIDATE_INT)) : null;
         $orderBy = 'o_creationDate';
         $sortBy = 'desc';
+
+        //get session for current location
+        $session = $request->getSession();
+        $location = [];
+
+        if ($session->get('CURRENT_LOCATION')) {
+            $location = $session->get('CURRENT_LOCATION');
+            $orderBy = 'Distance';
+            $sortBy = 'asc';
+        }
 
         if ($query['category']) {
             $arrCategory = [];

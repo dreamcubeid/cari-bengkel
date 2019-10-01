@@ -2,6 +2,7 @@
     $this->extend('Layouts/layout.html.php');
 
     use AppBundle\Utils\Pagination;
+    use AppBundle\Utils\Url;
 
     $result = $this->result;
     $count = $this->count;
@@ -9,6 +10,8 @@
 
     $paginationHelper = new Pagination();
     $pagination = $paginationHelper->generate((ceil($count / $params['limit'])), ($params['page'] ? $params['page'] : 1));
+
+    $urlHelper = new Url();
 ?>
 
 <section class="my-4">
@@ -118,7 +121,7 @@
                                         <?php } ?>
                                     </div>
                                     <h5 class="cn-card-title m-0 mb-3 p-0">
-                                        <a href="#" title="<?= $value['Name'] ?>">
+                                        <a href="/detail/<?= $value['Slug'] ? $value['Slug'] : ($urlHelper->convertToFriendlyUrl($value['Name'])) ?>/<?= $value['o_id'] ?>" title="<?= $value['Name'] ?>">
                                             <?= $value['Name'] ?>
                                         </a>
                                     </h5>
@@ -165,7 +168,7 @@
                                         </li>
                                     </ul>
                                     <div class="text-left mt-4">
-                                        <a href="#" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
+                                        <a href="/detail/<?= $value['Slug'] ? $value['Slug'] : ($urlHelper->convertToFriendlyUrl($value['Name'])) ?>/<?= $value['o_id'] ?>" class="btn btn-cn-primary btn-cn--bold">Selengkapnya</a>
                                     </div>
                                 </div><!--/ .card-body -->
                             </div><!--/ .cn-card-compact -->
