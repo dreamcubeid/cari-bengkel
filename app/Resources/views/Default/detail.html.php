@@ -117,10 +117,12 @@
                             <div class="cn-detail-box mt-4">
                                 <div class="cn-detail-box__body px-4 pb-4 pt-3">
                                     <ul class="list-unstyled m-0 p-0">
-                                        <li>
-                                            <span><i class="fas fa-map-marker-alt"></i></span>
-                                            <span><?= $data->getAddress() . ($data->getCity() ? (', ' . $data->getCity()->getName() . ', ' . $data->getCity()->getProvince()->getName()) : '') ?></span>
-                                        </li>                                        
+                                    <li class="d-flex flex-row align-items-start justify-content-start"> 
+                                            <span>
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </span>
+                                            <span class="flex-grow-1 pl-2"><?= $data->getAddress() . ($data->getCity() ? (', ' . $data->getCity()->getName() . ', ' . $data->getCity()->getProvince()->getName()) : '') ?></span>
+                                        </li>                                      
                                         <li>
                                             <span><i class="far fa-clock"></i></span>
                                             <?php 
@@ -151,10 +153,12 @@
                                         if (!empty($data->getCategory())) {
                                             foreach ($data->getCategory() as $key => $value) {
                                     ?>
-                                        <li>
-                                            <span><img data-src="<?= $value->getIcon() ? ($value->getIcon()->getPath() . $value->getIcon()->getFilename()) : '' ?>" alt="" class="img-lazy" style="width: 15px;"></span>
-                                            <span><?= $value->getName() ?></span>
-                                        </li>
+                                     <li class="d-flex flex-row align-items-start justify-content-start"> 
+                                            <span>
+                                            <img data-src="<?= $value->getIcon() ? ($value->getIcon()->getPath() . $value->getIcon()->getFilename()) : '' ?>" alt="" class="img-lazy" style="width: 15px;">
+                                            </span>
+                                            <span class="flex-grow-1 pl-2"><?= $value->getName() ?></span>
+                                        </li>  
                                     <?php 
                                             }
                                         }
@@ -170,9 +174,11 @@
                                 <div class="cn-detail-box__body px-4 pb-4 pt-3">
                                     <ul class="list-unstyled m-0 p-0">
                                         <?php if ($data->getContactPerson()) { ?>
-                                        <li>
-                                            <span><i class="fas fa-user"></i></span>
-                                            <span><?= $data->getContactPerson() ?></span>
+                                        <li class="d-flex flex-row align-items-start justify-content-start"> 
+                                            <span>
+                                                <i class="fas fa-user"></i>
+                                            </span>
+                                            <span class="flex-grow-1 pl-2"><?= $data->getContactPerson() ?></span>
                                         </li>
                                         <?php } ?>
                                         <?php if ($data->getPhone()) { ?>
@@ -184,9 +190,11 @@
                                         </li>
                                         <?php } ?>
                                         <?php if ($data->getEmail()) { ?>
-                                        <li>
-                                            <span><i class="fas fa-envelope"></i></span>
-                                            <span><?= $data->getEmail() ?></span>
+                                        <li class="d-flex flex-row align-items-start justify-content-start"> 
+                                            <span>
+                                                <i class="fas fa-envelope"></i>
+                                            </span>
+                                            <span class="flex-grow-1 pl-2"><?= $data->getEmail() ?></span>
                                         </li>
                                         <?php } ?>
                                     </ul>
