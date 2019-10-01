@@ -4,8 +4,14 @@
     // Call css file on specific page
     $this->headLink()->appendStylesheet('/static/css/detail.css');
 
+    //call Url helper
+    use AppBundle\Utils\Url;
+
+    $urlHelper = new Url();
+
     $data = $this->data;
     $category = $this->category;
+    $similarGarage = $this->similarGarage;
 ?>
 
 <section class="my-4">
@@ -203,7 +209,7 @@
                             if ($category) {
                                 foreach ($category as $key => $value) {
                         ?>
-                                    <a href="#" title="" class="cn-categories-item">
+                                    <a href="/cari/?category=<?= str_replace('-', '_', $value->getSlug()) ?>" title="" class="cn-categories-item">
                                         <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
                                             <div class="cn-categories-item__icon">
                                                 <img data-src="<?= $value->getIcon() ? ($value->getIcon()->getPath() . $value->getIcon()->getFilename()) : 'http://placehold.it/72x72' ?>" class="img-lazy" alt="" style="width: 40px;">
@@ -240,36 +246,44 @@
                     <h2 class="m-0 p-0">Bengkel Serupa</h2>
                 </div>
 
-                <?php for($i = 0; $i < 2; $i++): ?>
+                <?php 
+                    if ($similarGarage) {
+                        foreach ($similarGarage as $key => $value) {
+                ?>
 
                 <div class="cn-card mb-5 cn-list">
                     <div class="cn-card-header">
                         <div class="cn-card-tags text-right">
                             <ul class="list-inline m-0 p-0">
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-car-side"></i>
-                                    </span>
-                                </li>
-                                <li class="list-inline-item">
-                                    <span class="cn-card-tags__item">
-                                        <i class="fa fa-motorcycle"></i>
-                                    </span>
-                                </li>
+                                <?php if (strpos($value['GarageTypeName'], 'Mobil') !== false) { ?>
+                                    <li class="list-inline-item">
+                                        <span class="cn-card-tags__item">
+                                            <i class="fa fa-car-side"></i>
+                                        </span>
+                                    </li>
+                                <?php } ?>
+                                <?php if (strpos($value['GarageTypeName'], 'Motor') !== false) { ?>
+                                    <li class="list-inline-item">
+                                        <span class="cn-card-tags__item">
+                                            <i class="fa fa-motorcycle"></i>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <?php } ?>
                             </ul>
                         </div>
                         <div class="pt-5">
                             <div class="cn-card-avatar cn-card-avatar--grounded">
-                                <a href="#" title="Bengkel Sumber Bencana">
-                                    <img data-src="/static/images/default/default-image.png" alt="Bengkel Sumber Bencana" class="img-lazy">
+                                <a href="/detail/<?= $value['Slug'] ? $value['Slug'] : ($urlHelper->convertToFriendlyUrl($value['Name'])) ?>/<?= $value['o_id'] ?>" title="<?= $value['Name'] ?>">
+                                    <img data-src="<?= $value['LogoPath'] ? $value['LogoPath'] : '/static/images/default/default-image.png' ?>" alt="<?= $value['Name'] ?>" class="img-lazy">
                                 </a>
                             </div><!--/ .cn-card-avatar -->
                         </div>
                     </div><!--/ .cn-card-header -->
                     <div class="cn-card-body cn-det">
                         <h5 class="cn-card-title m-0 mb-3 p-0">
-                            <a href="#" title="Bengkel Sumber Bencana">
-                                Bengkel Sumber Bencana
+                            <a href="/detail/<?= $value['Slug'] ? $value['Slug'] : ($urlHelper->convertToFriendlyUrl($value['Name'])) ?>/<?= $value['o_id'] ?>" title="<?= $value['Name'] ?>">
+                                <?= $value['Name'] ?>
                             </a>
                         </h5>
                         <ul class="cn-card-info m-0 p-0 list-unstyled">
@@ -277,7 +291,7 @@
                                 <span>
                                     <i class="fa fa-map-marker-alt"></i>
                                 </span>
-                                <span>Jalan Raya Bogor KM 27, Kota Bogor</span>
+                                <span><?= $value['Address'] . ', ' . $value['City'] ?></span>
                             </li>
                             <li>
                                 <span>
@@ -287,14 +301,15 @@
                             </li>
                         </ul>
                         <div class="text-center mt-5 ">
-                            <a href="#" class="btn btn-cn-primary btn-cn--bold cn-btn-sel">Selengkapnya</a>
+                            <a href="/detail/<?= $value['Slug'] ? $value['Slug'] : ($urlHelper->convertToFriendlyUrl($value['Name'])) ?>/<?= $value['o_id'] ?>" class="btn btn-cn-primary btn-cn--bold cn-btn-sel">Selengkapnya</a>
                         </div>
                     </div><!--/ .card-body -->
                 </div><!--/ .cn-card -->
 
-                <?php endfor; ?>
+                <?php }} ?>
+
                 <div class="text-center mt-5 cn-button">
-                            <a href="#" class="btn btn-cn-primary btn-cn--bold">LIHAT SEMUA</a>
+                    <a href="/cari" class="btn btn-cn-primary btn-cn--bold">LIHAT SEMUA</a>
                 </div>
 
             </div><!--/ .col-12 -->

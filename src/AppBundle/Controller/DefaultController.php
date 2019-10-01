@@ -34,12 +34,41 @@ class DefaultController extends FrontendController
      */
     public function detailAction(Request $request, $id)
     {
+        $location = [];
+        $orderBy = 'o_creationDate';
+        $sortBy = 'desc';
+        $limit = 2;
+
         $data = $this->garageService->getOneById($id);
-        // print_r($data->getCategory()); die;
         $categoryList = $this->categoryService->getAll();
+
+        //set condition to get similar garages
+        $condition = [];
+        $condition['category'] = [];
+        $condition['similarWith'] = $data->getId();
+
+        //get session for current location
+        $session = $request->getSession();
+        if ($session->get('CURRENT_LOCATION')) {
+            $location = $session->get('CURRENT_LOCATION'); 
+            $orderBy = 'Distance';
+            $sortBy = 'ASC';   
+        }
+
+        //set category condition
+        if (!empty($data->getCategory())) {
+            foreach ($data->getCategory() as $key => $value) {
+                array_push($condition['category'], $value->getId());
+            }
+        } else {
+            unset($condition['category']);
+        }
+
+        //get similar garage
+        $similarGarage = $this->garageService->getByLocation($condition, $location, $orderBy, $sortBy, $limit)->data;
 
         $this->view->data = $data;
         $this->view->category = $categoryList;
-
+        $this->view->similarGarage = $similarGarage;
     }
 }
