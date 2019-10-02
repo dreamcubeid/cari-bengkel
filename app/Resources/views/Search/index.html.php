@@ -46,10 +46,10 @@
                                         <i class="fas fa-search"></i>
                                     </span>
                                 </div>
-                                <input type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" name="keyword" value="<?= $params['keyword'] ?>">
+                                <input id="keywordLocation" type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" name="keyword" value="<?= $params['keyword'] ?>">
                                 <input type="hidden" name="page" value="<?= $params['page'] ?>">
                                 <div class="input-group-append">
-                                    <span class="input-group-text text-primary">
+                                    <span class="input-group-text text-primary cn-search-city__trigger">
                                         <i class="fas fa-crosshairs"></i>
                                     </span>
                                 </div>
@@ -206,4 +206,44 @@
 
     });
 
+    $(document).on('click', '.cn-search-city__trigger', function(e) {
+        e.preventDefault();
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+    });
+
+    function displayLocation(latitude, longitude) {
+        var request = new XMLHttpRequest();
+
+        var method = 'GET';
+        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&sensor=true&key=AIzaSyBLaJS_Zjjsk-bmLJyWyyAx5pNOs1Mft6w';
+        var async = true;
+
+        request.open(method, url, async);
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                var address = data.results[0];
+                $('#keywordLocation').val(data.results[0].address_components[4].long_name.split(" ").pop().toLowerCase());
+            }else{
+                $('#keywordLocation').val('jakarta');
+            }
+        };
+        request.send();
+    };
+
+    var successCallback = function(position) {
+        var x = position.coords.latitude;
+        var y = position.coords.longitude;
+        displayLocation(x, y);
+    };
+
+    var errorCallback = function(error) {
+        $('#keywordLocation').val('jakarta');
+    };
+
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 1000,
+        maximumAge: 0
+    };
 </script>
