@@ -1,3 +1,6 @@
+<?php 
+    $url = $this->pimcoreUrl();
+?>
 <section class="cn-ornament-body--left">
     <img data-src="/static/images/body-ornament-left.png" class="img-lazy" alt="">
 </section>
@@ -10,7 +13,7 @@
     <div class="container">
         <nav class="cn-navbar navbar navbar-expand-lg navbar-light px-0">
             
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img data-src="/static/images/logo.svg" alt="Cari.in" class="img-lazy">
             </a>
 
@@ -20,20 +23,11 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                    <li class="nav-item <?= $url == '/' ? 'active': '' ?>">
+                        <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Lorem</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ipsum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Dolor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Si Jamet</a>
+                    <li class="nav-item <?= $url == '/cari/' ? 'active': '' ?>">
+                        <a class="nav-link" href="/cari">Cari</a>
                     </li>
                     <!--
                     <li class="nav-item dropdown">
