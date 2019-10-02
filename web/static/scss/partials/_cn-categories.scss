@@ -1,20 +1,37 @@
 .cn-categories
 {
 
-    border: none; //solid 1px red;
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+
+    border: none; // solid 1px red;
+
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+
+    white-space: nowrap;
 
     &-item
     {
-        display: inline-block;
-        vertical-align: middle;
+        display: block;
         position: relative;
         margin: 0;
-        padding: 8px 0;
+        padding: 100% 0 0;
+
+        overflow: hidden;
 
         border: none; //solid 1px red;
 
         color: inherit;
         text-decoration: none;
+
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+        height: 0;
 
         &:hover
         {
@@ -28,6 +45,14 @@
                 &__text
                 {
                     color: white;
+                }
+
+                &__icon
+                {
+                    & > img
+                    {
+                        filter: brightness(0%) contrast(100%) invert(100%);
+                    }
                 }
             }
         }
@@ -43,13 +68,15 @@
         {
 
             @include transition(ease, 0.3s);
+            @include fixedSize(calc(100% - 32px));
+            @include translate3d(-50%, -50%, 0);
 
-            position: relative;
-
-            width: 175px;
-            height: 175px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
 
             margin: 0 auto;
+            padding: 0;
 
             background-color: #f7f9fb;
             border-radius: 100%;
@@ -57,12 +84,13 @@
 
             &::before
             {
+                @include translate3d(-50%, -50%, 0);
+
                 content: "";
                 display: block;
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                @include translate3d(-50%, -50%, 0);
                 z-index: 2;
 
                 width: calc(100% + 16px);
@@ -84,13 +112,20 @@
 
         &__icon
         {
+
+            @include fixedSize(72px);
+            border: none; //solid 1px red;
+
             & > img
             {
+                @include transition(ease, 0.3s);
                 display: block;
                 position: relative;
                 margin: 0 auto;
                 padding: 0;
                 border: none;
+
+                filter: none;
             }
         }
 
@@ -156,6 +191,19 @@
                 background-color: darken($color_primary, 5%);
             }
 
+        }
+
+        &-track
+        {
+
+            & > .slick-slide
+            {
+
+                & > div
+                {
+                    position: relative;
+                }
+            }
         }
     }
 }
