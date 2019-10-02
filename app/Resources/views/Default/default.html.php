@@ -13,7 +13,7 @@
             <div class="col-12 col-md-8 col-lg-6 py-5">
                 <div class="cn-hero">
                     <h1>Temukan Kebutuhan Kendaraanmu Dengan Mudah</h1>
-                    <p>Segala kebutuhan untuk kendaraanmu dapat dengan mudah ditemukan lewat orang dalam</p>
+                    <p>Segala kebutuhan untuk kendaraanmu dapat dengan mudah ditemukan di Kemudi</p>
                 </div><!--/ .cn-hero -->
             </div><!--/ .col-12 -->
         </div><!--/ .row -->
