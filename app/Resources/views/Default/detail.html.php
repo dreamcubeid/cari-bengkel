@@ -235,24 +235,24 @@
 
                     </div><!--/ .cn-categories -->
                 </div>
-                <div class="cn-section pt-0 mt-3">
-                        <div class="cn-ads my-2 my-md-0">
-                            <a href="#">
-                                <img data-src="http://placehold.it/830x80?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 100%; height: auto;">
-                            </a>
-                        </div><!--/ .cn-ads -->
-            </div>
+                <!-- <div class="cn-section pt-0 mt-3">
+                    <div class="cn-ads my-2 my-md-0">
+                        <a href="#">
+                            <img data-src="http://placehold.it/830x80?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 100%; height: auto;">
+                        </a>
+                    </div>
+                </div> -->
             </div><!--/ .col-12 -->
           
 
             <div class="col-12 col-md-4">
 
 
-                <div class="cn-ads cn-ads--rounded mb-5">
+                <!-- <div class="cn-ads cn-ads--rounded mb-5">
                     <a href="#">
                         <img data-src="http://placehold.it/320x450?text=Google+Ads" alt="Google Ads" title="Google Ads" class="img-fluid img-lazy" style="min-width: 100%; height: auto;">
                     </a>
-                </div><!--/ .cn-ads -->
+                </div> --><!--/ .cn-ads -->
 
                 <div class="mb-5">
                     <h2 class="m-0 p-0">Bengkel Serupa</h2>
