@@ -18,10 +18,10 @@
 
                 <ol class="breadcrumb cn-breadcrumb px-0">
                     <li class="breadcrumb-item">
-                        <a href="#">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        <span>Result</span>
+                        <span>Cari</span>
                     </li>
                 </ol>
 
@@ -43,7 +43,7 @@
                                         <i class="fas fa-search"></i>
                                     </span>
                                 </div>
-                                <input type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" name="keyword" value="<?= $params['keyword'] ?>">
+                                <input type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" name="keyword" value="<?= $this->escape($params['keyword']) ?>">
                                 <input type="hidden" name="page" value="<?= $params['page'] ?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text text-primary">
