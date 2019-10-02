@@ -138,6 +138,15 @@ class Garage extends BaseGarage
             unset($condition['category']);
         }
 
+        if ($condition['similarWith']) {
+            if ($queryCondition) $queryCondition .= " AND ";
+
+            $queryCondition .= "o_id != ?";
+            array_push($paramsCondition, $condition['similarWith']);
+
+            unset($condition['similarWith']);
+        }
+
         if (!empty($condition))
         {
             foreach ($condition as $key => $value) 

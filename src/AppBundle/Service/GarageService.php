@@ -23,6 +23,13 @@ class GarageService
         return $garage;
     }
 
+    public function getOneById(int $id)
+    {
+        $garage = $this->garageRepo->findOneById($id);
+
+        return $garage;
+    }
+
     public function getOneBySlug(string $slug)
     {
         $garage = $this->garageRepo->findOneBySlug($slug);
