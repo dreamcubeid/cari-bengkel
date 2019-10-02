@@ -334,8 +334,8 @@
                                         <?php 
                                             }
                                         ?>
-                                    </div><!--/ .cn-card-popup__body -->';
-                                </div><!--/ .cn-card-popup -->';
+                                    </div><!--/ .cn-card-popup__body -->
+                                </div><!--/ .cn-card-popup -->
                             </li>
                         </ul>
                         <div class="text-center mt-5 ">
