@@ -121,23 +121,25 @@
                                             <span>
                                                 <i class="fas fa-map-marker-alt"></i>
                                             </span>
-                                            <span class="flex-grow-1 pl-2"><?= $data->getAddress() . ($data->getCity() ? (', ' . $data->getCity()->getName() . ', ' . $data->getCity()->getProvince()->getName()) : '') ?></span>
-                                        </li>                                      
-                                        <li>
+                                                <span class="flex-grow-1 pl-2" style="margin-left: 4px;"><?= $data->getAddress() . ($data->getCity() ? (', ' . $data->getCity()->getName() . ', ' . $data->getCity()->getProvince()->getName()) : '') ?></span>
+                                        </li>                                       
+                                        <li class="d-flex flex-row align-items-start justify-content-start">
                                             <span><i class="far fa-clock"></i></span>
+                                            <p class="cn-par">
                                             <?php 
                                                 if ($data->getOperatingHours()) { 
                                                     foreach ($data->getOperatingHours()->getItems() as $key => $value) {
                                             ?>
-                                                <span>
+                                                <span class="flex-grow-1 pl-2">
                                                     <?= $value->getOperationalDay() ?> | <?= $value->getOpenHour() ?> - <?= $value->getCloseHour() ?> WIB</br>
                                                 </span>
                                             <?php 
                                                     } 
                                                 } else { 
                                             ?>
-                                                <span>Jadwal Belum Tersedia</span>
+                                                <span class="flex-grow-1 pl-2">Jadwal Belum Tersedia</span>
                                             <?php } ?>
+                                        </p>
                                         </li>                                        
                                     </ul>
                                 </div><!--/ .cn-detail-box__body -->
@@ -155,7 +157,7 @@
                                     ?>
                                      <li class="d-flex flex-row align-items-start justify-content-start"> 
                                             <span>
-                                            <img data-src="<?= $value->getIcon() ? ($value->getIcon()->getPath() . $value->getIcon()->getFilename()) : '' ?>" alt="" class="img-lazy" style="width: 15px;">
+                                            <img data-src="<?= $value->getIcon() ? ($value->getIcon()->getPath() . $value->getIcon()->getFilename()) : '' ?>" alt="" class="img-lazy" style="width: 15px; filter: grayscale(100%) brightness(10%);">
                                             </span>
                                             <span class="flex-grow-1 pl-2"><?= $value->getName() ?></span>
                                         </li>  
@@ -182,17 +184,19 @@
                                         </li>
                                         <?php } ?>
                                         <?php if ($data->getPhone()) { ?>
-                                        <li>
-                                            <span><i class="fas fa-phone"></i></span>
+                                        <li class="d-flex flex-row align-items-start justify-content-start">
+                                            <span><i class="fas fa-phone" style="transform: rotate(90deg);"></i></span>
+                                            <p class="cn-par">
                                             <?php foreach ($data->getPhone()->getItems() as $key => $value) { ?>
-                                                <span><?= $value->getPhone() ?></span></br>
+                                                <span class="flex-grow-1 pl-2"><?= $value->getPhone() ?></span></br>
                                             <?php } ?>
+                                            </p>
                                         </li>
                                         <?php } ?>
                                         <?php if ($data->getEmail()) { ?>
                                         <li class="d-flex flex-row align-items-start justify-content-start"> 
                                             <span>
-                                                <i class="fas fa-envelope"></i>
+                                                <i class="far fa-envelope"></i>
                                             </span>
                                             <span class="flex-grow-1 pl-2"><?= $data->getEmail() ?></span>
                                         </li>
