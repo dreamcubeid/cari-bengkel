@@ -1,9 +1,7 @@
 <!Doctype html>
 <html lang="<?= $this->getLocale() ?>">
     <head>
-    
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <?php echo $this->template("Includes/metadata.html.php")?>
 
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Exo+2:300,400,600&display=swap"> 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
@@ -11,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
         <!--
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
--->
+        -->
 
         <?php 
             // Put your css file in web/static/css/
