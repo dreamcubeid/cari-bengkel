@@ -43,8 +43,8 @@
             <div class="col-12 col-md-8">
 
                 <div class="cn-detail-image mb-5">
-                    <a href="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.png' ?>" title="">
-                        <img data-src="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.png' ?>" alt="" class="img-lazy img-fluid">
+                    <a href="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.webp' ?>" title="">
+                        <img data-src="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.webp' ?>" alt="" class="img-lazy img-fluid">
                     </a>
                 </div><!--/ . -->
 

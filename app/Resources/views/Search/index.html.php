@@ -96,7 +96,7 @@
                                 <div class="cn-card-header d-flex flex-row align-items-start justify-content-start pt-3">
                                     <div class="cn-card-avatar">
                                         <a href="#" title="<?= $value['Name'] ?>">
-                                            <img data-src="<?= $value['LogoPath'] ? $value['LogoPath'] : '/static/images/default/default-image.png' ?>" alt="<?= $value['Name'] ?>" class="img-lazy">
+                                            <img data-src="<?= $value['LogoPath'] ? $value['LogoPath'] : '/static/images/default/default-banner.webp' ?>" alt="<?= $value['Name'] ?>" class="img-lazy">
                                         </a>
                                     </div><!--/ .cn-card-avatar -->
                                 </div><!--/ .cn-card-header -->

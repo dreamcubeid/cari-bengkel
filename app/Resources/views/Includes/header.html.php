@@ -13,7 +13,7 @@
 </section>
 
 <section class="cn-ornament-body--right">
-    <img data-src="/static/images/body-ornament-right.png" class="img-lazy" alt="">
+    <img data-src="/static/images/body-ornament-right.webp" class="img-lazy" alt="">
 </section>
 
 <div class="cn-navbar-wrapper">
