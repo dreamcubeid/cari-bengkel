@@ -2,13 +2,13 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Repository\CategoryRepository;
+use AppBundle\Contract\CategoryRepositoryInterface;
 
 class CategoryService
 {
     private $categoryRepo;
 
-    public function __construct(CategoryRepository $categoryRepo)
+    public function __construct(CategoryRepositoryInterface $categoryRepo)
     {
         $this->categoryRepo = $categoryRepo;
     }
