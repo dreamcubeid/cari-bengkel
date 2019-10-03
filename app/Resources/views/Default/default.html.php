@@ -135,6 +135,7 @@
                              */
 
                             foreach($category as $key => $value):
+                                $url = '/cari/?category=' . str_replace('-', '_', $value->getSlug());
                                 $icon = 'http://placehold.it/72x72';
                                 $name = $value->getName();
 
@@ -147,10 +148,10 @@
                                 }
                     ?>
 
-                    <a href="/cari/?category=<?= str_replace('-', '_', $value->getSlug()) ?>" title="" class="cn-categories-item">
+                    <a href="<?= $url; ?>" title="<?= $name; ?>" class="cn-categories-item">
                         <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
                             <div class="cn-categories-item__icon">
-                                <img data-src="<?= $icon; ?>" class="img-lazy" alt="<?= $name; ?>" title="<?= $name; ?>" style="width:72px;height:72px;">
+                                <img data-src="<?= $icon; ?>" class="img-lazy" alt="<?= $name; ?>" title="<?= $name; ?>">
                             </div><!--/ .cn-categories-item__icon -->
                             <div class="cn-categories-item__text mt-2">
                                 <span><?= $name; ?></span>
