@@ -2,7 +2,11 @@
     $name = $this->getParam('name') ? $this->getParam('name') : '';
     $id = $this->getParam('id') ? $this->getParam('id') : '';
 
-    $url = $this->pimcoreUrl(array('name' => $name, 'id' => $id));
+    $queryParams = array();
+    if ($name != '' || $id != '')
+        $queryParams = array('name' => $name, 'id' => $id);
+
+    $url = $this->pimcoreUrl($queryParams);
 ?>
 <section class="cn-ornament-body--left">
     <img data-src="/static/images/body-ornament-left.png" class="img-lazy" alt="">

@@ -24,10 +24,10 @@
                         <a href="/">Home</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="/cari">Result</a>
+                        <a href="/cari">Cari</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        <span>Detail</span>
+                        <span><?= $data->getName() ?></span>
                     </li>
                 </ol>
 
