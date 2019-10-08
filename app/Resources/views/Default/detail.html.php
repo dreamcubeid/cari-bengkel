@@ -59,7 +59,7 @@
                         </div><!--/ .cn-card-header -->
                         <div class="cn-card-body mt-0 pt-3 pl-0 d-flex flex-row align-items-start justify-content-start flex-grow-1">
                             <h5 class="cn-card-title m-0 mb-3 p-0 flex-grow-1">
-                                <a href="#" title="Bengkel Sumber Bencana">
+                                <a href="#" title="<?= $data->getName() ?>">
                                     <?= $data->getName() ?>
                                 </a>
                                 <div class="cn-card-tags cn-card-tags--grounded py-0 px-0">
