@@ -43,8 +43,8 @@
             <div class="col-12 col-md-8">
 
                 <div class="cn-detail-image mb-5">
-                    <a href="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.png' ?>" title="">
-                        <img data-src="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.png' ?>" alt="" class="img-lazy img-fluid">
+                    <a href="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.webp' ?>" title="">
+                        <img data-src="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.webp' ?>" alt="" class="img-lazy img-fluid">
                     </a>
                 </div><!--/ . -->
 
@@ -220,14 +220,25 @@
                         <?php 
                             if ($category) {
                                 foreach ($category as $key => $value) {
+                                    $url    = '/cari/?category=' . str_replace('-', '_', $value->getSlug());
+                                    $icon   = 'http://placehold.it/72x72';
+                                    $name   = $value->getName();
+
+                                    try{
+                                        $icon = $value->getIcon()->getPath() . $value->getIcon()->getFilename();
+                                    }
+                                    catch(Throwable $t)
+                                    {
+                                        // Do nothing when fail
+                                    }
                         ?>
-                                    <a href="/cari/?category=<?= str_replace('-', '_', $value->getSlug()) ?>" title="" class="cn-categories-item">
+                                    <a href="<?= $url; ?>" title="<?= $name; ?>" class="cn-categories-item">
                                         <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
                                             <div class="cn-categories-item__icon">
-                                                <img data-src="<?= $value->getIcon() ? ($value->getIcon()->getPath() . $value->getIcon()->getFilename()) : 'http://placehold.it/72x72' ?>" class="img-lazy" alt="" style="width: 40px;">
+                                                <img data-src="<?= $icon; ?>" alt="<?= $name; ?>" class="img-lazy">
                                             </div><!--/ .cn-categories-item__icon -->
                                             <div class="cn-categories-item__text mt-2">
-                                                <span><?= $value->getName() ?></span>
+                                                <span><?= $name; ?></span>
                                             </div><!--/ .cn-categories-item__text -->
                                         </div><!--/ .cn-categories-item__inner -->
                                     </a><!--/ .cn-categories-item -->

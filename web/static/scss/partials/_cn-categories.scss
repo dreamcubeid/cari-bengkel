@@ -119,11 +119,17 @@
             & > img
             {
                 @include transition(ease, 0.3s);
+                @include translate3d(-50%, -50%, 0);
                 display: block;
-                position: relative;
+                position: absolute;
+                top: 50%;
+                left: 50%;
                 margin: 0 auto;
                 padding: 0;
                 border: none;
+
+                width: 80%;
+                height: auto;
 
                 filter: none;
             }
@@ -132,7 +138,7 @@
         &__text
         {
             @include transition(ease, 0.3s);
-            font-size: 20px;
+            font-size: 16px; //20px;
             font-weight: normal;
             font-style: normal;
             font-stretch: normal;
@@ -140,6 +146,11 @@
             letter-spacing: normal;
             text-align: center;
             color: $color_text_primary;
+
+            width: calc(100% - 48px);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            // border: solid 1px red;
         }
     }
 

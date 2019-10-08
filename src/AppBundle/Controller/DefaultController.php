@@ -70,5 +70,9 @@ class DefaultController extends FrontendController
         $this->view->data = $data;
         $this->view->category = $categoryList;
         $this->view->similarGarage = $similarGarage;
+        
+        $this->view->metaTitle = $data->getMetaTitle();
+        $this->view->metaDescription = $data->getMetaDescription();
+        $this->view->metaKeyword = $data->getMetaKeyword();
     }
 }

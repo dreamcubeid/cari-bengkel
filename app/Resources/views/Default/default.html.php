@@ -86,7 +86,7 @@
                 </h2>
 
                 <div class="d-block mw-100 w-50 mt-5 py-3 text-center mx-auto">
-                    <img src="/static/images/biker.png" alt="" title="" class="img-fluid mt-5 d-block mx-auto">
+                    <img src="/static/images/biker.webp" alt="" title="" class="img-fluid mt-5 d-block mx-auto">
                 </div>
 
             </div><!--/ .col-12 -->
@@ -135,6 +135,7 @@
                              */
 
                             foreach($category as $key => $value):
+                                $url = '/cari/?category=' . str_replace('-', '_', $value->getSlug());
                                 $icon = 'http://placehold.it/72x72';
                                 $name = $value->getName();
 
@@ -147,10 +148,10 @@
                                 }
                     ?>
 
-                    <a href="/cari/?category=<?= str_replace('-', '_', $value->getSlug()) ?>" title="" class="cn-categories-item">
+                    <a href="<?= $url; ?>" title="<?= $name; ?>" class="cn-categories-item">
                         <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
                             <div class="cn-categories-item__icon">
-                                <img data-src="<?= $icon; ?>" class="img-lazy" alt="<?= $name; ?>" title="<?= $name; ?>" style="width:72px;height:72px;">
+                                <img data-src="<?= $icon; ?>" class="img-lazy" alt="<?= $name; ?>" title="<?= $name; ?>">
                             </div><!--/ .cn-categories-item__icon -->
                             <div class="cn-categories-item__text mt-2">
                                 <span><?= $name; ?></span>
@@ -332,7 +333,7 @@
                                     ele += '</div>';
 
                                     ele += '<div class="cn-card-image">';
-                                        ele += '<img data-src="' + (value.BannerPath ? value.BannerPath : '/static/images/default/default-banner.png') + '" class="card-img-top img-lazy" alt="">';
+                                        ele += '<img data-src="' + (value.BannerPath ? value.BannerPath : '/static/images/default/default-banner.webp') + '" class="card-img-top img-lazy" alt="">';
                                     ele += '</div><!--/ .cn-card-image -->';
 
                                     ele += '<div class="cn-card-avatar">';
@@ -492,7 +493,7 @@
                                         ele += '</ul>';
                                     ele += '</div>';
                                     ele += '<div class="cn-card-im=age">';
-                                        ele += '<img data-src="' + (value.BannerPath ? value.BannerPath : '/static/images/default/default-banner.png') + '" class="card-img-top img-lazy" alt="">';
+                                        ele += '<img data-src="' + (value.BannerPath ? value.BannerPath : '/static/images/default/default-banner.webp') + '" class="card-img-top img-lazy" alt="">';
                                     ele += '</div><!--/ .cn-card-image -->';
                                     ele += '<div class="cn-card-avatar">';
                                         ele += '<a href="/detail/' + (value.Slug ? value.Slug : slugify(value.Name)) + '/' + value.o_id + '" title="' + value.Name + '">';
