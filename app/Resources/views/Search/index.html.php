@@ -38,25 +38,49 @@
         <div class="row">
             <div class="col-12">
                 <div class="cn-search">
-                    <form role="form" class="d-flex flex-column flex-md-row align-items-center align-content-center justify-content-between">
+                    <form role="form" class="d-flex flex-column flex-md-row align-items-center align-items-md-start align-content-center justify-content-between">
                         <div class="form-group flex-grow-1 mx-0 mr-md-3 mb-3 mb-md-0">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-search"></i>
-                                    </span>
-                                </div>
-                                <input id="keywordLocation" type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" name="keyword" value="<?= $this->escape($params['keyword']) ?>">
-                                <input type="hidden" name="page" value="<?= $params['page'] ?>">
-                                <div class="input-group-append">
-                                    <span class="input-group-text text-primary cn-search-city__trigger">
-                                        <i class="fas fa-crosshairs"></i>
-                                    </span>
-                                </div>
+                            <div class="d-block">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                    </div>
+                                    <input id="keywordLocation" type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" name="keyword" value="<?= $this->escape($params['keyword']) ?>">
+                                    <input type="hidden" name="page" value="<?= $params['page'] ?>">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text text-primary cn-search-city__trigger">
+                                            <i class="fas fa-crosshairs"></i>
+                                        </span>
+                                    </div>
+                                </div><!--/ .input-group -->
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group mb-3 mb-md-0">
+                                        <select class="custom-select">
+                                            <option value="">Tipe</option>
+                                            <option value="Mobil">Mobil</option>
+                                            <option value="Motor">Motor</option>
+                                            <option value="Becak">Becak</option>
+                                        </select>
+                                    </div><!--/ .form-group -->
+                                </div><!--/ .col-12 -->
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group">
+                                        <select class="custom-select">
+                                            <option value="">Kategori</option>
+                                            <option value="Batita">Batita</option>
+                                            <option value="Balita">Balita</option>
+                                            <option value="Bapak-Bapak">Bapak-Bapak</option>
+                                        </select>
+                                    </div><!--/ .form-group -->
+                                </div><!--/ .col-12 -->
                             </div>
                         </div><!--/ .form-group -->
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">
+                            <button type="submit" class="btn btn-primary btn-block mx-auto">
                                 Cari
                             </button>
                         </div><!--/ .form-group -->
@@ -89,13 +113,15 @@
             <?php 
                 if ($result) {
                     foreach ($result as $key => $value) { 
+
+                        $url = '/detail/' . ($value['Slug'] ? $value['Slug'] : ($urlHelper->convertToFriendlyUrl($value['Name'])) ). '/' . $value['o_id'];
             ?>
 
                         <div class="col-12 col-lg-6">
                             <div class="cn-card cn-card--compact d-flex flex-row mb-5">
                                 <div class="cn-card-header d-flex flex-row align-items-start justify-content-start pt-3">
                                     <div class="cn-card-avatar">
-                                        <a href="#" title="<?= $value['Name'] ?>">
+                                        <a href="<?= $url; ?>" title="<?= $value['Name'] ?>">
                                             <img data-src="<?= $value['LogoPath'] ? $value['LogoPath'] : '/static/images/default/default-banner.webp' ?>" alt="<?= $value['Name'] ?>" class="img-lazy">
                                         </a>
                                     </div><!--/ .cn-card-avatar -->
@@ -121,7 +147,7 @@
                                         <?php } ?>
                                     </div>
                                     <h5 class="cn-card-title m-0 mb-3 p-0">
-                                        <a href="/detail/<?= $value['Slug'] ? $value['Slug'] : ($urlHelper->convertToFriendlyUrl($value['Name'])) ?>/<?= $value['o_id'] ?>" title="<?= $value['Name'] ?>">
+                                        <a href="<?= $url; ?>" title="<?= $value['Name'] ?>">
                                             <?= $value['Name'] ?>
                                         </a>
                                     </h5>
