@@ -220,6 +220,64 @@
         }
     }
 
+    &-filter
+    {
+        position: relative;
+
+        border: none; //solid 1px red;
+
+        // margin-top: -8px;
+        padding-top: 8px;
+
+        &__item
+        {
+            position: relative;
+            margin: 0 8px 8px 0;
+            padding: 0 32px;
+            min-height: 36px;
+
+            border: solid 1px #c2c2c2;
+            border-radius: 8px;
+            background-color: white;
+            color: #414141;
+            
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 36px;
+            white-space: nowrap;
+
+            &:last-child,
+            &:last-of-type
+            {
+                margin-right: 0;
+            }
+
+            & > span,
+            & > a
+            {
+                display: inline-block;
+                position: relative;
+                color: inherit;
+                text-decoration: none;
+                // border: solid 1px blue;
+            }
+
+            & > a
+            {
+                @include transition(ease, 0.3s);
+                // border: solid 1px red;
+                font-size: larger;
+                text-align: center;
+                padding: 0 0 0 4px;
+
+                &:hover
+                {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
 }
 
 @media (max-width: 767px)

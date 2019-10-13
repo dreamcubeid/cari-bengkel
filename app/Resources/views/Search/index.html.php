@@ -85,7 +85,48 @@
                             </button>
                         </div><!--/ .form-group -->
                     </form>
-                </div><!--/ . -->
+                </div><!--/ .cn-search -->
+            </div><!--/ .col-12 -->
+        </div><!--/ .row -->
+        <div class="row mt-4 align-items-center">
+            <div class="col-12 col-lg-9">
+                <div class="cn-search-filter d-flex flex-row align-items-center justify-content-start flex-wrap">
+                    <div class="cn-search-filter__item">
+                        <span>Mobil</span>
+                        <a href="#" title="Hapus Filter">
+                            x
+                        </a>
+                    </div><!--/ .cn-search-filter__item -->
+                    <div class="cn-search-filter__item">
+                        <span>Ban &amp; Velg</span>
+                        <a href="#" title="Hapus Filter">
+                            x
+                        </a>
+                    </div><!--/ .cn-search-filter__item -->
+                    <div class="cn-search-filter__item">
+                        <span>Part &amp; Aksesoris</span>
+                        <a href="#" title="Hapus Filter">
+                            x
+                        </a>
+                    </div><!--/ .cn-search-filter__item -->
+                    <div class="cn-search-filter__item">
+                        <span>Servis</span>
+                        <a href="#" title="Hapus Filter">
+                            x
+                        </a>
+                    </div><!--/ .cn-search-filter__item -->
+                    <div class="cn-search-filter__item">
+                        <span>Smash Dat Booooooooteeh ma dude</span>
+                        <a href="#" title="Hapus Filter">
+                            x
+                        </a>
+                    </div><!--/ .cn-search-filter__item -->
+                </div><!--/ .cn-search-filter -->
+            </div><!--/ .col-12 -->
+            <div class="col-12 col-lg-3">
+                <a href="#" class="btn btn-cn-primary btn-cn--bold btn-cn--radius-8 btn-block" title="Hapus Filter">
+                    <span>Hapus Filter</span>
+                </a>
             </div><!--/ .col-12 -->
         </div><!--/ .row -->
     </div><!--/ .container -->
