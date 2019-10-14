@@ -503,7 +503,7 @@
                                 ele += '</div><!--/ .cn-card-header -->';
                                 ele += '<div class="cn-card-body d-flex flex-column align-items-start justify-content-center flex-grow-1">';
                                     ele += '<h5 class="cn-card-title m-0 mb-3 p-0 w-100 text-center">';
-                                        ele += '<a href="#" title="' + value.Name + '">';
+                                        ele += '<a href="/detail/' + (value.Slug ? value.Slug : slugify(value.Name)) + '/' + value.o_id + '" title="' + value.Name + '">';
                                             ele += value.Name;
                                         ele += '</a>';
                                     ele += '</h5>';

@@ -42,9 +42,9 @@
 
             <div class="col-12 col-md-8">
 
-                <div class="cn-detail-image mb-5">
-                    <a href="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.webp' ?>" title="">
-                        <img data-src="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.webp' ?>" alt="" class="img-lazy img-fluid">
+                <div class="cn-detail-image cn-detail-image--fixed-ratio mb-5">
+                    <a href="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.webp' ?>" title="<?= $data->getName() ?>">
+                        <img data-src="<?= $data->getBanner() ? ($data->getBanner()->getPath() . $data->getBanner()->getFilename()) : '/static/images/default/default-banner.webp' ?>" alt="<?= $data->getName() ?>" class="img-lazy img-fluid">
                     </a>
                 </div><!--/ . -->
 
@@ -59,7 +59,7 @@
                         </div><!--/ .cn-card-header -->
                         <div class="cn-card-body mt-0 pt-3 pl-0 d-flex flex-row align-items-start justify-content-start flex-grow-1">
                             <h5 class="cn-card-title m-0 mb-3 p-0 flex-grow-1">
-                                <a href="#" title="Bengkel Sumber Bencana">
+                                <a href="#" title="<?= $data->getName() ?>">
                                     <?= $data->getName() ?>
                                 </a>
                                 <div class="cn-card-tags cn-card-tags--grounded py-0 px-0">

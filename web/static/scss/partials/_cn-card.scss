@@ -54,6 +54,8 @@
 
         border: none; //solid 1px red;
 
+        pointer-events: none;
+
         &--grounded
         {
             position: relative;
@@ -70,6 +72,8 @@
                 border: none; //solid 1px red;
                 margin: 0;
                 padding: 0;
+
+                pointer-events: auto;
             }
         }
 
