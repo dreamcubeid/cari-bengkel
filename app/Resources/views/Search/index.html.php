@@ -7,6 +7,8 @@
     $result = $this->result;
     $count = $this->count;
     $params = $this->params;
+    $type = $this->type;
+    $category = $this->category;
 
     $paginationHelper = new Pagination();
     $pagination = $paginationHelper->generate((ceil($count / $params['limit'])), ($params['page'] ? $params['page'] : 1));
@@ -61,9 +63,12 @@
                                     <div class="form-group mb-3 mb-md-0">
                                         <select class="custom-select">
                                             <option value="">Tipe</option>
-                                            <option value="Mobil">Mobil</option>
-                                            <option value="Motor">Motor</option>
-                                            <option value="Becak">Becak</option>
+                                            <?php 
+                                                if ($type) { 
+                                                    foreach ($type as $key => $value) {
+                                            ?>
+                                                        <option value="<?= $value->getName() ?>"><?= $value->getName() ?></option>
+                                            <?php }}  ?>
                                         </select>
                                     </div><!--/ .form-group -->
                                 </div><!--/ .col-12 -->
@@ -71,9 +76,12 @@
                                     <div class="form-group">
                                         <select class="custom-select">
                                             <option value="">Kategori</option>
-                                            <option value="Batita">Batita</option>
-                                            <option value="Balita">Balita</option>
-                                            <option value="Bapak-Bapak">Bapak-Bapak</option>
+                                            <?php 
+                                                if ($category) { 
+                                                    foreach ($category as $key => $value) {
+                                            ?>
+                                                        <option value="<?= $value->getName() ?>"><?= $value->getName() ?></option>
+                                            <?php }}  ?>
                                         </select>
                                     </div><!--/ .form-group -->
                                 </div><!--/ .col-12 -->

@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Service\SearchService;
 use AppBundle\Service\CategoryService;
+use AppBundle\Service\TypeService;
 
 /**
  * @Route("/cari")
@@ -15,12 +16,15 @@ class SearchController extends FrontendController
 {
     protected $searchService;
     protected $categoryService;
+    protected $typeService;
 
-    public function __construct(SearchService $searchService, CategoryService $categoryService)
+    public function __construct(SearchService $searchService, CategoryService $categoryService, TypeService $typeService)
     {
         $this->searchService = $searchService;
         $this->categoryService = $categoryService;
+        $this->typeService = $typeService;
     }
+
     /**
      * @Route("/", methods={"GET"}, name="search")
      */
@@ -67,9 +71,17 @@ class SearchController extends FrontendController
 
         $result = $this->searchService->findBy($data['condition'], $location, $orderBy, $sortBy, $limit, $offset);
 
+        //get all types
+        $type = $this->typeService->getAll();
+
+        //get all categories
+        $category = $this->categoryService->getAll();
+
         $this->view->result = $result->data;
         $this->view->count = $result->count;
         $this->view->params = $query;
+        $this->view->type = $type;
+        $this->view->category = $category;
     }
 
 }
