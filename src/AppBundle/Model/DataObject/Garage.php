@@ -121,6 +121,23 @@ class Garage extends BaseGarage
             unset($condition['randomSeed']);
         }
 
+        if (!empty($condition['type']))
+        { 
+            if ($queryCondition) $queryCondition .= " AND ";
+
+            $typeCondition = '';   
+
+            foreach ($condition['type'] as $key => $value) {
+                if ($typeCondition) $typeCondition .= " OR ";
+                $typeCondition .= "GarageType LIKE ?";
+                array_push($paramsCondition, "%,".$value.",%");
+            }
+
+            $queryCondition .= "(".$typeCondition.")";
+
+            unset($condition['type']);
+        }
+
         if (!empty($condition['category']))
         { 
             if ($queryCondition) $queryCondition .= " AND ";
