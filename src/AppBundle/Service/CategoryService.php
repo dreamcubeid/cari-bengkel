@@ -20,10 +20,18 @@ class CategoryService
         return $category;
     }
 
+    public function getOneById(int $id)
+    {
+        $category = $this->categoryRepo->findOneById($id);
+
+        return $category;
+    }
+    
     public function getOneBySlug(string $slug)
     {
         $category = $this->categoryRepo->findOneBySlug($slug);
 
         return $category;
     }
+
 }

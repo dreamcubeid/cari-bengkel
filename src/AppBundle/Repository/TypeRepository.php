@@ -17,6 +17,13 @@ class TypeRepository implements TypeRepositoryInterface
         return $type;
     }
 
+    public function findOneById(int $id): object
+    {
+        $type = Type::getById($id);
+
+        return $type;
+    }
+
     public function findOneBySlug(string $slug): object
     {
         $type = Type::getBySlug($slug, 1);

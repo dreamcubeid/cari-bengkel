@@ -20,6 +20,13 @@ class TypeService
         return $type;
     }
 
+    public function getOneById(int $id)
+    {
+        $type = $this->typeRepo->findOneById($id);
+
+        return $type;
+    }
+
     public function getOneBySlug(string $slug)
     {
         $type = $this->typeRepo->findOneBySlug($slug);

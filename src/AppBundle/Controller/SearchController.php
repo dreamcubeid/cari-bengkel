@@ -26,7 +26,7 @@ class SearchController extends FrontendController
     }
 
     /**
-     * @Route("/", methods={"GET"}, name="search")
+     * @Route("", methods={"GET"}, name="search")
      */
     public function indexAction(Request $request)
     {
@@ -51,14 +51,36 @@ class SearchController extends FrontendController
             $sortBy = 'asc';
         }
 
+        $query['filterLabel'] = [];
+        $tempFilter = [];
+        if ($query['type']) {
+            $arrType = explode(",", $query['type']);
+            $data['condition']['type'] = $arrType;
+
+            //set filter label
+            foreach ($arrType as $key => $value) {
+                $detailType = $this->typeService->getOneById($value);
+                $tempFilter['id'] = $detailType->getId();
+                $tempFilter['name'] = $detailType->getName();
+                $tempFilter['type'] = 'type';
+
+                array_push($query['filterLabel'], $tempFilter);
+            }
+        }
+
         if ($query['category']) {
-            $arrCategory = [];
-            $category = $this->categoryService->getOneBySlug(addslashes(filter_var(str_replace('_', '-', $query['category']), FILTER_SANITIZE_STRING)));
-            $categoryId = $category->getId();
-
-            array_push($arrCategory, $categoryId);
-
+            $arrCategory = explode(",", $query['category']);
             $data['condition']['category'] = $arrCategory;
+
+            //set filter label
+            foreach ($arrCategory as $key => $value) {
+                $detailCategory = $this->categoryService->getOneById($value);
+                $tempFilter['id'] = $detailCategory->getId();
+                $tempFilter['name'] = $detailCategory->getName();
+                $tempFilter['type'] = 'category';
+
+                array_push($query['filterLabel'], $tempFilter);
+            }
         }
 
         if ($query['keyword']) {

@@ -8,4 +8,6 @@ interface CategoryRepositoryInterface {
 
     public function findOneBySlug(string $slug): object;
 
+    public function findOneById(int $id): object;
+
 }
