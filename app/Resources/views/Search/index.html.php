@@ -15,27 +15,34 @@
 
     $urlHelper = new Url();
 
-    /**
-     * Cara nambahin ceklis di option terpilih
-     * Cara membantai kategori duplikat
-     */
-
-    // Jadi kita bikin variabel buat nampung id kategorinya duls
+    //prevent duplicate category
     $categories = array();
 
-    if(isset($_GET['category']))
+    if($params['category'])
     {
-        // Ini ngambil string dari query string category, dipecah jadi array
-        $categories_array = explode(',', trim($_GET['category']));
+        $categoriesArray = explode(',', trim($params['category']));
 
-        // Ini buat nyamain key sama value di arraynya
-        foreach($categories_array as $key => $value)
+        foreach($categoriesArray as $key => $value)
         {
             $categories[$value] = $value;
         }
 
-        // Ini buat ngebantai array value yang duplikat
         $categories = array_unique($categories);
+    }
+
+    //prevent duplicate type
+    $types = array();
+
+    if($params['type'])
+    {
+        $typesArray = explode(',', trim($params['type']));
+
+        foreach($typesArray as $key => $value)
+        {
+            $types[$value] = $value;
+        }
+
+        $types = array_unique($types);
     }
 
 ?>
@@ -90,6 +97,9 @@
                                                 if($type):
                                                     foreach($type as $key => $value):
                                                         echo '<option value="' . $value->getId() . '">';
+                                                        if (in_array($value->getId(), $types)):
+                                                            echo '&#10003; ';
+                                                        endif;
                                                         echo $value->getName();
                                                         echo '</option>';
                                                     endforeach;
@@ -107,8 +117,6 @@
                                                 if($category):
                                                     foreach($category as $key => $value):
                                                         echo '<option value="' . $value->getId() . '">';
-                                                        // Ini kalo si id-nya ada di variable penampung id kategori, maka
-                                                        // tampilin ceklisnya
                                                         if(in_array($value->getId(), $categories)):
                                                             echo '&#10003; ';
                                                         endif;
@@ -138,15 +146,14 @@
                     
                     <?php 
                         if($params['filterLabel']):
-                            // Ini cara untuk ngebantai value duplikat dari array multidimensional
+                            // Prevent duplicate multidimetional array
                             $params['filterLabel'] = array_map('unserialize', array_unique(array_map('serialize', $params['filterLabel'])));
 
-                            // Ini cara looping kaya biasa
                             foreach($params['filterLabel'] as $key => $value):
-                                if(in_array($value['id'], $categories)):
+                                if(in_array($value['id'], array_merge($types, $categories))):
                                     echo '<div class="cn-search-filter__item">';
                                     echo '  <span>' . $value['name'] . '</span>';
-                                    echo '  <a href="javascript:void(0);" title="Hapus Filter" onclick="clearFilter(' . $value['type'] . ', ' . $value['id'] . ');">';
+                                    echo '  <a href="javascript:void(0);" title="Hapus Filter" onclick="clearFilter(\'' . $value['type'] . '\', \'' . $value['id'] . '\');">';
                                     echo 'x';
                                     echo '  </a>';
                                     echo '</div><!--/ .cn-search-filter__item -->';
@@ -382,11 +389,19 @@
         var val = _this.val();
 
         if (_this.attr('id') == 'filter-type') {
-            if (!type) type = [];
-            type.push(val);
+            if (type.indexOf(val) < 0) {
+                if (!type) type = [];
+                type.push(val);
+            } else {
+                return false;
+            }
         } else if (_this.attr('id') == 'filter-category') {
-            if (!category) category = [];
-            category.push(val);
+            if (category.indexOf(val) < 0) {
+                if (!category) category = [];
+                category.push(val);
+            } else {
+                return false;
+            }
         }
 
         reloadData();
