@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="cn-search">
-                    <form role="form" class="d-flex flex-column flex-md-row align-items-center align-content-center justify-content-between" method="GET" action="/cari/">
+                    <form role="form" class="d-flex flex-column flex-md-row align-items-center align-content-center justify-content-between" method="GET" action="/cari">
                         <div class="form-group flex-grow-1 mx-0 mr-md-3 mb-3 mb-md-0">
                             <div class="input-group">
                                 <div class="input-group-prepend">
