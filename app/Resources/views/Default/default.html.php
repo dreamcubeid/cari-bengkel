@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="cn-search">
-                    <form role="form" class="d-flex flex-column flex-md-row align-items-center align-content-center justify-content-between" method="GET" action="/cari/">
+                    <form role="form" class="d-flex flex-column flex-md-row align-items-center align-content-center justify-content-between" method="GET" action="/cari">
                         <div class="form-group flex-grow-1 mx-0 mr-md-3 mb-3 mb-md-0">
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -34,7 +34,6 @@
                                     </span>
                                 </div>
                                 <input id="keywordLocation" type="search" name="keyword" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70">
-                                <input type="hidden" name="page" value="">
                                 <div class="input-group-append">
                                     <span class="input-group-text text-primary cn-search-city__trigger">
                                         <i class="fas fa-crosshairs"></i>
@@ -135,7 +134,7 @@
                              */
 
                             foreach($category as $key => $value):
-                                $url = '/cari/?category=' . str_replace('-', '_', $value->getSlug());
+                                $url = '/cari?category=' . $value->getId();
                                 $icon = 'http://placehold.it/72x72';
                                 $name = $value->getName();
 
@@ -503,7 +502,7 @@
                                 ele += '</div><!--/ .cn-card-header -->';
                                 ele += '<div class="cn-card-body d-flex flex-column align-items-start justify-content-center flex-grow-1">';
                                     ele += '<h5 class="cn-card-title m-0 mb-3 p-0 w-100 text-center">';
-                                        ele += '<a href="#" title="' + value.Name + '">';
+                                        ele += '<a href="/detail/' + (value.Slug ? value.Slug : slugify(value.Name)) + '/' + value.o_id + '" title="' + value.Name + '">';
                                             ele += value.Name;
                                         ele += '</a>';
                                     ele += '</h5>';

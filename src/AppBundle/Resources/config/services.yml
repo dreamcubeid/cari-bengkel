@@ -54,6 +54,9 @@ services:
     AppBundle\Contract\ContactUsRepositoryInterface:
         class: AppBundle\Repository\ContactUsRepository
 
+    AppBundle\Contract\TypeRepositoryInterface:
+        class: AppBundle\Repository\TypeRepository
+
     #
     # COMMANDS
     #

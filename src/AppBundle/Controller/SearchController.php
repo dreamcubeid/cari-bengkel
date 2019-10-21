@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Service\SearchService;
 use AppBundle\Service\CategoryService;
+use AppBundle\Service\TypeService;
 
 /**
  * @Route("/cari")
@@ -15,14 +16,17 @@ class SearchController extends FrontendController
 {
     protected $searchService;
     protected $categoryService;
+    protected $typeService;
 
-    public function __construct(SearchService $searchService, CategoryService $categoryService)
+    public function __construct(SearchService $searchService, CategoryService $categoryService, TypeService $typeService)
     {
         $this->searchService = $searchService;
         $this->categoryService = $categoryService;
+        $this->typeService = $typeService;
     }
+
     /**
-     * @Route("/", methods={"GET"}, name="search")
+     * @Route("", methods={"GET"}, name="search")
      */
     public function indexAction(Request $request)
     {
@@ -47,14 +51,36 @@ class SearchController extends FrontendController
             $sortBy = 'asc';
         }
 
+        $query['filterLabel'] = [];
+        $tempFilter = [];
+        if ($query['type']) {
+            $arrType = explode(",", $query['type']);
+            $data['condition']['type'] = $arrType;
+
+            //set filter label
+            foreach ($arrType as $key => $value) {
+                $detailType = $this->typeService->getOneById($value);
+                $tempFilter['id'] = $detailType->getId();
+                $tempFilter['name'] = $detailType->getName();
+                $tempFilter['type'] = 'type';
+
+                array_push($query['filterLabel'], $tempFilter);
+            }
+        }
+
         if ($query['category']) {
-            $arrCategory = [];
-            $category = $this->categoryService->getOneBySlug(addslashes(filter_var(str_replace('_', '-', $query['category']), FILTER_SANITIZE_STRING)));
-            $categoryId = $category->getId();
-
-            array_push($arrCategory, $categoryId);
-
+            $arrCategory = explode(",", $query['category']);
             $data['condition']['category'] = $arrCategory;
+
+            //set filter label
+            foreach ($arrCategory as $key => $value) {
+                $detailCategory = $this->categoryService->getOneById($value);
+                $tempFilter['id'] = $detailCategory->getId();
+                $tempFilter['name'] = $detailCategory->getName();
+                $tempFilter['type'] = 'category';
+
+                array_push($query['filterLabel'], $tempFilter);
+            }
         }
 
         if ($query['keyword']) {
@@ -67,9 +93,17 @@ class SearchController extends FrontendController
 
         $result = $this->searchService->findBy($data['condition'], $location, $orderBy, $sortBy, $limit, $offset);
 
+        //get all types
+        $type = $this->typeService->getAll();
+
+        //get all categories
+        $category = $this->categoryService->getAll();
+
         $this->view->result = $result->data;
         $this->view->count = $result->count;
         $this->view->params = $query;
+        $this->view->type = $type;
+        $this->view->category = $category;
     }
 
 }
