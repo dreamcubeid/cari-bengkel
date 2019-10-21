@@ -34,7 +34,6 @@
                                     </span>
                                 </div>
                                 <input id="keywordLocation" type="search" name="keyword" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70">
-                                <input type="hidden" name="page" value="">
                                 <div class="input-group-append">
                                     <span class="input-group-text text-primary cn-search-city__trigger">
                                         <i class="fas fa-crosshairs"></i>
@@ -135,7 +134,7 @@
                              */
 
                             foreach($category as $key => $value):
-                                $url = '/cari/?category=' . str_replace('-', '_', $value->getSlug());
+                                $url = '/cari?category=' . $value->getId();
                                 $icon = 'http://placehold.it/72x72';
                                 $name = $value->getName();
 

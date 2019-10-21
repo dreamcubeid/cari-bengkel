@@ -7,11 +7,44 @@
     $result = $this->result;
     $count = $this->count;
     $params = $this->params;
+    $type = $this->type;
+    $category = $this->category;
 
     $paginationHelper = new Pagination();
     $pagination = $paginationHelper->generate((ceil($count / $params['limit'])), ($params['page'] ? $params['page'] : 1));
 
     $urlHelper = new Url();
+
+    //prevent duplicate category
+    $categories = array();
+
+    if($params['category'])
+    {
+        $categoriesArray = explode(',', trim($params['category']));
+
+        foreach($categoriesArray as $key => $value)
+        {
+            $categories[$value] = $value;
+        }
+
+        $categories = array_unique($categories);
+    }
+
+    //prevent duplicate type
+    $types = array();
+
+    if($params['type'])
+    {
+        $typesArray = explode(',', trim($params['type']));
+
+        foreach($typesArray as $key => $value)
+        {
+            $types[$value] = $value;
+        }
+
+        $types = array_unique($types);
+    }
+
 ?>
 
 <section class="my-4">
@@ -48,7 +81,6 @@
                                         </span>
                                     </div>
                                     <input id="keywordLocation" type="search" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70" name="keyword" value="<?= $this->escape($params['keyword']) ?>">
-                                    <input type="hidden" name="page" value="<?= $params['page'] ?>">
                                     <div class="input-group-append">
                                         <span class="input-group-text text-primary cn-search-city__trigger">
                                             <i class="fas fa-crosshairs"></i>
@@ -59,28 +91,48 @@
                             <div class="row mt-3">
                                 <div class="col-12 col-md-4">
                                     <div class="form-group mb-3 mb-md-0">
-                                        <select class="custom-select">
+                                        <select class="custom-select filter" id="filter-type">
                                             <option value="">Tipe</option>
-                                            <option value="Mobil">Mobil</option>
-                                            <option value="Motor">Motor</option>
-                                            <option value="Becak">Becak</option>
+                                            <?php 
+                                                if($type):
+                                                    foreach($type as $key => $value):
+                                                        echo '<option value="' . $value->getId() . '">';
+                                                        if (in_array($value->getId(), $types)):
+                                                            echo '&#10003; ';
+                                                        endif;
+                                                        echo $value->getName();
+                                                        echo '</option>';
+                                                    endforeach;
+                                                endif;
+                                            ?>
                                         </select>
                                     </div><!--/ .form-group -->
                                 </div><!--/ .col-12 -->
                                 <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <select class="custom-select">
+                                        <select class="custom-select filter" id="filter-category">
                                             <option value="">Kategori</option>
-                                            <option value="Batita">Batita</option>
-                                            <option value="Balita">Balita</option>
-                                            <option value="Bapak-Bapak">Bapak-Bapak</option>
+
+                                            <?php
+                                                if($category):
+                                                    foreach($category as $key => $value):
+                                                        echo '<option value="' . $value->getId() . '">';
+                                                        if(in_array($value->getId(), $categories)):
+                                                            echo '&#10003; ';
+                                                        endif;
+                                                        echo $value->getName();
+                                                        echo '</option>';
+                                                    endforeach;
+                                                endif;
+                                            ?>
+
                                         </select>
                                     </div><!--/ .form-group -->
                                 </div><!--/ .col-12 -->
                             </div>
                         </div><!--/ .form-group -->
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block mx-auto">
+                            <button type="button" class="btn btn-primary btn-block mx-auto" id="btn-search">
                                 Cari
                             </button>
                         </div><!--/ .form-group -->
@@ -90,41 +142,30 @@
         </div><!--/ .row -->
         <div class="row mt-4 align-items-center">
             <div class="col-12 col-lg-9">
-                <div class="cn-search-filter d-flex flex-row align-items-center justify-content-start flex-wrap">
-                    <div class="cn-search-filter__item">
-                        <span>Mobil</span>
-                        <a href="#" title="Hapus Filter">
-                            x
-                        </a>
-                    </div><!--/ .cn-search-filter__item -->
-                    <div class="cn-search-filter__item">
-                        <span>Ban &amp; Velg</span>
-                        <a href="#" title="Hapus Filter">
-                            x
-                        </a>
-                    </div><!--/ .cn-search-filter__item -->
-                    <div class="cn-search-filter__item">
-                        <span>Part &amp; Aksesoris</span>
-                        <a href="#" title="Hapus Filter">
-                            x
-                        </a>
-                    </div><!--/ .cn-search-filter__item -->
-                    <div class="cn-search-filter__item">
-                        <span>Servis</span>
-                        <a href="#" title="Hapus Filter">
-                            x
-                        </a>
-                    </div><!--/ .cn-search-filter__item -->
-                    <div class="cn-search-filter__item">
-                        <span>Smash Dat Booooooooteeh ma dude</span>
-                        <a href="#" title="Hapus Filter">
-                            x
-                        </a>
-                    </div><!--/ .cn-search-filter__item -->
+                <div class="cn-search-filter d-flex flex-row align-items-center justify-content-start flex-wrap" id="filter-label">
+                    
+                    <?php 
+                        if($params['filterLabel']):
+                            // Prevent duplicate multidimetional array
+                            $params['filterLabel'] = array_map('unserialize', array_unique(array_map('serialize', $params['filterLabel'])));
+
+                            foreach($params['filterLabel'] as $key => $value):
+                                if(in_array($value['id'], array_merge($types, $categories))):
+                                    echo '<div class="cn-search-filter__item">';
+                                    echo '  <span>' . $value['name'] . '</span>';
+                                    echo '  <a href="javascript:void(0);" title="Hapus Filter" onclick="clearFilter(\'' . $value['type'] . '\', \'' . $value['id'] . '\');">';
+                                    echo 'x';
+                                    echo '  </a>';
+                                    echo '</div><!--/ .cn-search-filter__item -->';
+                                endif;
+                            endforeach;
+                        endif;
+                    ?>
+
                 </div><!--/ .cn-search-filter -->
             </div><!--/ .col-12 -->
             <div class="col-12 col-lg-3">
-                <a href="#" class="btn btn-cn-primary btn-cn--bold btn-cn--radius-8 btn-block" title="Hapus Filter">
+                <a href="javascript:void(0);" class="btn btn-cn-primary btn-cn--bold btn-cn--radius-8 btn-block" title="Hapus Filter" id="btn-clear-filter" onclick="clearFilter()" <?= count($params['filterLabel']) <= 0 ? 'hidden' : '' ?>>
                     <span>Hapus Filter</span>
                 </a>
             </div><!--/ .col-12 -->
@@ -254,6 +295,10 @@
 </section>
 
 <script type="text/javascript">
+
+    var keyword = '<?= $params['keyword'] ?>';
+    var type = '<?= $params['type'] ?>';
+    var category = '<?= $params['category'] ?>';
     
     $(function(){
 
@@ -270,6 +315,32 @@
             });
             return false;
         });
+
+        $("#btn-search").click(function() {
+            keyword = $('#keywordLocation').val();
+            reloadData();
+        });
+
+        $('#keywordLocation').on('keydown', function(event) {
+            var x = event.which;
+            if (x === 13) {
+                event.preventDefault();
+                keyword = $('#keywordLocation').val();
+                reloadData();
+            }
+        });
+
+        $('.filter').change(function() {
+            filterData($(this));
+        });
+
+        if (type) {
+            type = type.split(',');
+        }
+
+        if (category) {
+            category = category.split(',');
+        }
 
     });
 
@@ -313,4 +384,75 @@
         timeout: 1000,
         maximumAge: 0
     };
+
+    function filterData(_this) {
+        var val = _this.val();
+
+        if (_this.attr('id') == 'filter-type') {
+            if (type.indexOf(val) < 0) {
+                if (!type) type = [];
+                type.push(val);
+            } else {
+                return false;
+            }
+        } else if (_this.attr('id') == 'filter-category') {
+            if (category.indexOf(val) < 0) {
+                if (!category) category = [];
+                category.push(val);
+            } else {
+                return false;
+            }
+        }
+
+        reloadData();
+    }
+
+    function clearFilter(filterType = '', id = '') {
+        var url = '/cari';
+
+        if (id) {
+            if (filterType == 'type') {
+                var index = type.indexOf(id);
+
+                if (index > -1) {
+                   type.splice(index, 1);
+                }
+            } else if (filterType == 'category') {
+                var index = category.indexOf(id);
+
+                if (index > -1) {
+                   category.splice(index, 1);
+                }
+            }
+        } else {
+            type = [];
+            category = [];
+        }
+
+        reloadData();
+    }
+
+    function reloadData() {
+        var url = '/cari';
+        var queryString = '';
+
+        if (keyword || type.length > 0 || category.length > 0) {
+            if (keyword) queryString += 'keyword=' + keyword;
+
+            if (type.length > 0) {
+                if (queryString) queryString += '&';
+                queryString += 'type=' + type.join(",");
+            }
+
+            if (category.length > 0) {
+                if (queryString) queryString += '&';
+                queryString += 'category=' + category.join(",");
+            }
+
+            queryString = '?' + queryString;
+        }
+
+        window.location.href = url + queryString;
+    }
+
 </script>

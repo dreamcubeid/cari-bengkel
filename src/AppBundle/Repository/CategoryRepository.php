@@ -24,4 +24,11 @@ class CategoryRepository implements CategoryRepositoryInterface
         return $category;
     }
 
+    public function findOneById(int $id): object
+    {
+        $category = Category::getById($id);
+
+        return $category;
+    }
+
 }
