@@ -24,7 +24,7 @@
         <div class="row d-flex align-items-center">
             <div class="col-12 col-md-4 text-center text-md-left">
                 <a href="#" class="d-block mb-1 mb-md-0 text-center text-md-left">
-                    <img data-src="static/images/logo-footer.png" alt="Cari.in" class="img-fluid img-lazy mx-auto mx-md-0">
+                    <img data-src="static/images/logo-footer.png" alt="Kemudi" class="img-fluid img-lazy mx-auto mx-md-0">
                 </a>
             </div><!--/ .col-12 -->
             <div class="col-12 col-md-8 text-center text-md-right">
