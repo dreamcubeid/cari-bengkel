@@ -220,7 +220,7 @@
                         <?php 
                             if ($category) {
                                 foreach ($category as $key => $value) {
-                                    $url    = '/cari/?category=' . str_replace('-', '_', $value->getSlug());
+                                    $url    = '/cari?category=' . $value->getId();
                                     $icon   = 'http://placehold.it/72x72';
                                     $name   = $value->getName();
 
