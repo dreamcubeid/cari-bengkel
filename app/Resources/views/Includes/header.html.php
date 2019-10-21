@@ -21,7 +21,7 @@
         <nav class="cn-navbar navbar navbar-expand-lg navbar-light px-0">
             
             <a class="navbar-brand" href="/">
-                <img data-src="/static/images/logo.png" alt="Kemudi" class="img-lazy">
+                <img data-src="/static/images/logo-header.png" alt="Kemudi" class="img-lazy img-fluid" style="max-height: 48px; max-width: none; height: auto;">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
