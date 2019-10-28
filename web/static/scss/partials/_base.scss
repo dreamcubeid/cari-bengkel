@@ -5,6 +5,8 @@ html, body
     color: $color_text_primary; //$color_grey_900;
 
     position: relative;
+
+    min-height: 150vh;
 }
 
 @media (max-width: 991px)
