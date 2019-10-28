@@ -75,4 +75,5 @@ class DefaultController extends FrontendController
         $this->view->metaDescription = $data->getMetaDescription();
         $this->view->metaKeyword = $data->getMetaKeyword();
     }
+
 }
