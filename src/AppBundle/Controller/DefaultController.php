@@ -75,12 +75,5 @@ class DefaultController extends FrontendController
         $this->view->metaDescription = $data->getMetaDescription();
         $this->view->metaKeyword = $data->getMetaKeyword();
     }
-    /**
-     * @Route("/category/")
-     */
-    public function category(Request $request)
-    {
-        
-    }
 
 }
