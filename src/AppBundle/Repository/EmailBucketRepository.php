@@ -37,6 +37,7 @@ class EmailBucketRepository extends BaseRepository implements EmailBucketReposit
         string $template = null,
         array $params = [],
         string $bodyText = null,
+        string $message = null,
         int $delay = null
     ): object
     {
@@ -61,7 +62,6 @@ class EmailBucketRepository extends BaseRepository implements EmailBucketReposit
         $email->setParams(json_encode($params));
         $email->setBodyText($bodyText);
         $email->setMessage($message);
-
         if ($delay) {
             $email->setStatus("Pending");
             $email->setDelay($delay);

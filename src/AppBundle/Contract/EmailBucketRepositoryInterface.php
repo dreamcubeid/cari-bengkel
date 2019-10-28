@@ -18,6 +18,7 @@ interface EmailBucketRepositoryInterface {
         string $template = null,
         array $params = [],
         string $bodyText = null,
+        string $message = null,
         int $delay = null
     ): object;
 
