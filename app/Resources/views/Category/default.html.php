@@ -4,6 +4,7 @@
     //Call js helper
         // Call css file on specific page
     $this->headLink()->appendStylesheet('/static/css/category.css');
+    $category = $this->category;
 ?>
 
 <section class="mb-5">
@@ -52,204 +53,46 @@
     </div><!--/ .container -->
 </section><!--/ . -->
 
-<section class="cn-section">
+<section class="cn-sectionx">
     <div class="container">
         <div class="row">
             <div class="col-12 com">
             <div class="container">
                 <div class="row">
+                <?php 
+                    if(isset($category)): 
+
+                        foreach($category as $key => $value):
+                            $url = '/cari?category=' . $value->getId();
+                            // $icon = 'http://placehold.it/72x72';
+                            $name = $value->getName();
+
+                            try{
+                                $icon = $value->getIcon()->getPath() . $value->getIcon()->getFilename();
+                            }
+                            catch(Throwable $t)
+                            {
+                                // Do nothing when fail
+                            }
+
+                ?>           
                         <div class="cn-categories cate" >
-                            <a href="" title="" class="cn-categories-item">
+                            <a href="<?= $url; ?>" title="" class="cn-categories-item">
                                 <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
                                     <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
+                                        <img data-src="<?= $icon; ?>" class="img-lazy" alt="" title="">
                                     </div><!--/ .cn-categories-item__icon -->
                                     <div class="cn-categories-item__text mt-2">
-                                        <span>Ban & Velg</span>
+                                        <span><?= $name; ?></span>
                                     </div><!--/ .cn-categories-item__text -->
                                 </div><!--/ .cn-categories-item__inner -->
                             </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-
-                        <div class="cn-categories cate">
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span>Part & Aksesoris</span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-
-                        <div class="cn-categories cate">
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span> Servis </span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-                  
-                         <div class="cn-categories cate">
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span>Perbaikan Body</span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-                  
-                        <div class="cn-categories cate">
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span>Helm</span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-                        <div class="cn-categories cate">
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span>Ban & Velg</span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-
-                        <div class="cn-categories cate" >
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span>Part & Aksesoris</span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-
-                        <div class="cn-categories cate" >
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span> Servis </span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-                  
-                         <div class="cn-categories cate" >
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span>Perbaikan Body</span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-                  
-                        <div class="cn-categories cate">
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span>Helm</span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-                        <div class="cn-categories cate">
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span>Ban & Velg</span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-
-                        <div class="cn-categories cate">
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span>Part & Aksesoris</span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-
-                        <div class="cn-categories cate">
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span> Servis </span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-                  
-                         <div class="cn-categories cate">
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span>Perbaikan Body</span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
-                  
-                        <div class="cn-categories cate">
-                            <a href="" title="" class="cn-categories-item">
-                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
-                                    <div class="cn-categories-item__icon">
-                                        <img data-src="" class="img-lazy" alt="" title="">
-                                    </div><!--/ .cn-categories-item__icon -->
-                                    <div class="cn-categories-item__text mt-2">
-                                        <span>Helm</span>
-                                    </div><!--/ .cn-categories-item__text -->
-                                </div><!--/ .cn-categories-item__inner -->
-                            </a><!--/ .cn-categories-item -->
-                        </div><!--/ .cn-categories -->
+                        </div><!--/ .cn-categories -->     
+                <?php
+                        endforeach;
+                        
+                    endif;
+                ?>
                         </div>
                     </div>
             </div><!--/ .col-12 -->
@@ -269,3 +112,5 @@
         </div><!--/ .row -->
     </div><!--/ .container -->
 </section><!--/ .cn-section -->
+
+scrip

@@ -24,7 +24,9 @@ class CategoryController extends FrontendController
      */
     public function defaultAction(Request $request)
     {
-    
+        $categoryList = $this->categoryService->getAll();
+        
+        $this->view->category = $categoryList; 
     }
 
 }
