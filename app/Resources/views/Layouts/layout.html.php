@@ -26,7 +26,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
     </head>
-    <body>
+    <body class="d-flex flex-column">
         <?php echo $this->template('Includes/header.html.php')?>
         
         <?php $this->slots()->output('_content')?>

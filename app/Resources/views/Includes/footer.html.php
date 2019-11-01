@@ -19,7 +19,7 @@
     <!-- </div>/ .container  -->
 <!-- </section>/ .  -->
 
-<footer class="cn-footer d-flex flex-column align-items-center justify-content-center">
+<footer class="cn-footer d-flex flex-column align-items-center justify-content-center mt-auto mb-0 align-self-end" style="min-width: 100%;">
     <div class="container">
         <div class="row d-flex align-items-center">
             <div class="col-12 col-md-4 text-center text-md-left">

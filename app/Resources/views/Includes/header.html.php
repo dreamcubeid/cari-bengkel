@@ -33,6 +33,9 @@
                     <li class="nav-item <?= $url == '/' ? 'active': '' ?>">
                         <a class="nav-link" href="/">Home</a>
                     </li>
+                    <li class="nav-item <?= $url == '/kategori/' ? 'active': '' ?>">
+                        <a class="nav-link" href="/kategori">Kategori</a>
+                    </li>
                     <li class="nav-item <?= $url == '/cari/' ? 'active': '' ?>">
                         <a class="nav-link" href="/cari">Cari</a>
                     </li>
