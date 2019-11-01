@@ -10,4 +10,6 @@ interface CategoryRepositoryInterface {
 
     public function findOneById(int $id): object;
 
+    public function findBy(string $condition = '', array $conditionValue = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc', int $limit = null, int $offset = null);
+
 }

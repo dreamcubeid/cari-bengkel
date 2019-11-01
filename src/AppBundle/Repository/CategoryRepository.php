@@ -31,4 +31,24 @@ class CategoryRepository implements CategoryRepositoryInterface
         return $category;
     }
 
+    public function findBy(string $condition = '', array $conditionValue = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc', int $limit = null, int $offset = null)
+    {
+        $categories = new Category\Listing();
+        $categories->setOffset($offset);
+        $categories->setLimit($limit);
+        $categories->setOrderKey($orderBy);
+        $categories->setOrder($sortBy);
+        $categories->setCondition($condition, $conditionValue);
+
+        return $categories;
+    }
+    
+    public function findByName(string $name): object
+    {
+        
+        $category = Category::getByName($name);
+
+        return $category;
+    }
+
 }

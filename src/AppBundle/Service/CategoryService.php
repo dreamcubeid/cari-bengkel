@@ -34,4 +34,11 @@ class CategoryService
         return $category;
     }
 
+    public function getBy(string $condition = '', array $conditionValue = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc', int $limit = null, int $offset = null)
+    {
+        $category = $this->categoryRepo->findBy($condition, $conditionValue, $orderBy, $sortBy, $limit, $offset);
+
+        return $category;
+    }
+
 }
