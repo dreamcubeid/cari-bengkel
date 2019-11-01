@@ -40,7 +40,10 @@ class CategoryController extends FrontendController
             $condition = "name LIKE ?";
             $keyword = addslashes(filter_var($query['keyword'], FILTER_SANITIZE_STRING));
             $conditionValue = ['%'.$keyword.'%'];
+
+            $this->view->keyword = $keyword;
         }
+        
         $categoryList = $this->categoryService->getBy($condition, $conditionValue, $orderBy, $sortBy, $limit, $offset); 
 
         $this->view->category = $categoryList; 

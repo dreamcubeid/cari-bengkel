@@ -5,6 +5,7 @@
         // Call css file on specific page
     $this->headLink()->appendStylesheet('/static/css/category.css');
     $category = $this->category;
+    $keyword = $this->keyword;
 ?>
 
 <section class="mb-5">
@@ -33,7 +34,7 @@
                                         <i class="fas fa-search"></i>
                                     </span>
                                 </div>
-                                <input id="keywordLocation" type="search" name="keyword" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" required maxlength="70">
+                                <input id="keywordLocation" type="search" name="keyword" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" maxlength="70" value="<?= $keyword ? $keyword : ''?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text text-primary cn-search-city__trigger">
                                         <i class="fas fa-crosshairs"></i>
