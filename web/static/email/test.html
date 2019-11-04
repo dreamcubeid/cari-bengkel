@@ -1,0 +1,691 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+        <title>Simple Transactional Email</title>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2:300,600&display=swap"> 
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+        <!--
+        <link rel="stylesheet" type="text/css" href="/static/email/style.css" />
+        -->
+        
+        <style type="text/css">
+
+        /* -------------------------------------
+            GLOBAL RESETS
+        ------------------------------------- */
+
+        img 
+        {
+            background-color: #ffffff;
+            border: none;
+            -ms-interpolation-mode: bicubic;
+            max-width: 100%; 
+        }
+
+        body 
+        {
+            background-color: #ffffff;
+            font-family: 'Exo 2', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #414141;
+            margin: 0;
+            padding: 0;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%; 
+        }
+
+        table 
+        {
+            border-collapse: separate;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+            width: 100%; 
+        }
+
+            table td 
+            {
+                font-family: sans-serif;
+                font-size: 14px;
+                vertical-align: top; 
+            }
+
+        /* -------------------------------------
+            BODY & CONTAINER
+        ------------------------------------- */
+
+        .body 
+        {
+            background-color: #ffffff;
+            width: 100%; 
+        }
+
+        /* 
+            Set a max-width, and make it display as block so it will automatically stretch to that width, 
+            but will also shrink down on a phone or something 
+        */
+
+        .container 
+        {
+            display: block;
+            margin: 0 auto !important;
+            /* makes it centered */
+            max-width: 580px;
+            padding: 10px;
+            width: 580px; 
+        }
+
+        /* This should also be a block element, so that it will fill 100% of the .container */
+
+        .content
+        {
+            box-sizing: border-box;
+            display: block;
+            margin: 0 auto;
+            max-width: 580px;
+            padding: 10px; 
+        }
+
+        /* -------------------------------------
+            HEADER, FOOTER, MAIN
+        ------------------------------------- */
+
+        .main 
+        {
+            background: #ffffff;
+            border-radius: 3px;
+            width: 100%; 
+        }
+
+        .wrapper 
+        {
+            box-sizing: border-box;
+            padding: 20px; 
+        }
+
+        .content-block 
+        {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .footer 
+        {
+            clear: both;
+            margin-top: 10px;
+            text-align: center;
+            width: 100%; }
+            .footer td,
+            .footer p,
+            .footer span,
+            .footer a {
+            color: #999999;
+            font-size: 12px;
+            text-align: center; 
+        }
+
+        /* -------------------------------------
+            TYPOGRAPHY
+        ------------------------------------- */
+        h1,
+        h2,
+        h3,
+        h4 
+        {
+            color: #000000;
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 400;
+            line-height: 1.4;
+            margin: 0;
+            margin-bottom: 30px; 
+        }
+
+        h1 
+        {
+            font-size: 35px;
+            font-weight: 300;
+            text-align: center;
+            text-transform: capitalize; 
+        }
+
+        p,
+        ul,
+        ol 
+        {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0;
+            margin-bottom: 15px; 
+        }
+
+        p li,
+        ul li,
+        ol li 
+        {
+            list-style-position: inside;
+            margin-left: 5px; 
+        }
+
+        a 
+        {
+            color: #3498db;
+            text-decoration: underline; 
+        }
+
+        /* -------------------------------------
+            BUTTONS
+        ------------------------------------- */
+
+        .btn 
+        {
+            box-sizing: border-box;
+            width: 100%; 
+        }
+
+        .btn > tbody > tr > td
+        {
+            padding-bottom: 15px; 
+        }
+
+        .btn table 
+        {
+            width: auto; 
+        }
+
+        .btn table td 
+        {
+            background-color: transparent;/* #ffffff; */
+            border-radius: 5px;
+            text-align: center; 
+        }
+
+        .btn a 
+        {
+            background-color: #ffffff;
+            border: solid 1px #3498db;
+            border-radius: 5px;
+            box-sizing: border-box;
+            color: #3498db;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0;
+            padding: 12px 25px;
+            text-decoration: none;
+            text-transform: capitalize; 
+        }
+
+        .btn-primary table td 
+        {
+            background-color: #3498db; 
+        }
+
+        .btn-primary a 
+        {
+            background-color: #3498db;
+            border-color: #3498db;
+            color: #ffffff; 
+        }
+
+        /* -------------------------------------
+            OTHER STYLES THAT MIGHT BE USEFUL
+        ------------------------------------- */
+
+        .last { margin-bottom: 0; }
+
+        .first { margin-top: 0; }
+
+        .align-center { text-align: center; }
+
+        .align-right { text-align: right; }
+
+        .align-left { text-align: left; }
+
+        .clear { clear: both; }
+
+        .mt0 { margin-top: 0; }
+
+        .mb0 { margin-bottom: 0; }
+
+        .preheader 
+        {
+            color: transparent;
+            display: none;
+            height: 0;
+            max-height: 0;
+            max-width: 0;
+            opacity: 0;
+            overflow: hidden;
+            mso-hide: all;
+            visibility: hidden;
+            width: 0; 
+        }
+
+        .powered-by a 
+        {
+            text-decoration: none; 
+        }
+
+        hr 
+        {
+            border: 0;
+            border-bottom: 1px solid #f6f6f6;
+            Margin: 20px 0; 
+        }
+
+        /* -------------------------------------
+            RESPONSIVE AND MOBILE FRIENDLY STYLES
+        ------------------------------------- */
+
+        @media only screen and (max-width: 620px) 
+        {
+            table[class=body] h1 
+            {
+                font-size: 28px !important;
+                margin-bottom: 10px !important; 
+            }
+
+            table[class=body] p,
+            table[class=body] ul,
+            table[class=body] ol,
+            table[class=body] td,
+            table[class=body] span,
+            table[class=body] a 
+            {
+                font-size: 16px !important; 
+            }
+
+            table[class=body] .wrapper,
+            table[class=body] .article 
+            {
+                padding: 10px !important; 
+            }
+
+            table[class=body] .content 
+            {
+                padding: 0 !important; 
+            }
+
+            table[class=body] .container 
+            {
+                padding: 0 !important;
+                width: 100% !important; 
+            }
+
+            table[class=body] .main 
+            {
+                border-left-width: 0 !important;
+                border-radius: 0 !important;
+                border-right-width: 0 !important; 
+            }
+
+            table[class=body] .btn table 
+            {
+                width: 100% !important; 
+            }
+
+            table[class=body] .btn a 
+            {
+                width: 100% !important; 
+            }
+
+            table[class=body] .img-responsive 
+            {
+                height: auto !important;
+                max-width: 100% !important;
+                width: auto !important; 
+            }
+        }
+
+        /* -------------------------------------
+            PRESERVE THESE STYLES IN THE HEAD
+        ------------------------------------- */
+
+        @media all 
+        {
+            .ExternalClass 
+            {
+                width: 100%; 
+            }
+
+            .ExternalClass,
+            .ExternalClass p,
+            .ExternalClass span,
+            .ExternalClass font,
+            .ExternalClass td,
+            .ExternalClass div 
+            {
+                line-height: 100%; 
+            }
+
+            .apple-link a 
+            {
+                color: inherit !important;
+                font-family: inherit !important;
+                font-size: inherit !important;
+                font-weight: inherit !important;
+                line-height: inherit !important;
+                text-decoration: none !important; 
+            }
+
+            .btn-primary table td:hover 
+            {
+                background-color: #34495e !important; 
+            }
+
+            .btn-primary a:hover 
+            {
+                background-color: #34495e !important;
+                border-color: #34495e !important; 
+            } 
+        }
+
+            /**
+             * https://github.com/leemunroe/responsive-html-email-template/
+             * CUSTOM STYLING
+             */
+            
+            table.top
+            {
+                border: none;
+                margin-bottom: 48px;
+            }
+
+                table.top a
+                {
+                    display: block;
+                    position: relative;
+                    margin: 0 auto;
+                    padding: 0;
+                    text-align: center;
+
+                    border: none;
+                }
+
+                    table.top a img
+                    {
+                        display: block;
+                        margin: 0 auto;
+                        padding: 0;
+                        max-width: 100%;
+                        min-height: 0;
+                        max-height: none;
+                        height: auto;
+                    }
+
+            table.heading
+            {
+                border: none;
+                margin-bottom: 30px;
+            }
+
+                table.heading h1,
+                table.heading h2,
+                table.heading h3,
+                table.heading h4,
+                table.heading h5,
+                table.heading h6
+                {
+                    margin: 0;
+                    padding: 0;
+
+                    border: none;
+                    font-family: 'Exo 2', sans-serif;
+                    font-size: 48px;
+                    font-weight: 300;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.15;
+                    letter-spacing: normal;
+                    text-align: center;
+
+                    color: #414141;
+                }
+
+                table.heading strong,
+                table.heading b
+                {
+                    font-weight: 600;
+                }
+
+            table.body
+            {
+                border: none;
+            }
+
+            table.main
+            {
+                border: none;
+                border-top: solid 4px #3756ff;
+                border-radius: 4px;
+                box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.16);
+                background-color: #ffffff;
+            }
+
+                .btn-cta
+                {
+                    border-radius: 96px;
+                    background-color: transparent;
+                    background-image: linear-gradient(to right, #e1ea35, #f7c200);
+                    font-family: 'Exo 2', sans-serif;
+                    font-size: 16px;
+                    font-weight: 600;
+                    font-stretch: normal;
+                    font-style: normal;
+                    letter-spacing: normal;
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: #414141;
+
+                    margin-bottom: 30px;
+
+                    width: 60%;
+
+                }
+
+                .btn-cta a
+                {
+                    display: block;
+                    position: relative;
+                    margin: 0 auto;
+                    padding: 15px 0 0;
+                    background: none !important;
+                    background-color: transparent;
+                    border: none;
+                    font-family: 'Exo 2', sans-serif;
+                    font-size: 16px;
+                    font-weight: 600;
+                    font-stretch: normal;
+                    font-style: normal;
+                    letter-spacing: normal;
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: #414141;
+                }
+
+            table.bottom
+            {
+                border: none;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                
+                color: #414141;
+            }
+
+            table.bottom a
+            {
+                display: inline-block;
+                vertical-alignment: center;
+                position: relative;
+                margin: 0 15px;
+                padding: 0;
+                color: inherit;
+
+                font-size: 30px;
+                line-height: 30px;
+
+                border: none;
+                text-align: center;
+                text-transform: uppercase;
+                text-decoration: none;
+            }
+
+                table.bottom a:hover,
+                table.bottom a:focus
+                {
+                    color: inherit;
+                    text-decoration: none;
+                }
+
+                table.bottom a.link-email
+                {
+                    color: #4c5fd7;
+                }
+
+                    table.bottom a.link-email:hover,
+                    table.bottom a.link-email:focus
+                    {
+                        color: #4c5fd7;
+                    }
+
+                table.bottom a.link-facebook
+                {
+                    color: #3b5998;
+                }
+
+                    table.bottom a.link-facebook:hover,
+                    table.bottom a.link-facebook:focus
+                    {
+                        color: #3b5998;
+                    }
+
+                table.bottom a.link-twitter
+                {
+                    color: #1da1f2;
+                }
+
+                    table.bottom a.link-twitter:hover,
+                    table.bottom a.link-twitter:focus
+                    {
+                        color: #1da1f2;
+                    }
+
+            @media screen and (max-width: 620px)
+            {
+                .btn-cta
+                {
+                    width: 100%;
+                }
+            }
+
+        </style>
+
+    </head>
+    <body class="">
+
+        <table border="0" cellpadding="0" cellspacing="0" class="body">
+
+            <tr>
+
+                <td>&nbsp;</td>
+
+                <td class="container">
+
+                    <div class="content">
+
+                        <!-- START CENTERED WHITE CONTAINER -->
+                        <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+
+                        <table border="0" cellpadding="0" cellspacing="0" class="top">
+                            <tr>
+                                <td align="center">
+                                    <a href="#" target="_blank" title="Kemudi">
+                                        <img src="/static/images/logo.png" alt="Logo Kemudi" title="Kemudi" width="auto" height="auto" />
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table border="0" cellpadding="0" cellspacing="0" class="heading">
+                            <tr>
+                                <td align="center">
+                                    <h1>
+                                        Hai <strong>John Doe</strong>,<br />
+                                        selamat pesan Anda berhasil terkirim!
+                                    </h1>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table border="0" cellpadding="0" cellspacing="0" class="main">
+                            <tr>
+                                <td class="wrapper">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td align="center">
+                                                <img src="/static/images/mail-logo.png" alt="" title="" width="50%" height="auto" />
+                                                <p>Pesan Anda telah berhasil dikirim, silahkan tunggu balasan email dari kami untuk mengetahui langkah selanjutnya. Terima Kasih.</p>
+                                                <table border="0" cellpadding="0" cellspacing="0" class="btn btn-cta">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center">
+                                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a href="http://htmlemail.io" target="_blank">Call To Action</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                        </table><!--/ .main -->
+
+                        <table border="0" cellpadding="0" cellspacing="0" class="bottom">
+                            <tr>
+                                <td align="center">
+                                    <a href="#" target="_blank" title="E-Mail" class="link-email">
+                                        <!--
+                                        <i class="fas fa-envelope"></i>
+                                        -->
+                                        <i class="fas fa-envelope-square"></i>
+                                    </a>
+                                    <a href="#" target="_blank" title="Facebook" class="link-facebook">
+                                        <i class="fab fa-facebook-square"></i>
+                                    </a>
+                                    <a href="#" target="_blank" title="Twitter" class="link-twitter">
+                                        <i class="fab fa-twitter-square"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div><!--/ .content -->
+
+                </td>
+
+                <td>&nbsp;</td>
+
+            </tr>
+
+        </table>
+
+    </body>
+</html>
