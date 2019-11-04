@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-12 col-lg-5 text-center text-md-left">
                     <a href="#" class="d-block mb-5 mb-lg-0 text-center text-md-left">
-                        <img data-src="static/images/logo-footer.png" alt="Kemudi" class="img-fluid img-lazy mx-auto mx-md-0">
+                        <img data-src="/static/images/logo-footer.png" alt="Kemudi" class="img-fluid img-lazy mx-auto mx-md-0">
                     </a>
                 </div><!--/ .col-12 -->
                 <div class="col-12 col-md-4 col-lg-2 text-center text-md-left">
