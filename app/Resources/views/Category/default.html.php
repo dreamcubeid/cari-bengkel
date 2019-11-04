@@ -1,11 +1,18 @@
 <?php 
     $this->extend('Layouts/layout.html.php');
 
-    //Call js helper
-        // Call css file on specific page
+    // Call css file on specific page
     $this->headLink()->appendStylesheet('/static/css/category.css');
+
+    use AppBundle\Utils\Pagination;
+
     $category = $this->category;
     $keyword = $this->keyword;
+    $count = count($category);
+
+    //generate pagination
+    $paginationHelper = new Pagination();
+    $pagination = $paginationHelper->generate((ceil($count / $this->limit)), ($_GET['page'] ? $_GET['page'] : 1));
 ?>
 
 <section class="mb-5">
@@ -98,6 +105,9 @@
                     </div>
             </div><!--/ .col-12 -->
         </div><!--/ .row -->
+
+        <?= $count > 0 ? $pagination : '' ?>
+
     </div><!--/ .container -->
 </section><!--/ .cn-section -->
 

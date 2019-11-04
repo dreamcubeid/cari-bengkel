@@ -27,9 +27,9 @@ class CategoryController extends FrontendController
         $query = $request->query->all();
 
         //default setting
-        $limit = 10;
+        $limit = 15;
         $query['limit'] = $limit;
-        $page = addslashes(filter_var($query['page'], FILTER_VALIDATE_INT)) || null;
+        $page = addslashes(filter_var($query['page'], FILTER_VALIDATE_INT)) ? addslashes(filter_var($query['page'], FILTER_VALIDATE_INT)) : null;
         $offset = $page ? ($page - 1) * $limit : 0;
         $orderBy = 'o_creationDate';
         $sortBy = 'desc';
@@ -43,10 +43,15 @@ class CategoryController extends FrontendController
 
             $this->view->keyword = $keyword;
         }
+
+        if ($query['page']) {
+            $offset = ($page - 1) * $limit;
+        }
         
         $categoryList = $this->categoryService->getBy($condition, $conditionValue, $orderBy, $sortBy, $limit, $offset); 
 
-        $this->view->category = $categoryList; 
+        $this->view->category = $categoryList;
+        $this->view->limit = $limit;
     }
 
 }
