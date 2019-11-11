@@ -31,7 +31,9 @@ class ContactUsRepository extends BaseRepository implements ContactUsRepositoryI
         $contactUs->setPhone($phone);
         $contactUs->setMessage($message);
 
-        return $contactUs;
+        $contactUs->setPublished(true);
 
+        return $contactUs;
     }   
+    
 }
