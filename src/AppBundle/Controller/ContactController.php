@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/kontak")
+ * @Route("/hubungi-kami")
  */
 class ContactController extends FrontendController
 {
@@ -17,7 +17,7 @@ class ContactController extends FrontendController
     }
 
     /**
-     * @Route("/", methods={"GET"}, name="kontak")
+     * @Route("", methods={"GET"}, name="kontak")
      */
     public function indexAction(Request $request)
     {
