@@ -32,6 +32,7 @@ class ContactUsController
     public function add(Request $request = null)
     {
         $data = $request->request->all();
+
         $result1 = $this->contactUsService->create(
             $data['name'],
             $data['email'],
@@ -39,12 +40,14 @@ class ContactUsController
             $data['message']
         );
 
-        $params = ['Name'=>$data['name'], 'Message'=>$data['message'] ];
+        $params = ['Name' => $data['name'], 'Message' => $data['message']];
+
+        //store to Email Bucket
         $result2 = $this->emailBucketService->create(
-            'Contact to admin',
-            'Contact to admin',
+            'Contact Us',
+            'Pesan Anda telah terkirim',
             null,
-            'admin@caribengkel.com',
+            $result1->getEmail(),
             null,
             null,
             '/email-template/user/contact-us-success',
@@ -54,6 +57,6 @@ class ContactUsController
             []
         );
 
-        return $this->sendSuccessResponse($result1.' and '.$result2, 'Contact us data have been saved');
+        return $this->sendSuccessResponse($result1, 'Contact us data has been saved');
     }
 }
