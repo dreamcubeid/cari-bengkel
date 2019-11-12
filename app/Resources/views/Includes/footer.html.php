@@ -30,43 +30,17 @@
                 </div><!--/ .col-12 -->
                 <div class="col-12 col-md-4 col-lg-2 text-center text-md-left">
                     <div class="cn-footer__item mb-5 mb-md-0">
-                        <h4 class="cn-footer__item__title">Links</h4>
-                        <ul class="list-unstyled">
+                        <h4 class="cn-footer__item__title"><a href="/">Home</a></h4>
+                     <!--    <ul class="list-unstyled">
                             <li class="">
                                 <a href="#" title="">Sample Link Item</a>
                             </li>
-                            <li class="">
-                                <a href="#" title="">Sample Link Item</a>
-                            </li>
-                            <li class="">
-                                <a href="#" title="">Sample Link Item</a>
-                            </li>
-                            <li class="">
-                                <a href="#" title="">Sample Link Item</a>
-                            </li>
-                            <li class="">
-                                <a href="#" title="">Sample Link Item</a>
-                            </li>
-                        </ul>
+                        </ul> -->
                     </div><!--/ .cn-footer__item -->
                 </div><!--/ .col-12 -->
                 <div class="col-12 col-md-4 col-lg-2 text-center text-md-left">
                     <div class="cn-footer__item mb-5 mb-md-0">
-                        <h4 class="cn-footer__item__title">Links</h4>
-                        <ul class="list-unstyled">
-                            <li class="">
-                                <a href="#" title="">Sample Link Item</a>
-                            </li>
-                            <li class="">
-                                <a href="#" title="">Sample Link Item</a>
-                            </li>
-                            <li class="">
-                                <a href="#" title="">Sample Link Item</a>
-                            </li>
-                            <li class="">
-                                <a href="#" title="">Sample Link Item</a>
-                            </li>
-                        </ul>
+                        <h4 class="cn-footer__item__title"><a href="/hubungi-kami">Hubungi Kami</a></h4>
                     </div><!--/ .cn-footer__item -->
                 </div><!--/ .col-12 -->
                 <div class="col-12 col-md-4 col-lg-3 text-center text-md-left">
