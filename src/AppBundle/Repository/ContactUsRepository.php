@@ -11,7 +11,7 @@ class ContactUsRepository extends BaseRepository implements ContactUsRepositoryI
     public function add(
         string $name,
         string $email,
-        int $phone,
+        string $phone,
         string $message
     ): object
     {

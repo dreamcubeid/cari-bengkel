@@ -2,6 +2,7 @@
     $this->extend('Layouts/layout.html.php');
 
     $this->headScript()->prependFile('https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js');
+    $this->headScript()->prependFile('https://www.google.com/recaptcha/api.js?render=6Lf_C8IUAAAAAMwAlQwYQXlCGeOjeIfIfyFOVXy8');
 ?>
 
 <section class="my-4">
@@ -67,11 +68,11 @@
                         <textarea id="message" name="message" class="form-control" tabindex="4" placeholder="Tuliskan pesan anda" rows="5"></textarea>
                     </div>
                     <!--/ .form-group -->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <p class="my-5 p-0 text-center">
                             Taro captcha di marih
                         </p>
-                    </div>
+                    </div> -->
                     <!--/ .form-group -->
                     <div class="form-group mb-5 mb-lg-0 text-center text-lg-left">
                         <button id="send" type="submit" class="btn btn-cn-primary btn-cn--bold" tabindex="5">
@@ -112,8 +113,6 @@
 </section>
 <!--/ . -->
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script> -->
-
 <script>
 
     $(function(){
@@ -141,7 +140,12 @@
                     message: "Pesan harus diisi"
                 },
                 submitHandler: function(form) {
-                    send();
+                    grecaptcha.ready(function() {
+                        grecaptcha.execute('6Lf_C8IUAAAAAMwAlQwYQXlCGeOjeIfIfyFOVXy8').then(function(token) {
+                            $("#contactUs").prepend('<input type="hidden" id="g-recaptcha-response" value="' + token + '">');
+                            send();
+                        });
+                    });
                 }
             });
         });
@@ -155,17 +159,23 @@
             email: $("#email").val(),
             phone: $("#phone").val(),
             message: $("#message").val(),
+            token: $("#g-recaptcha-response").val()
         }
 
         $.ajax({
             type: 'POST',
             data: data,
-            url: '/api/contact-us/add',
-            success: function(res) {
+            url: '/api/contact-us/create',
+            success: function(response) {
+                console.log(response);
                 alert('Pesan Anda telah terkirimkan, silahkan tunggu balasan email dari kami untuk mengetahui langkah selanjutnya. Terima kasih');
                 $('#contactUs').each(function() {
                     this.reset();
                 });
+            },
+            error: function (response)
+            {
+                alert('Mohon maaf terjadi kesalahan. Silahkan coba lagi');
             }
         });
 

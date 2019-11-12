@@ -27,36 +27,66 @@ class ContactUsController
     }
 
     /**
-     * @Route("/add", methods={"POST"})
+     * @Route("/create", methods={"POST"})
      */
-    public function add(Request $request = null)
+    public function create(Request $request = null)
     {
         $data = $request->request->all();
 
-        $result1 = $this->contactUsService->create(
-            $data['name'],
-            $data['email'],
-            $data['phone'],
-            $data['message']
+        //check captcha
+        $secretKey = "6Lf_C8IUAAAAAC9l-KpLm1B9UMjjDhB3IzLYdjno";
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+        // post request to server
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        $dataCaptcha = array('secret' => $secretKey, 'response' => $data['token']);
+
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($dataCaptcha)
+            )
         );
 
-        $params = ['Name' => $data['name'], 'Message' => $data['message']];
+        $context  = stream_context_create($options);
+        $response = file_get_contents($url, false, $context);
+        $responseKey = json_decode($response, true);
 
-        //store to Email Bucket
-        $result2 = $this->emailBucketService->create(
-            'Contact Us',
-            'Pesan Anda telah terkirim',
-            null,
-            $result1->getEmail(),
-            null,
-            null,
-            '/email-template/user/contact-us-success',
-            $params,
-            null,
-            null,
-            []
-        );
+        header('Content-type: application/json');
 
-        return $this->sendSuccessResponse($result1, 'Contact us data has been saved');
+        if($responseKey["success"]) {
+            $result1 = $this->contactUsService->create(
+                $data['name'],
+                $data['email'],
+                $data['phone'],
+                $data['message']
+            );
+
+            $params = ['Name' => $data['name'], 'Message' => $data['message']];
+
+            //store to Email Bucket
+            $result2 = $this->emailBucketService->create(
+                'Contact Us',
+                'Pesan Anda telah terkirim',
+                null,
+                $result1->getEmail(),
+                null,
+                null,
+                '/email-template/user/contact-us-success',
+                $params,
+                null,
+                null,
+                []
+            );
+
+            return $this->sendSuccessResponse($result1, 'Contact us data has been saved');
+
+        } else {
+
+            return $this->sendErrorResponse("Captcha is invalid!");
+        
+        }
+        
     }
 }
