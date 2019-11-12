@@ -1,3 +1,8 @@
+<?php
+	use AppBundle\Utils\Url;
+	$urlHelper = new Url();
+?>
+
 <!doctype html>
 <html>
     <head>
@@ -122,7 +127,7 @@ table[class=body] .article {
                             <tr>
                                 <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
                                     <a href="#" target="_blank" title="Kemudi" style="color: #3498db; text-decoration: underline; display: block; position: relative; margin: 0 auto; padding: 0; text-align: center; border: none;">
-                                        <img src="/static/images/logo.png" alt="Logo Kemudi" title="Kemudi" width="auto" height="auto" style="background-color: #ffffff; border: none; -ms-interpolation-mode: bicubic; display: block; margin: 0 auto; padding: 0; max-width: 100%; min-height: 0; max-height: none; height: auto;">
+                                        <img src="<?php echo $urlHelper->getSiteUrl() ?>static/images/logo.png" alt="Logo Kemudi" title="Kemudi" width="auto" height="auto" style="background-color: #ffffff; border: none; -ms-interpolation-mode: bicubic; display: block; margin: 0 auto; padding: 0; max-width: 100%; min-height: 0; max-height: none; height: auto;">
                                     </a>
                                 </td>
                             </tr>
@@ -149,7 +154,7 @@ table[class=body] .article {
                                     <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
                                         <tr>
                                             <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
-                                                <img src="/static/images/mail-logo.png" alt="" title="" width="50%" height="auto" style="background-color: #ffffff; border: none; -ms-interpolation-mode: bicubic; max-width: 100%;">
+                                                <img src="<?php echo $urlHelper->getSiteUrl() ?>static/images/mail-logo.png" alt="" title="" width="50%" height="auto" style="background-color: #ffffff; border: none; -ms-interpolation-mode: bicubic; max-width: 100%;">
                                                 <?php echo $this->wysiwyg('content'); ?> 
                                                 <!-- <p style="font-family: 'Exo 2', sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Pesan Anda telah berhasil dikirim, silahkan tunggu balasan email dari kami untuk mengetahui langkah selanjutnya. Terima Kasih.</p> -->
                                                 <table border="0" cellpadding="0" cellspacing="0" class="btn btn-cta" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; border-radius: 96px; background-color: transparent; background-image: linear-gradient(to right, #e1ea35, #f7c200); font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; margin-bottom: 30px; width: 60%;" width="60%" bgcolor="transparent" background="linear-gradient(to right, #e1ea35, #f7c200)" align="center">

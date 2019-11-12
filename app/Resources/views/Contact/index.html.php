@@ -39,7 +39,7 @@
     <!--/ .container -->
 </section>
 
-<section class="my-5 mx-auto">
+<section class="my-5 mx-auto" id="success-notification" hidden="">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-8 offset-md-2 text-center">
@@ -52,7 +52,7 @@
                     </div><!--/ .col-12 -->
                 </div><!--/ .row -->
 
-                <a href="#" class="btn btn-cn-primary btn-cn--bold mb-5">
+                <a href="/" class="btn btn-cn-primary btn-cn--bold mb-5">
                     Home
                 </a>
 
@@ -66,7 +66,7 @@
 
         <div class="row">
 
-            <div class="col-12 col-lg-5">
+            <div class="col-12 col-lg-5" id="contact-us-form">
 
                 <form id="contactUs" role="form" class="cn-form">
                     <div class="form-group">
@@ -182,11 +182,11 @@
             data: data,
             url: '/api/contact-us/create',
             success: function(response) {
-                console.log(response);
-                alert('Pesan Anda telah terkirimkan, silahkan tunggu balasan email dari kami untuk mengetahui langkah selanjutnya. Terima kasih');
                 $('#contactUs').each(function() {
                     this.reset();
                 });
+                $('#contact-us-form').hide();
+                $('#success-notification').removeAttr('hidden');
             },
             error: function (response)
             {
