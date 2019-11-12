@@ -2,6 +2,133 @@
 {
     display: block;
     position: relative;
+    margin: auto 0 0;
+    padding: 0;
+
+    border: none; //solid 1px red;
+
+    &__top,
+    &__bottom
+    {
+        display: block;
+        position: relative;
+        border: none; //solid 1px blue;
+    }
+
+    &__bottom
+    {
+        min-height: 84px;
+        border: none;
+
+        p
+        {
+            color: #414141;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+        }
+
+        .list-inline
+        {
+            &-item
+            {
+                color: #f7c200;
+
+                a
+                {
+                    @include transition(ease, 0.3s);
+                    color: #f7c200;
+                    text-decoration: none;
+
+                    font-size: 20px;
+
+                    &:hover,
+                    &:focus
+                    {
+                        color: darken(#f7c200, 5%);
+                        text-decoration: none;;
+                    }
+                }
+            }
+        }
+    }
+
+    &__top
+    {
+        padding: 56px 0;
+    }
+
+    &__item
+    {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: 0;
+
+        color: #414141;
+
+        border: none; //solid 1px red;
+
+        &__title,
+        p
+        {
+            margin: 0;
+            padding: 0;
+            color: inherit;
+            letter-spacing: normal;
+            font-stretch: normal;
+            font-style: normal;
+        }
+
+        &__title
+        {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 24px;
+        }
+
+        p
+        {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .list-unstyled
+        {
+            & > li
+            {
+                & > a,
+                & > span
+                {
+                    line-height: 2;
+                }
+            }
+
+            a
+            {
+                @include transition(ease, 0.3s);
+                color: inherit;
+                text-decoration: none;
+
+                &:hover,
+                &:focus
+                {
+                    color: $color_primary; // #212121;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+/*
+.cn-footer
+{
+    display: block;
+    position: relative;
     margin: 0;
     padding: 0;
 
@@ -46,3 +173,4 @@
         
     }
 }
+*/

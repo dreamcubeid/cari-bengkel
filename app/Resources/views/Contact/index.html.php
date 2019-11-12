@@ -9,7 +9,6 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-
                 <ol class="breadcrumb cn-breadcrumb px-0">
                     <li class="breadcrumb-item">
                         <a href="/">Home</a>
@@ -18,15 +17,10 @@
                         <span>Hubungi Kami</span>
                     </li>
                 </ol>
-
-            </div>
-            <!--/ .col-12 -->
-        </div>
-        <!--/ .row -->
-    </div>
-    <!--/ .container -->
-</section>
-<!--/ . -->
+            </div><!--/ .col-12 -->
+        </div><!--/ .row -->
+    </div><!--/ .container -->
+</section><!--/ . -->
 
 <section class="mb-5">
     <div class="container">
@@ -44,11 +38,34 @@
     </div>
     <!--/ .container -->
 </section>
-<!--/ . -->
+
+<section class="my-5 mx-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2 text-center">
+
+                <h2 class="m-0 p-0">Terimakasih telah mengirimkan pesan kepada kami, silahkan cek email Anda untuk mengetahui langkah selanjutnya.</h2>
+
+                <div class="row my-5">
+                    <div class="col-8 offset-2 col-md-6 offset-md-3">
+                        <img src="/static/images/mail-logo.png" alt="" class="img-fluid d-block mx-auto">
+                    </div><!--/ .col-12 -->
+                </div><!--/ .row -->
+
+                <a href="#" class="btn btn-cn-primary btn-cn--bold mb-5">
+                    Home
+                </a>
+
+            </div><!--/ .col-12 -->
+        </div><!--/ .row -->
+    </div><!--/ .container -->
+</section>
 
 <section class="mb-5 pb-5">
     <div class="container">
+
         <div class="row">
+
             <div class="col-12 col-lg-5">
 
                 <form id="contactUs" role="form" class="cn-form">
@@ -78,8 +95,7 @@
                         <button id="send" type="submit" class="btn btn-cn-primary btn-cn--bold" tabindex="5">
                             Kirim Pesan
                         </button>
-                    </div>
-                    <!--/ .form-group -->
+                    </div><!--/ .form-group -->
                 </form>
 
             </div>
@@ -111,7 +127,6 @@
     </div>
     <!--/ .container -->
 </section>
-<!--/ . -->
 
 <script>
 

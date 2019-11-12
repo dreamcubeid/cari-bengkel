@@ -131,14 +131,10 @@ table[class=body] .article {
                         <table border="0" cellpadding="0" cellspacing="0" class="heading" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border: none; margin-bottom: 30px;" width="100%">
                             <tr>
                                 <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
-                                	<?php if ($this->editmode) { ?> 
-                                		<h1 style="margin-bottom: 30px; text-transform: capitalize; margin: 0; padding: 0; border: none; font-family: 'Exo 2', sans-serif; font-size: 48px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 1.15; letter-spacing: normal; text-align: center; color: #414141;"><?php echo $this->input('title'); ?></h1>
-										<!-- <h1 style="margin: 0; width: 100%;font-size: 36px;font-family:proxima-regular, Helvetica, Arial"><?php echo $this->input('title'); ?> </h1> -->
-									<?php } else { ?>    
-										<h1 style="margin-bottom: 30px; text-transform: capitalize; margin: 0; padding: 0; border: none; font-family: 'Exo 2', sans-serif; font-size: 48px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 1.15; letter-spacing: normal; text-align: center; color: #414141;"><?php echo $this->input('title')->text; ?></h1>
-										<!-- <h1 style="margin: 0; width: 100%;font-size: 36px;font-family:proxima-regular, Helvetica, Arial"><?php echo $this->input('title')->text; ?></h1> -->
-									<?php } ?>   
-                                    
+                                    <h1 style="margin-bottom: 30px; text-transform: capitalize; margin: 0; padding: 0; border: none; font-family: 'Exo 2', sans-serif; font-size: 48px; font-weight: 300; font-stretch: normal; font-style: normal; line-height: 1.15; letter-spacing: normal; text-align: center; color: #414141;">
+                                        Hai <strong style="font-weight: 600;">John Doe</strong>,<br>
+                                        selamat pesan Anda berhasil terkirim!
+                                    </h1>
                                 </td>
                             </tr>
                         </table>
@@ -150,8 +146,7 @@ table[class=body] .article {
                                         <tr>
                                             <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
                                                 <img src="/static/images/mail-logo.png" alt="" title="" width="50%" height="auto" style="background-color: #ffffff; border: none; -ms-interpolation-mode: bicubic; max-width: 100%;">
-                                                <?php echo $this->wysiwyg('content'); ?> 
-                                                <!-- <p style="font-family: 'Exo 2', sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Pesan Anda telah berhasil dikirim, silahkan tunggu balasan email dari kami untuk mengetahui langkah selanjutnya. Terima Kasih.</p> -->
+                                                <p style="font-family: 'Exo 2', sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Pesan Anda telah berhasil dikirim, silahkan tunggu balasan email dari kami untuk mengetahui langkah selanjutnya. Terima Kasih.</p>
                                                 <table border="0" cellpadding="0" cellspacing="0" class="btn btn-cta" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; border-radius: 96px; background-color: transparent; background-image: linear-gradient(to right, #e1ea35, #f7c200); font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; margin-bottom: 30px; width: 60%;" width="60%" bgcolor="transparent" background="linear-gradient(to right, #e1ea35, #f7c200)" align="center">
                                                     <tbody>
                                                         <tr>
@@ -159,19 +154,9 @@ table[class=body] .article {
                                                                 <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
                                                                     <tbody>
                                                                         <tr>
-                                                                        	<?php if ($this->editmode) { ?>
-                                                                        		<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: transparent; border-radius: 5px; text-align: center;" valign="top" bgcolor="transparent" align="center">
-                                                                                	<a href="" target="_blank" style="border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; display: block; position: relative; margin: 0 auto; padding: 15px 0 0; background-color: transparent; border: none; font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; background: none;"><?= $this->link('link-e') ?></a>
-                                                                            	</td>
-																	    	<?php }else{ ?>
-																	    	<?php if ($this->link('link-e')->getHref() && $this->link('link-e')->getText()) {  ?>
-																	    		<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: transparent; border-radius: 5px; text-align: center;" valign="top" bgcolor="transparent" align="center">
-                                                                                	<a href="" target="_blank" style="border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; display: block; position: relative; margin: 0 auto; padding: 15px 0 0; background-color: transparent; border: none; font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; background: none;"><?= $this->link('link-e') ?></a>
-                                                                            	</td>
-																	    	<?php } }?>
-																	    	<!-- <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: transparent; border-radius: 5px; text-align: center;" valign="top" bgcolor="transparent" align="center">
+                                                                            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: transparent; border-radius: 5px; text-align: center;" valign="top" bgcolor="transparent" align="center">
                                                                                 <a href="http://htmlemail.io" target="_blank" style="border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; display: block; position: relative; margin: 0 auto; padding: 15px 0 0; background-color: transparent; border: none; font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; background: none;">Call To Action</a>
-                                                                            </td> -->
+                                                                            </td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
