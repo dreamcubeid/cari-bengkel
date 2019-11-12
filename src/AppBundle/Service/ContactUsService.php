@@ -17,7 +17,7 @@ class ContactUsService
     public function create(
         string $name = null,
         string $email = null,
-        int $phone = null,
+        string $phone = null,
         string $message = null
     ) {
         $contactUs = $this->contactUsRepo->add(
