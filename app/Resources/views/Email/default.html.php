@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <title>Simple Transactional Email</title>
+        <title>Email</title>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2:300,600&display=swap"> 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
@@ -121,13 +121,13 @@ table[class=body] .article {
                     <div class="content" style="box-sizing: border-box; display: block; margin: 0 auto; max-width: 580px; padding: 10px;">
 
                         <!-- START CENTERED WHITE CONTAINER -->
-                        <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">This is preheader text. Some clients will show this text as a preview.</span>
+                        <!-- <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">This is preheader text. Some clients will show this text as a preview.</span> -->
 
                         <table border="0" cellpadding="0" cellspacing="0" class="top" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border: none; margin-bottom: 48px;" width="100%">
                             <tr>
                                 <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
                                     <a href="#" target="_blank" title="Kemudi" style="color: #3498db; text-decoration: underline; display: block; position: relative; margin: 0 auto; padding: 0; text-align: center; border: none;">
-                                        <img src="<?php echo $urlHelper->getSiteUrl() ?>static/images/logo.png" alt="Logo Kemudi" title="Kemudi" width="auto" height="auto" style="background-color: #ffffff; border: none; -ms-interpolation-mode: bicubic; display: block; margin: 0 auto; padding: 0; max-width: 100%; min-height: 0; max-height: none; height: auto;">
+                                        <img src="<?php echo $urlHelper->getSiteUrl() ?>static/images/logo.png" alt="" title="Kemudi" width="auto" height="auto" style="background-color: #ffffff; border: none; -ms-interpolation-mode: bicubic; display: block; margin: 0 auto; padding: 0; max-width: 100%; min-height: 0; max-height: none; height: auto;">
                                     </a>
                                 </td>
                             </tr>
@@ -154,36 +154,61 @@ table[class=body] .article {
                                     <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
                                         <tr>
                                             <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
-                                                <img src="<?php echo $urlHelper->getSiteUrl() ?>static/images/mail-logo.png" alt="" title="" width="50%" height="auto" style="background-color: #ffffff; border: none; -ms-interpolation-mode: bicubic; max-width: 100%;">
-                                                <?php echo $this->wysiwyg('content'); ?> 
-                                                <!-- <p style="font-family: 'Exo 2', sans-serif; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px;">Pesan Anda telah berhasil dikirim, silahkan tunggu balasan email dari kami untuk mengetahui langkah selanjutnya. Terima Kasih.</p> -->
-                                                <table border="0" cellpadding="0" cellspacing="0" class="btn btn-cta" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; border-radius: 96px; background-color: transparent; background-image: linear-gradient(to right, #e1ea35, #f7c200); font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; margin-bottom: 30px; width: 60%;" width="60%" bgcolor="transparent" background="linear-gradient(to right, #e1ea35, #f7c200)" align="center">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;" valign="top">
-                                                                <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
-                                                                    <tbody>
-                                                                        <tr>
-                                                                        	<?php if ($this->editmode) { ?>
-                                                                        		<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: transparent; border-radius: 5px; text-align: center;" valign="top" bgcolor="transparent" align="center">
-                                                                                	<a href="" target="_blank" style="border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; display: block; position: relative; margin: 0 auto; padding: 15px 0 0; background-color: transparent; border: none; font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; background: none;"><?= $this->link('link-e') ?></a>
+                                                <?php if ($this->editmode) { ?>
+										            
+										            <?= $this->image('icon-email',[
+											            	"title" => "Drag your icon here",
+		            										"hidetext"=> true,
+														    "width" => '50%',
+														    "height" => '200',
+	    													"thumbnail" => "contentimages"
+										            	]);
+										            ?>
+
+										       	<?php } else { ?>
+										       		<img src="<?php echo $urlHelper->getSiteUrl() . ($this->image("icon-email")->getSrc()) ?>" alt="" title="" width="50%" height="auto" style="background-color: #ffffff; border: none; -ms-interpolation-mode: bicubic; max-width: 100%;">
+										       	<?php } ?>
+
+                                                <?php echo $this->wysiwyg('content'); ?>
+
+                                                <?php if ($this->editmode) { ?>
+	                                                <table border="0" cellpadding="0" cellspacing="0" class="btn btn-cta" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; border-radius: 96px; background-color: transparent; background-image: linear-gradient(to right, #e1ea35, #f7c200); font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; margin-bottom: 30px; width: 60%;" width="60%" bgcolor="transparent" background="linear-gradient(to right, #e1ea35, #f7c200)" align="center">
+	                                                    <tbody>
+	                                                        <tr>
+	                                                            <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;" valign="top">
+	                                                                <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
+	                                                                    <tbody>
+	                                                                        <tr>
+	                                                                    		<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: transparent; border-radius: 5px; text-align: center;" valign="top" bgcolor="transparent" align="center">
+	                                                                            	<a href="" target="_blank" style="border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; display: block; position: relative; margin: 0 auto; padding: 15px 0 0; background-color: transparent; border: none; font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; background: none;"><?= $this->link('link-e') ?></a>
+	                                                                        	</td>
+	                                                                        </tr>
+	                                                                    </tbody>
+	                                                                </table>
+	                                                            </td>
+	                                                        </tr>
+	                                                    </tbody>
+	                                                </table>
+										    	<?php } else { ?>
+										    	<?php if ($this->link('link-e')->getHref() && $this->link('link-e')->getText()) {  ?>
+										    		<table border="0" cellpadding="0" cellspacing="0" class="btn btn-cta" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; box-sizing: border-box; border-radius: 96px; background-color: transparent; background-image: linear-gradient(to right, #e1ea35, #f7c200); font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; margin-bottom: 30px; width: 60%;" width="60%" bgcolor="transparent" background="linear-gradient(to right, #e1ea35, #f7c200)" align="center">
+	                                                    <tbody>
+	                                                        <tr>
+	                                                            <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;" valign="top">
+	                                                                <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
+	                                                                    <tbody>
+	                                                                        <tr>
+	                                                                    		<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: transparent; border-radius: 5px; text-align: center;" valign="top" bgcolor="transparent" align="center">
+                                                                                	<a target="_blank" style="border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; display: block; position: relative; margin: 0 auto; padding: 15px 0 0; background-color: transparent; border: none; font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; background: none;"><?= $this->link('link-e') ?></a>
                                                                             	</td>
-																	    	<?php }else{ ?>
-																	    	<?php if ($this->link('link-e')->getHref() && $this->link('link-e')->getText()) {  ?>
-																	    		<td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: transparent; border-radius: 5px; text-align: center;" valign="top" bgcolor="transparent" align="center">
-                                                                                	<a href="" target="_blank" style="border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; display: block; position: relative; margin: 0 auto; padding: 15px 0 0; background-color: transparent; border: none; font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; background: none;"><?= $this->link('link-e') ?></a>
-                                                                            	</td>
-																	    	<?php } }?>
-																	    	<!-- <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: transparent; border-radius: 5px; text-align: center;" valign="top" bgcolor="transparent" align="center">
-                                                                                <a href="http://htmlemail.io" target="_blank" style="border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; display: block; position: relative; margin: 0 auto; padding: 15px 0 0; background-color: transparent; border: none; font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 600; font-stretch: normal; font-style: normal; letter-spacing: normal; text-align: center; text-transform: uppercase; color: #414141; background: none;">Call To Action</a>
-                                                                            </td> -->
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+	                                                                        </tr>
+	                                                                    </tbody>
+	                                                                </table>
+	                                                            </td>
+	                                                        </tr>
+	                                                    </tbody>
+	                                                </table>
+										    	<?php } }?>
                                             </td>
                                         </tr>
                                     </table>
