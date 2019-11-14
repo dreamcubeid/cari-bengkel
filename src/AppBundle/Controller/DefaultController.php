@@ -24,7 +24,7 @@ class DefaultController extends FrontendController
     {
         // Put your code here
         $garageList = $this->garageService->getAll();
-        $categoryList = $this->categoryService->getAll();
+        $categoryList = $this->categoryService->getBy('', [], 'o_creationDate', 'desc', 5);
 
         $this->view->category = $categoryList;
     }
