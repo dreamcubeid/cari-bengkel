@@ -286,6 +286,7 @@
             data.location = currentPosition;
             data.orderBy = 'Distance';
             data.sortBy = 'ASC';
+            data.limit = 6;
             condition = {'radius' : 5};
         } else {
             data.limit = 5;
