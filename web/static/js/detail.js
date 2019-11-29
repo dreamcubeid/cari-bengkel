@@ -36,14 +36,14 @@
                 {
                     breakpoint: 767,
                     settings: {
-                        slidesToShow: 2,
+                        slidesToShow: 3,
                         dots: false
                     }
                 },
                 {
                     breakpoint: 575,
                     settings: {
-                        slidesToShow: 1,
+                        slidesToShow: 3,
                         dots: false
                     }
                 }
