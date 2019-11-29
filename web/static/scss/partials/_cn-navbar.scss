@@ -1,0 +1,115 @@
+.cn-navbar
+{
+    // border: solid 1px red;
+
+    .navbar-brand
+    {
+        // border: solid 1px red;
+    }
+
+    .navbar-nav
+    {
+        .nav-item
+        {
+            // border: solid 1px red;
+
+            .nav-link
+            {
+                font-size: 16px;
+            }
+
+            &.active
+            {
+                .nav-link
+                {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    
+}
+
+@media (min-width: 992px)
+{
+    .cn-navbar .navbar-nav .nav-link
+    {
+
+    }
+
+    .cn-navbar
+    {
+        .navbar-nav
+        {
+            .nav-item
+            {
+                padding-left: 20px;
+                padding-right: 20px;
+
+                &.active
+                {
+                    // padding-left: 0;
+                    // padding-right: 0;
+
+                    .nav-link
+                    {
+                        @include transition(ease, 0.3s);
+                        padding-left: 28px;
+                        padding-right: 28px;
+                        background-image: linear-gradient(to right, #e1ea35, $color_primary);
+                        border: none;
+                        border-radius: 20px;
+                        color: $color_text_primary;
+                        text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+                        font-weight: 600;
+
+                        text-decoration: none;
+
+                        &:hover
+                        {
+                            color: inherit;
+                            text-decoration: none;
+                            background-image: linear-gradient(to right, darken(#e1ea35, 5%), darken($color_primary, 5%));
+                        }
+                    }
+                }
+            }
+
+            .nav-link
+            {
+
+            }
+        }
+    }
+}
+
+@media (max-width: 991px)
+{
+    .cn-navbar
+    {
+        &-wrapper
+        {
+            background-color: white;
+            border: none; //solid 1px red;
+            border-bottom: solid 1px $color_grey_200;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            width: 100%;
+        }
+
+        .navbar-nav
+        {
+            .nav-item
+            {
+                .nav-link
+                {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}

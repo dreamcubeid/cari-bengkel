@@ -3,11 +3,12 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Contract\GarageRepositoryInterface;
-use Pimcore\Model\DataObject\Garage;
+use AppBundle\Model\DataObject\Garage;
+use AppBundle\Utils\DataType;
 
-class GarageRepository implements GarageRepositoryInterface
+class GarageRepository extends BaseRepository implements GarageRepositoryInterface
 {
-    public function find(string $orderBy = 'o_creationDate', string $sortBy = 'desc')
+    public function find(string $orderBy = 'o_creationDate', string $sortBy = 'desc'): object
     {
         $garage = new Garage\Listing();
 
@@ -17,13 +18,32 @@ class GarageRepository implements GarageRepositoryInterface
         return $garage;
     }
 
-    public function findOneBy(int $id)
+    public function findOneById(int $id): object
     {
+        $garage = Garage::getById($id);
         
+        return $garage;
     }
 
-    public function findBy(array $data, string $orderBy = 'o_creationDate', string $sortBy = 'desc')
+    public function findBy(array $condition = [], array $location = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc', int $limit = null, int $offset = null): object
     {
+        $garage = Garage::getWithDistance($condition, $location, $orderBy, $sortBy, $limit, $offset);
         
+        return $garage;
     }
+
+    public function findOneBySlug(string $slug): object
+    {
+        $garage = Garage::getBySlug($slug, 1);
+
+        return $garage;
+    }
+
+    public function findByLocation(array $condition = [], array $location = [], string $orderBy = 'o_creationDate', string $sortBy = 'desc'): object
+    {
+        $garage = Garage::getWithDistance($condition, $location, $orderBy, $sortBy);
+
+        return $garage;
+    }
+
 }

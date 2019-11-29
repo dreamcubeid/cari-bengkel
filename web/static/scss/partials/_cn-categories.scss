@@ -1,0 +1,220 @@
+.cn-categories
+{
+
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+
+    border: none; // solid 1px red;
+
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+
+    white-space: nowrap;
+
+    &-item
+    {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: 100% 0 0;
+
+        overflow: hidden;
+
+        border: none; //solid 1px red;
+
+        color: inherit;
+        text-decoration: none;
+
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+        height: 0;
+
+        &:hover
+        {
+            .cn-categories-item
+            {
+                &__inner
+                {
+                    background-color: $color_primary;
+                }
+
+                &__text
+                {
+                    color: white;
+                }
+
+                &__icon
+                {
+                    & > img
+                    {
+                        filter: brightness(0%) contrast(100%) invert(100%);
+                    }
+                }
+            }
+        }
+
+        &:hover,
+        &:focus
+        {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        &__inner
+        {
+
+            @include transition(ease, 0.3s);
+            @include fixedSize(calc(100% - 32px));
+            @include translate3d(-50%, -50%, 0);
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            margin: 0 auto;
+            padding: 0;
+
+            background-color: #f7f9fb;
+            border-radius: 100%;
+            border: none; //solid 2px #e1ea35;
+
+            &::before
+            {
+                @include translate3d(-50%, -50%, 0);
+
+                content: "";
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 2;
+
+                width: calc(100% + 16px);
+                height: calc(100% + 16px);
+
+                border: solid 2px #e1ea35;
+                border-radius: 100%;
+            }
+        }
+
+        &__icon,
+        &__text
+        {
+            display: block;
+            position: relative;
+            text-align: center;
+            border: none; //solid 1px red;
+        }
+
+        &__icon
+        {
+
+            @include fixedSize(72px);
+            border: none; //solid 1px red;
+
+            & > img
+            {
+                @include transition(ease, 0.3s);
+                @include translate3d(-50%, -50%, 0);
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin: 0 auto;
+                padding: 0;
+                border: none;
+
+                width: 80%;
+                height: auto;
+
+                filter: none;
+            }
+        }
+
+        &__text
+        {
+            @include transition(ease, 0.3s);
+            font-size: 16px; //20px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: 1.2;
+            letter-spacing: normal;
+            text-align: center;
+            color: $color_text_primary;
+
+            width: calc(100% - 48px);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            // border: solid 1px red;
+        }
+    }
+
+    .slick
+    {
+        .slick-dots
+        {
+            border: solid 1px red;
+            bottom: -60px;
+
+            & > li
+            {
+                border: solid 1px red;
+            }
+
+        }
+
+        &-arrow
+        {
+
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: auto;
+            right: auto;
+            z-index: 3;
+
+            color: white;
+            background-color: $color_primary;
+            border: none; //solid 1px white;
+            border-radius: 100%;
+            @include fixedSize(40px);
+            @include transition(ease, 0.3s);
+            @include translateY(-50%);
+
+            &.slick-prev
+            {
+                left: 0;
+            }
+
+            &.slick-next
+            {
+                right: 0;
+            }
+
+            &:hover,
+            &:focus
+            {
+                background-color: darken($color_primary, 5%);
+            }
+
+        }
+
+        &-track
+        {
+
+            & > .slick-slide
+            {
+
+                & > div
+                {
+                    position: relative;
+                }
+            }
+        }
+    }
+}

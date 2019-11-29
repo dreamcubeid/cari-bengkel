@@ -1,0 +1,25 @@
+.cn-form
+{
+    .form
+    {
+        &-group
+        {
+            border: none; //solid 1px red;
+        }
+
+        &-control
+        {
+            @include transition(ease, 0.3s);
+            box-shadow: 0 0 0 transparent;
+            background-color: #fff;
+            border-color: #707070;
+            border-radius: 20px;
+            padding: 20px;
+
+            &:focus
+            {
+                border-color: $color_primary;
+            }
+        }
+    }
+}

@@ -26,7 +26,7 @@
 
 /var/*
 !/var/.gitkeep
-!/var/classes/
+/var/classes/
 /var/classes/DataObject
 
 !/var/config
@@ -50,9 +50,6 @@
 # remove this for your projects if you want to track the file
 /composer.local.json
 
-# composer
-/vendor/
-
 # PhpStorm / IDEA
 .idea
 # NetBeans
@@ -63,3 +60,13 @@ nbproject
 /tools/
 /website/
 .temp
+
+# SASS cache
+/web/static/scss/.sass-cache/
+
+# composer
+/composer.lock
+/composer.phar
+!/vendor
+/vendor/*
+!/vendor/.gitkeep

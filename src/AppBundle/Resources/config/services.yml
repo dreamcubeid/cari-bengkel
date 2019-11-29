@@ -19,13 +19,43 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    #
+    # SERVICE
+    #
+
+    # auto-register all service as services
     AppBundle\Service\:
         resource: '../../Service'
         public: true
 
+    #
+    # REPOSITORY
+    #
+
+    # auto-register all repositories as services
     AppBundle\Repository\:
         resource: '../../Repository'
         public: true
+
+    #
+    # Contract
+    #
+
+    # register all repositories interface/contract as services
+    AppBundle\Contract\GarageRepositoryInterface:
+        class: AppBundle\Repository\GarageRepository
+
+    AppBundle\Contract\CategoryRepositoryInterface:
+        class: AppBundle\Repository\CategoryRepository
+
+    AppBundle\Contract\EmailBucketRepositoryInterface:
+        class: AppBundle\Repository\EmailBucketRepository
+
+    AppBundle\Contract\ContactUsRepositoryInterface:
+        class: AppBundle\Repository\ContactUsRepository
+
+    AppBundle\Contract\TypeRepositoryInterface:
+        class: AppBundle\Repository\TypeRepository
 
     #
     # COMMANDS

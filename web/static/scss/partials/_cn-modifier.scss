@@ -1,0 +1,19 @@
+/**
+ * _cn-modifier.scss
+ * Created by @falmesino
+ */
+
+.cn-icon--black
+{
+    filter: brightness(0%) contrast(100%) invert(0%)
+}
+
+.cn-icon--white
+{
+    filter: brightness(0%) contrast(100%) invert(100%)
+}
+
+.cn-icon--animate
+{
+    @include transition(ease, 0.3s);
+}

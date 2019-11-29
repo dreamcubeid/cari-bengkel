@@ -1,0 +1,126 @@
+<?php 
+    $this->extend('Layouts/layout.html.php');
+
+    // Call css file on specific page
+    $this->headLink()->appendStylesheet('/static/css/category.css');
+
+    use AppBundle\Utils\Pagination;
+
+    $category = $this->category;
+    $keyword = $this->keyword;
+    $count = count($category);
+
+    //generate pagination
+    $paginationHelper = new Pagination();
+    $pagination = $paginationHelper->generate((ceil($count / $this->limit)), ($_GET['page'] ? $_GET['page'] : 1));
+?>
+
+<section class="mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6 py-5">
+                <div class="cn-hero">
+                    <h1>Kategori</h1>
+                    <p>Pilih salah satu kategori untuk kebutuhan kendaraan Anda</p>
+                </div><!--/ .cn-hero -->
+            </div><!--/ .col-12 -->
+        </div><!--/ .row -->
+    </div><!--/ .container -->
+</section><!--/ . -->
+
+<section class="mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="cn-search">
+                    <form role="form" class="d-flex flex-column flex-md-row align-items-center align-content-center justify-content-between" method="GET" action="/kategori">
+                        <div class="form-group flex-grow-1 mx-0 mr-md-3 mb-3 mb-md-0">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </div>
+                                <input id="keywordLocation" type="search" name="keyword" class="form-control" placeholder="Cari berdasarkan daerah atau nama bengkel" maxlength="70" value="<?= $keyword ? $keyword : ''?>">
+                                <div class="input-group-append">
+                                    <span class="input-group-text text-primary cn-search-city__trigger">
+                                        <i class="fas fa-crosshairs"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div><!--/ .form-group -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Cari
+                            </button>
+                        </div><!--/ .form-group -->
+                    </form>
+                </div><!--/ . -->
+            </div><!--/ .col-12 -->
+        </div><!--/ .row -->
+    </div><!--/ .container -->
+</section><!--/ . -->
+
+<section class="cn-sectionx">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 com">
+            <div class="container">
+                <div class="row">
+                <?php 
+                    if(isset($category)): 
+
+                        foreach($category as $key => $value):
+                            $url = '/cari?category=' . $value->getId();
+                            // $icon = 'http://placehold.it/72x72';
+                            $name = $value->getName();
+
+                            try{
+                                $icon = $value->getIcon()->getPath() . $value->getIcon()->getFilename();
+                            }
+                            catch(Throwable $t)
+                            {
+                                // Do nothing when fail
+                            }
+
+                ?>           
+                        <div class="cn-categories cate" >
+                            <a href="<?= $url; ?>" title="" class="cn-categories-item">
+                                <div class="cn-categories-item__inner d-flex flex-column align-items-center justify-content-center">
+                                    <div class="cn-categories-item__icon">
+                                        <img data-src="<?= $icon; ?>" class="img-lazy" alt="" title="">
+                                    </div><!--/ .cn-categories-item__icon -->
+                                    <div class="cn-categories-item__text mt-2">
+                                        <span><?= $name; ?></span>
+                                    </div><!--/ .cn-categories-item__text -->
+                                </div><!--/ .cn-categories-item__inner -->
+                            </a><!--/ .cn-categories-item -->
+                        </div><!--/ .cn-categories -->     
+                <?php
+                        endforeach;
+                        
+                    endif;
+                ?>
+                        </div>
+                    </div>
+            </div><!--/ .col-12 -->
+        </div><!--/ .row -->
+
+        <?= $count > 0 ? $pagination : '' ?>
+
+    </div><!--/ .container -->
+</section><!--/ .cn-section -->
+
+<section class="cn-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="cn-section-title">
+                    
+                </div>
+            </div><!--/ .col-12 -->
+        </div><!--/ .row -->
+        </div><!--/ .row -->
+    </div><!--/ .container -->
+</section><!--/ .cn-section -->
+
